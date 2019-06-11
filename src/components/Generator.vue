@@ -7,10 +7,19 @@
     <div class="result-generate">
       <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
       <dm-divider></dm-divider>
-      <h3>Address: {{address.publicAddress}}</h3>
+      <h4>Address: {{address.publicAddress}}</h4>
       <dm-divider></dm-divider>
-      <h3>Private key: {{address.privateWif}}</h3>
+      <h4>Private key: {{address.privateWif}}</h4>
+      <dm-divider></dm-divider>
     </div>
+
+    <span class="instruction">
+      <span class="toast-title">How to add an address to your wallet</span>
+      <dm-list-item :number=1>Open PostCoin Desktop Wallet</dm-list-item>
+      <dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item>
+      <dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item>
+      <dm-list-item :number=4>Wait for the import to complete and then restart the wallet.</dm-list-item>
+    </span>
 
   </div>
 </template>
@@ -36,8 +45,10 @@
     methods: {
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64})
-        console.log('privateKeyHex', privateKeyHex)
         const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37}))
+        console.log(key);
+        console.log(key.toString()); //PQz6GDwtXQtD1tLydjsaCoVjmXBjSqPDkT
+
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
@@ -48,21 +59,13 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
   a {
     color: #42b983;
   }
+
+  .toast-title {
+    font-size:1.5em;
+    color: #fff;
+  }
+
 </style>
