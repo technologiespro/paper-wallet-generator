@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  import coinkey from 'coinkey';
-  import rndString from 'crypto-random-string';
+  import CoinKey from 'coinkey';
+  import cryptoRandomString from 'crypto-random-string';
 
     export default {
         name: 'Generator',
@@ -24,7 +24,10 @@
         },
         methods: {
             generateAddress: function() {
-                console.log('generate')
+              let privateKeyHex = cryptoRandomString({length: 64})
+              console.log('privateKeyHex',privateKeyHex)
+              const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37})).toString()
+              console.log(key.toString())
             }
         }
     }
