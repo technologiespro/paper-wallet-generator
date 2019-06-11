@@ -14,7 +14,8 @@
     "crypto",
     "bitcoin",
     "litecoin",
-    "postcoin"
+    "postcoin",
+    "altcoins"
   ],
   "license": "MIT",
   "dependencies": {
