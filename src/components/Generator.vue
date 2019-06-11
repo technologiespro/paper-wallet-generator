@@ -2,7 +2,7 @@
     <div class="hello">
         <h1>{{ msg }}</h1>
 
-        <dm-button color="black">Generate new address</dm-button>
+        <dm-button @click="generateAddress" color="black">Generate new address</dm-button>
 
         <div class="result-generate">
             <h3>Private key:</h3>
@@ -18,6 +18,11 @@
         name: 'HelloWorld',
         props: {
             msg: String
+        },
+        methods: {
+            generateAddress: function() {
+                console.log('generate')
+            }
         }
     }
 </script>
