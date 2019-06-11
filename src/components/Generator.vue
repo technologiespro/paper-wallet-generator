@@ -15,6 +15,7 @@
 
 <script>
   import coinkey from 'coinkey';
+  import rndString from 'crypto-random-string';
 
     export default {
         name: 'Generator',
