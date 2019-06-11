@@ -1,5 +1,7 @@
 # paper-wallet-generator
 
+Designed to securely generate crypto addresses offline
+
 ## Project setup
 ```
 npm install
