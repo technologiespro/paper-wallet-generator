@@ -1,4 +1,4 @@
-# paper-coins-generator
+# paper-wallet-generator
 
 ## Project setup
 ```
