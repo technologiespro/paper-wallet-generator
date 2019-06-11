@@ -42,8 +42,8 @@
     },
     methods: {
       generateAddress: function () {
-        let privateKeyHex = cryptoRandomString({length: 64})
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37}))
+        let privateKeyHex = cryptoRandomString({length: 64});
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37}));
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
