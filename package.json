@@ -21,6 +21,7 @@
   "dependencies": {
     "coinkey": "git+https://github.com/technologiespro/coinkey.git",
     "core-js": "^2.6.5",
+    "crypto-random-string": "^3.0.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
