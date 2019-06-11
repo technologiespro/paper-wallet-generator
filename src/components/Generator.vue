@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import coinkey from 'coinkey';
+
     export default {
         name: 'Generator',
         props: {
