@@ -20,6 +20,7 @@
     "crypto": "^1.0.1",
     "crypto-random-string": "^3.0.0",
     "eckey": "^1.0.0",
+    "qrious": "^4.0.2",
     "secp256k1": "^3.7.1",
     "secure-random": "^1.1.2",
     "vue": "^2.6.10",
