@@ -2,37 +2,47 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
-    <dm-button @click="generateAddress" color="black">Generate new address</dm-button>
+    <dm-button size="large" @click="generateAddress" color="black">Generate new address</dm-button>
 
     <div class="container mt-4">
-    <div class="result-generate" v-if="address.keyHex">
-      <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
-      <table class="table table">
-        <tr>
-          <td>
-            <VueQrcode :value="address.publicAddress" :options="{size:220, foreground: '#085361',level: 'H'}"/>
-            <p class="text-secondary">Public Address</p>
-          </td>
-          <td>
-            <VueQrcode :value="address.privateWif" :options="{size:220, foreground: '#085361',level: 'H'}"/>
-            <p class="text-secondary">Private Key</p>
-          </td>
-        </tr>
-      </table>
+      <div class="result-generate" v-if="address.keyHex">
+        <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
+        <table class="table table">
+          <tr>
+            <td>
+              <VueQrcode :value="address.publicAddress" :options="{size:196, foreground: '#232D3D',level: 'H'}"/>
+              <p class="text-secondary">Public Address</p>
+            </td>
+            <td>
+              <VueQrcode :value="address.privateWif" :options="{size:196, foreground: '#232D3D',level: 'H'}"/>
+              <p class="text-secondary">Private Key</p>
+            </td>
+          </tr>
+        </table>
 
-      <h4>Address: <span class="barley-white">{{address.publicAddress}}</span></h4>
-      <h4>Private key: <span class="barley-white">{{address.privateWif}}</span></h4>
-    </div>
+        <table class="table table text-success">
+          <tr>
+            <td class="text-right">Address:</td>
+            <td class="text-left"><span class="barley-white">{{address.publicAddress}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-right">Private key:</td>
+            <td class="text-left"><span class="barley-white">{{address.privateWif}}</span></td>
+          </tr>
+        </table>
+
+
+      </div>
     </div>
 
-    <dm-divider></dm-divider>
-    <span class="instruction">
-      <span class="inst-title">How to add an address <span class="barley-white">{{address.publicAddress}}</span></span>
-      <dm-list-item icon-size="15" :number=1>Open PostCoin Desktop Wallet</dm-list-item>
-      <dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item>
-      <dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item>
-      <dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item>
-    </span>
+    <div class="container instruction p-3">
+      <ul>
+        <li><dm-list-item icon-size="15" :number=1>Open PostCoin Desktop Wallet</dm-list-item></li>
+        <li><dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item></li>
+        <li><dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item></li>
+        <li><dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item></li>
+      </ul>
+    </div>
 
   </div>
 </template>
@@ -79,12 +89,20 @@
 
   .inst-title {
     text-align: left !important;
-    font-size:1.5em;
+    font-size: 1.5em;
     color: #fff;
   }
 
   .barley-white {
     color: #FFF5CD
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .instruction {
+    background: #18191A
   }
 
 </style>
