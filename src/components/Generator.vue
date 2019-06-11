@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: 'HelloWorld',
+        name: 'Generator',
         props: {
             msg: String
         },
