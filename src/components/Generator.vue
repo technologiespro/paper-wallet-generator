@@ -5,11 +5,11 @@
     <dm-button @click="generateAddress" color="black">Generate new address</dm-button>
 
     <div class="result-generate">
-      <h3>KeyHex:</h3>
+      <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
       <dm-divider></dm-divider>
-      <h3>Address:</h3>
+      <h3>Address: {{address.publicAddress}}</h3>
       <dm-divider></dm-divider>
-      <h3>Private key:</h3>
+      <h3>Private key: {{address.privateWif}}</h3>
     </div>
 
   </div>
@@ -25,8 +25,8 @@
       return {
         address: {
           keyHex: null,
-          address: null,
-          keyPrivate: null,
+          publicAddress: null,
+          privateWif: null,
         }
       }
     },
@@ -37,8 +37,10 @@
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64})
         console.log('privateKeyHex', privateKeyHex)
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37})).toString()
-        console.log(key.toString())
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37}))
+        this.address.keyHex = privateKeyHex;
+        this.address.publicAddress = key.publicAddress;
+        this.address.privateWif = key.privateWif;
       }
     }
   }
