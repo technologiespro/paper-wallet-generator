@@ -4,21 +4,19 @@
 
     <dm-button @click="generateAddress" color="black">Generate new address</dm-button>
 
-    <div class="result-generate">
+    <div class="result-generate" v-if="address.keyHex">
       <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
-      <dm-divider></dm-divider>
-      <h4>Address: {{address.publicAddress}}</h4>
-      <dm-divider></dm-divider>
-      <h4>Private key: {{address.privateWif}}</h4>
-      <dm-divider></dm-divider>
+      <h4>Address: <span class="barley-white">{{address.publicAddress}}</span></h4>
+      <h4>Private key: <span class="barley-white">{{address.privateWif}}</span></h4>
     </div>
 
+    <dm-divider></dm-divider>
     <span class="instruction">
-      <span class="toast-title">How to add an address to your wallet</span>
-      <dm-list-item :number=1>Open PostCoin Desktop Wallet</dm-list-item>
+      <span class="inst-title">How to add an address <span class="barley-white">{{address.publicAddress}}</span></span>
+      <dm-list-item icon-size="15" :number=1>Open PostCoin Desktop Wallet</dm-list-item>
       <dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item>
       <dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item>
-      <dm-list-item :number=4>Wait for the import to complete and then restart the wallet.</dm-list-item>
+      <dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item>
     </span>
 
   </div>
@@ -63,9 +61,14 @@
     color: #42b983;
   }
 
-  .toast-title {
+  .inst-title {
+    text-align: left !important;
     font-size:1.5em;
     color: #fff;
+  }
+
+  .barley-white {
+    color: #FFF5CD
   }
 
 </style>
