@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="PostCoin logo" src="../assets/logo.png">
-    <HelloWorld msg="PostCoin Paper Wallet"/>
-  </div>
+    <div class="home">
+        <img alt="PostCoin logo" src="../assets/logo.png">
+        <Generator msg="PostCoin Paper Wallet"/>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+    // @ is an alias to /src
+    import Generator from '@/components/Generator.vue'
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'home',
+        components: {
+            Generator
+        }
+    }
 </script>
