@@ -4,10 +4,25 @@
 
     <dm-button @click="generateAddress" color="black">Generate new address</dm-button>
 
+    <div class="container mt-4">
     <div class="result-generate" v-if="address.keyHex">
       <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
+      <table class="table table">
+        <tr>
+          <td>
+            <VueQrcode :value="address.publicAddress" :options="{size:220, foreground: '#085361',level: 'H'}"/>
+            <p class="text-secondary">Public Address</p>
+          </td>
+          <td>
+            <VueQrcode :value="address.privateWif" :options="{size:220, foreground: '#085361',level: 'H'}"/>
+            <p class="text-secondary">Private Key</p>
+          </td>
+        </tr>
+      </table>
+
       <h4>Address: <span class="barley-white">{{address.publicAddress}}</span></h4>
       <h4>Private key: <span class="barley-white">{{address.privateWif}}</span></h4>
+    </div>
     </div>
 
     <dm-divider></dm-divider>
