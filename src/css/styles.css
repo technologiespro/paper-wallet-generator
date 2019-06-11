@@ -1,3 +1,7 @@
 body {
     background: #232D3D;
 }
+
+.table th, .table td {
+  border-top: none;
+}
