@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <div class="row" style="width: 100%;">
-      <div class="container">
+    <div class="row" style="width: 99%;">
+      <div class="container-fluid">
         <div v-for="(item, idx) in coins" :key="idx">
           <div class="select-coin" @click="selectCoin(idx)">
             <img width="20px" alt="item.title" :src="item.logo"/> {{item.title}}
@@ -128,6 +128,12 @@
             public: 0x26,
             private: 0x80,
           },
+          "dash": {
+            title: "Dash",
+            logo: "static/coins/dash.png",
+            public: 0x4c,
+            private: 0xcc,
+          },
         },
         address: {
           keyHex: null,
@@ -185,7 +191,8 @@
 
   .select-coin {
     float: left;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
     padding: 5px;
     border: solid 1px #323E4F;
     background: #18191A;
