@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-        <img alt="PostCoin logo" src="../assets/logo.png">
         <Generator msg="PostCoin Paper Wallet"/>
     </div>
 </template>
