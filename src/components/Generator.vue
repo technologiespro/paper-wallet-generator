@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div class="row">
+    <div class="row" style="width: 100%;">
       <div class="container">
         <div v-for="(item, idx) in coins" :key="idx">
           <div class="select-coin" @click="selectCoin(idx)">

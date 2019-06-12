@@ -1,5 +1,6 @@
 body {
     background: #232D3D;
+    overflow-x: hidden;
 }
 
 .table th, .table td {
