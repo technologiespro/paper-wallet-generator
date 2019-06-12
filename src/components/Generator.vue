@@ -83,6 +83,9 @@
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
+      },
+      selectCoin: function() {
+
       }
     }
   }
