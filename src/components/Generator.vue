@@ -185,6 +185,7 @@
     background: #18191A;
     width: 120px;
     border-radius: 5px;
+    margin-bottom: 6px;
   }
 
   .select-coin:hover {
