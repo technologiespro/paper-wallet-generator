@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
-    <img alt="coin logo" :src="coins.post.logo">
-    <h1>{{ msg }}</h1>
+    <img alt="coin logo" :src="coins[currentCoin].logo">
+    <h1>{{coins[currentCoin].title}} Paper Wallet Generator</h1>
 
-    <dm-button size="large" @click="generateAddress" color="black">Generate new address</dm-button>
+    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
 
     <div class="container mt-4">
       <div class="result-generate" v-if="address.keyHex">
@@ -60,9 +60,13 @@
     },
     data() {
       return {
+        currentCoin: "post",
         coins: {
           post: {
+            title: "PostCoin",
             logo: "static/coins/post.png",
+            networkVersion: null,
+            privateKeyPrefix: null
           }
         },
         address: {
@@ -71,9 +75,6 @@
           privateWif: null,
         }
       }
-    },
-    props: {
-      msg: String
     },
     methods: {
       generateAddress: function () {
