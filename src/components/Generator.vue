@@ -65,8 +65,8 @@
           post: {
             title: "PostCoin",
             logo: "static/coins/post.png",
-            networkVersion: null,
-            privateKeyPrefix: null
+            privateKeyPrefix: 0xb7,
+            networkVersion: 0x37,
           }
         },
         address: {
@@ -79,7 +79,7 @@
     methods: {
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64});
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: 0xb7, public: 0x37}));
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: this.coins[this.currentCoin].privateKeyPrefix, public: this.coins[this.currentCoin].networkVersion}));
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
