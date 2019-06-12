@@ -135,10 +135,10 @@
             private: 0xcc,
           },
           "nvc": {
-            title: "Navcoin",
+            title: "Novacoin",
             logo: "static/coins/nvc.png",
-            public: 0x35,
-            private: 0x96,
+            public: 0x08,
+            private: 0x88,
           },
         },
         address: {
