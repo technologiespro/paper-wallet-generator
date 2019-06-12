@@ -116,6 +116,12 @@
             public: 0x1f,
             private: 0x9f,
           },
+          "doge": {
+            title: "Dogecoin",
+            logo: "static/coins/doge.png",
+            public: 0x1e,
+            private: 0x9e,
+          },
         },
         address: {
           keyHex: null,
