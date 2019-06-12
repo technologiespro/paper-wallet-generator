@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <Generator msg="PostCoin Paper Wallet"/>
+        <Generator/>
     </div>
 </template>
 
