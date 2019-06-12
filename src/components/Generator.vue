@@ -122,6 +122,12 @@
             public: 0x1e,
             private: 0x9e,
           },
+          "btg": {
+            title: "BitcoinGold",
+            logo: "static/coins/btg.png",
+            public: 0x26,
+            private: 0x80,
+          },
         },
         address: {
           keyHex: null,
