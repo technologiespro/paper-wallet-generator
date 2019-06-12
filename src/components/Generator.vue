@@ -49,7 +49,7 @@
     <div class="container instruction p-3">
       <ul>
         <li>
-          <dm-list-item icon-size="15" :number=1>Open {{coins[currentCoin].title}} Your Wallet</dm-list-item>
+          <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
         </li>
         <li>
           <dm-list-item :number=2>Select: <span class="text-info">Help > Debug window > Console</span></dm-list-item>
