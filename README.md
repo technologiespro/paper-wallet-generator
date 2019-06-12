@@ -1,6 +1,6 @@
-# paper-wallet-generator
+# Paper Wallet Generator
 
-Designed to securely generate crypto addresses offline
+Designed to securely generate altcoins addresses offline
 
 ## Project setup
 ```
