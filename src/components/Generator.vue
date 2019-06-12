@@ -83,26 +83,32 @@
           "post": {
             title: "PostCoin",
             logo: "static/coins/post.png",
-            private: 0xb7,
             public: 0x37,
+            private: 0xb7,
           },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
-            private: 0x80,
             public: 0x0,
+            private: 0x80,
           },
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
-            private: 0x55,
             public: 0xf,
+            private: 0x55,
           },
           "42": {
             title: "42-Coin",
             logo: "static/coins/42.png",
-            private: 0x88,
             public: 0x08,
+            private: 0x88,
+          },
+          "ltc": {
+            title: "Litecoin",
+            logo: "static/coins/ltc.png",
+            public: 0x30,
+            private: 0xb0,
           },
         },
         address: {
