@@ -80,23 +80,29 @@
       return {
         currentCoin: "post",
         coins: {
-          post: {
+          "post": {
             title: "PostCoin",
             logo: "static/coins/post.png",
             private: 0xb7,
             public: 0x37,
           },
-          btc: {
+          "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
             private: 0x80,
             public: 0x0,
           },
-          nobt: {
+          "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
             private: 0x55,
             public: 0xf,
+          },
+          "42": {
+            title: "42-Coin",
+            logo: "static/coins/42.png",
+            private: 0x88,
+            public: 0x08,
           },
         },
         address: {
