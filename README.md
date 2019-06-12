@@ -2,6 +2,12 @@
 
 Designed to securely generate altcoins addresses offline
 
+### Available Coins
+
+- PostCoin (POST) https://postcoin.top
+- Bitcoin (BTC) https://bitcoin.org
+- NobtCoin (NOBT) http://nobt.info
+
 ## Project setup
 ```
 npm install
