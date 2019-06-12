@@ -134,6 +134,12 @@
             public: 0x4c,
             private: 0xcc,
           },
+          "nvc": {
+            title: "Navcoin",
+            logo: "static/coins/nvc.png",
+            public: 0x35,
+            private: 0x96,
+          },
         },
         address: {
           keyHex: null,
