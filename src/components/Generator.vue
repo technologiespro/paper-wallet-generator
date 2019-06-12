@@ -140,6 +140,12 @@
             public: 0x08,
             private: 0x88,
           },
+          "nmc": {
+            title: "NameCoin",
+            logo: "static/coins/nmc.png",
+            public: 0x34,
+            private: 0x80,
+          },
         },
         address: {
           keyHex: null,
