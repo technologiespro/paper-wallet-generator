@@ -118,7 +118,6 @@
         this.address.privateWif = key.privateWif;
       },
       selectCoin: function (selectedCoin) {
-        console.log('selectedCoin', selectedCoin)
         this.currentCoin = selectedCoin;
         this.address = {
           keyHex: null,
