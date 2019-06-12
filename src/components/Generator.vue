@@ -110,6 +110,12 @@
             public: 0x30,
             private: 0xb0,
           },
+          "onion": {
+            title: "DeepOnion",
+            logo: "static/coins/onion.png",
+            public: 0x1f,
+            private: 0x9f,
+          },
         },
         address: {
           keyHex: null,
