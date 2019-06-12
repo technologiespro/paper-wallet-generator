@@ -2,11 +2,10 @@
   <div class="hello">
     <div class="row">
       <div class="container">
-        <div class="select-coin">
-          <img width="20px" alt="coin logo" :src="coins.post.logo"/> {{coins.post.title}}
-        </div>
-        <div class="select-coin">
-          <img width="20px" alt="coin logo" :src="coins.btc.logo"/> {{coins.btc.title}}
+        <div v-for="(item, idx) in coins" :key="idx">
+          <div class="select-coin">
+            <img width="20px" alt="coin logo" :src="item.logo"/> {{item.title}}
+          </div>
         </div>
       </div>
     </div>
@@ -14,7 +13,8 @@
     <img width="128px" alt="coin logo" :src="coins[currentCoin].logo"/>
     <h1>{{coins[currentCoin].title}} Paper Wallet Generator</h1>
 
-    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+    </dm-button>
 
     <div class="container mt-4">
       <div class="result-generate" v-if="address.keyHex">
@@ -49,10 +49,18 @@
 
     <div class="container instruction p-3">
       <ul>
-        <li><dm-list-item icon-size="15" :number=1>Open PostCoin Desktop Wallet</dm-list-item></li>
-        <li><dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item></li>
-        <li><dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item></li>
-        <li><dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item></li>
+        <li>
+          <dm-list-item icon-size="15" :number=1>Open PostCoin Desktop Wallet</dm-list-item>
+        </li>
+        <li>
+          <dm-list-item :number=2>Select: Help > Debug window > Console</dm-list-item>
+        </li>
+        <li>
+          <dm-list-item :number=3>Enter: importprivkey {{address.privateWif}}</dm-list-item>
+        </li>
+        <li>
+          <dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item>
+        </li>
       </ul>
     </div>
 
@@ -71,12 +79,6 @@
     },
     data() {
       return {
-        CoinOptions: [
-          {
-            label: "Postcoin",
-            value: "post"
-          }
-        ],
         currentCoin: "post",
         coins: {
           post: {
@@ -102,13 +104,20 @@
     methods: {
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64});
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: this.coins[this.currentCoin].private, public: this.coins[this.currentCoin].public}));
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
+          private: this.coins[this.currentCoin].private,
+          public: this.coins[this.currentCoin].public
+        }));
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
       },
-      selectCoin: function() {
-
+      selectCoin: function () {
+        this.address = {
+          keyHex: null,
+          publicAddress: null,
+          privateWif: null,
+        }
       }
     }
   }
@@ -139,12 +148,12 @@
   }
 
   .select-coin {
-    float:left;
+    float: left;
     margin-right: 10px;
-    padding:5px;
-    border:solid 1px #323E4F;
+    padding: 5px;
+    border: solid 1px #323E4F;
     background: #18191A;
-    width:120px;
+    width: 120px;
     border-radius: 5px;
   }
 
@@ -154,3 +163,4 @@
 
   }
 </style>
+
