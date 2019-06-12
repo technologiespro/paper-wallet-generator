@@ -1,6 +1,17 @@
 <template>
   <div class="hello">
-    <img alt="coin logo" :src="coins[currentCoin].logo">
+    <div class="row">
+      <div class="container">
+        <div class="select-coin">
+          <img width="20px" alt="coin logo" :src="coins.post.logo"/> {{coins.post.title}}
+        </div>
+        <div class="select-coin">
+          <img width="20px" alt="coin logo" :src="coins.btc.logo"/> {{coins.btc.title}}
+        </div>
+      </div>
+    </div>
+    <dm-divider></dm-divider>
+    <img width="128px" alt="coin logo" :src="coins[currentCoin].logo"/>
     <h1>{{coins[currentCoin].title}} Paper Wallet Generator</h1>
 
     <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
@@ -60,14 +71,26 @@
     },
     data() {
       return {
+        CoinOptions: [
+          {
+            label: "Postcoin",
+            value: "post"
+          }
+        ],
         currentCoin: "post",
         coins: {
           post: {
             title: "PostCoin",
             logo: "static/coins/post.png",
-            privateKeyPrefix: 0xb7,
-            networkVersion: 0x37,
-          }
+            private: 0xb7,
+            public: 0x37,
+          },
+          btc: {
+            title: "Bitcoin",
+            logo: "static/coins/btc.png",
+            private: 0x80,
+            public: 0x0,
+          },
         },
         address: {
           keyHex: null,
@@ -79,7 +102,7 @@
     methods: {
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64});
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: this.coins[this.currentCoin].privateKeyPrefix, public: this.coins[this.currentCoin].networkVersion}));
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {private: this.coins[this.currentCoin].private, public: this.coins[this.currentCoin].public}));
         this.address.keyHex = privateKeyHex;
         this.address.publicAddress = key.publicAddress;
         this.address.privateWif = key.privateWif;
@@ -92,7 +115,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scss scoped>
   a {
     color: #42b983;
   }
@@ -115,4 +138,19 @@
     background: #18191A
   }
 
+  .select-coin {
+    float:left;
+    margin-right: 10px;
+    padding:5px;
+    border:solid 1px #323E4F;
+    background: #18191A;
+    width:120px;
+    border-radius: 5px;
+  }
+
+  .select-coin:hover {
+    cursor: pointer;
+    background: #323E4F
+
+  }
 </style>
