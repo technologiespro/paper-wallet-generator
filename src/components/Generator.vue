@@ -95,8 +95,8 @@
           nobt: {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
-            private: 0x80,
-            public: 0x0,
+            private: 0x55,
+            public: 0xf,
           },
         },
         address: {
