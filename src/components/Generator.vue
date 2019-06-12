@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <img alt="coin logo" :src="coins.post.logo">
     <h1>{{ msg }}</h1>
 
     <dm-button size="large" @click="generateAddress" color="black">Generate new address</dm-button>
@@ -59,6 +60,11 @@
     },
     data() {
       return {
+        coins: {
+          post: {
+            logo: "static/coins/post.png",
+          }
+        },
         address: {
           keyHex: null,
           publicAddress: null,
