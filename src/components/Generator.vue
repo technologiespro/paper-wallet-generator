@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div class="row" style="width: 100%;">
+    <div class="row mb-4" style="width: 100%;">
       <div class="container-fluid">
         <div v-for="(item, idx) in coins" :key="idx" style="float:left;">
           <span class="select-coin" @click="selectCoin(idx)">
@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <dm-divider></dm-divider>
+
     <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
     <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
 
