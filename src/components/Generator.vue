@@ -252,7 +252,7 @@
         }
 
         if (this.coins[this.currentCoin].validator === 'sthValidator') {
-          let privateKeyHex = cryptoRandomString({length: 32});
+          const privateKeyHex = cryptoRandomString({length: 32});
           const mnemonic = entropyToMnemonic(privateKeyHex);
           const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
           this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
