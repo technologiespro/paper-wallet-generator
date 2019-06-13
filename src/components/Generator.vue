@@ -31,19 +31,34 @@
           </tr>
         </table>
 
-        <table class="table table text-success">
+        <table class="table text-info">
           <tr>
-            <td class="text-right">Address:</td>
-            <td class="text-left"><span class="barley-white">{{address.publicAddress}}</span></td>
+            <td class="text-right">Address</td>
+            <td>
+              <dm-icon name="add_to_photos" class="clipboard"
+                       v-clipboard="() => address.publicAddress"
+                       v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+            </td>
+            <td class="text-left">
+              <span class="barley-white">
+                {{address.publicAddress}}
+              </span>
+            </td>
+
           </tr>
           <tr>
-            <td class="text-right">Private key:</td>
-            <td class="text-left"><span class="barley-white">{{address.privateWif}}</span></td>
+            <td class="text-right">Private key</td>
+            <td>
+              <dm-icon name="add_to_photos" class="clipboard" v-clipboard="() => address.privateWif"
+                       v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+            </td>
+            <td class="text-left">
+              <span class="barley-white">{{address.privateWif}}</span>
+            </td>
           </tr>
         </table>
-
-
       </div>
+      <span class="copied">~ {{copied}} ~</span>
     </div>
 
 
@@ -159,7 +174,8 @@
           keyHex: null,
           publicAddress: null,
           privateWif: null,
-        }
+        },
+        copied: null
       }
     },
     methods: {
@@ -180,7 +196,12 @@
           publicAddress: null,
           privateWif: null,
         }
-      }
+      },
+      clipboardSuccessHandler({value, event}) {
+          this.copied = 'Copied to clipboard';
+          setTimeout(() => (this.copied = null), 1500);
+        // Copied to clipboard
+      },
     }
   }
 </script>
@@ -232,6 +253,14 @@
     cursor: pointer;
     background: #323E4F
 
+  }
+
+  .clipboard {
+    color: #eee !important;
+  }
+  .clipboard:hover {
+    color: #28a745 !important;
+    cursor: pointer;
   }
 
 </style>
