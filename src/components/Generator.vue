@@ -14,7 +14,7 @@
     </div>
 
     <div class="container-fluid">
-      <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
+      <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
       <h2>{{coins[currentCoin].title}} Wallet</h2>
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
