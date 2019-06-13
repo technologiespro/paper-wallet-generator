@@ -111,6 +111,7 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
+  import bip39 from 'bip39';
 
   export default {
     name: 'Generator',
@@ -129,72 +130,91 @@
             logo: "static/coins/42.png",
             public: 0x08,
             private: 0x88,
+            validator: 'btcValidator'
           },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
             public: 0x0,
             private: 0x80,
+            validator: 'btcValidator'
           },
           "btg": {
             title: "BitcoinGold",
             logo: "static/coins/btg.png",
             public: 0x26,
             private: 0x80,
+            validator: 'btcValidator'
           },
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
             public: 0x4c,
             private: 0xcc,
+            validator: 'btcValidator'
           },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
             public: 0x1e,
             private: 0x9e,
+            validator: 'btcValidator'
           },
           "ltc": {
             title: "Litecoin",
             logo: "static/coins/ltc.png",
             public: 0x30,
             private: 0xb0,
+            validator: 'btcValidator'
           },
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
             public: 0xf,
             private: 0x55,
+            validator: 'btcValidator'
           },
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
             public: 0x08,
             private: 0x88,
+            validator: 'btcValidator'
           },
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
             public: 0x34,
             private: 0x80,
+            validator: 'btcValidator'
           },
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
             public: 0x1f,
             private: 0x9f,
+            validator: 'btcValidator'
           },
           "post": {
             title: "PostCoin",
             logo: "static/coins/post.png",
             public: 0x37,
             private: 0xb7,
+            validator: 'btcValidator'
           },
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
             public: 0x1e,
             private: 0xd4,
+            validator: 'btcValidator'
+          },
+          "sth": {
+            title: "STH",
+            logo: "static/coins/sth.png",
+            public: 0x1e,
+            private: 0xd4,
+            validator: 'sthValidator'
           },
         },
         address: {
@@ -206,6 +226,16 @@
       }
     },
     methods: {
+      async getNewAddressBIP39() {
+        let MNEMONIC = bip39.generateMnemonic();
+        let PUB_KEY = sth.crypto.getKeys(MNEMONIC).publicKey;
+        let ADDR = sth.crypto.getAddress(PUB_KEY);
+        return ({
+          "address": ADDR,
+          "passphrase": MNEMONIC,
+          "pubkey": PUB_KEY
+        })
+      },
       showHideCoins: function() {
         this.isShow = this.isShow ? false: true;
       },
@@ -213,14 +243,21 @@
         this.help = this.help ? false: true;
       },
       generateAddress: function () {
-        let privateKeyHex = cryptoRandomString({length: 64});
-        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
-          private: this.coins[this.currentCoin].private,
-          public: this.coins[this.currentCoin].public
-        }));
-        this.address.keyHex = privateKeyHex;
-        this.address.publicAddress = key.publicAddress;
-        this.address.privateWif = key.privateWif;
+        if (this.coins[this.currentCoin].validator === 'btcValidator') {
+          let privateKeyHex = cryptoRandomString({length: 64});
+          const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
+            private: this.coins[this.currentCoin].private,
+            public: this.coins[this.currentCoin].public
+          }));
+          this.address.keyHex = privateKeyHex;
+          this.address.publicAddress = key.publicAddress;
+          this.address.privateWif = key.privateWif;
+        }
+
+        if (this.coins[this.currentCoin].validator === 'sthValidator') {
+
+        }
+
       },
       selectCoin: function (selectedCoin) {
         this.currentCoin = selectedCoin;
