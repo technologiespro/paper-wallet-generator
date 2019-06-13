@@ -31,6 +31,7 @@
           </tr>
         </table>
 
+        <small class="text-success">~ {{copied}} ~</small>
         <table class="table text-info">
           <tr>
             <td class="text-right">Address</td>
@@ -58,7 +59,7 @@
           </tr>
         </table>
       </div>
-      <span class="copied">~ {{copied}} ~</span>
+
     </div>
 
 
