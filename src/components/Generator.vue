@@ -1,17 +1,17 @@
 <template>
   <div class="hello">
-    <div class="row" style="width: 99%;">
+    <div class="row" style="width: 100%;">
       <div class="container-fluid">
-        <div v-for="(item, idx) in coins" :key="idx">
-          <div class="select-coin" @click="selectCoin(idx)">
-            <img width="20px" alt="item.title" :src="item.logo"/> {{item.title}}
-          </div>
+        <div v-for="(item, idx) in coins" :key="idx" style="float:left;">
+          <span class="select-coin" @click="selectCoin(idx)">
+            <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
+          </span>
         </div>
       </div>
     </div>
     <dm-divider></dm-divider>
-    <img width="128px" alt="coin logo" :src="coins[currentCoin].logo"/>
-    <h1>{{coins[currentCoin].title}} Paper Wallet Generator</h1>
+    <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
+    <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
 
     <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
 
@@ -46,7 +46,8 @@
       </div>
     </div>
 
-    <div class="container instruction p-3">
+
+    <div class="container instruction p-3 mb-4">
       <ul>
         <li>
           <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
@@ -64,6 +65,7 @@
     </div>
 
   </div>
+
 </template>
 
 <script>
@@ -146,6 +148,12 @@
             public: 0x37,
             private: 0xb7,
           },
+          "pivx": {
+            title: "PIVX",
+            logo: "static/coins/pivx.png",
+            public: 0x1e,
+            private: 0xd4,
+          },
         },
         address: {
           keyHex: null,
@@ -203,12 +211,13 @@
 
   .select-coin {
     float: left;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 4px;
+    margin-left: 4px;
     padding: 5px;
     border: solid 1px #323E4F;
     background: #18191A;
-    width: 120px;
+    width: 118px;
+    min-width: 118px;
     border-radius: 5px;
     margin-bottom: 6px;
   }
@@ -218,5 +227,6 @@
     background: #323E4F
 
   }
+
 </style>
 
