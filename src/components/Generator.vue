@@ -1,80 +1,77 @@
 <template>
   <div class="hello">
-<div class="container">
-  <dm-button @click="generateAddress" full-width="true" color="black" class="mb-2">SELECT COIN</dm-button>
-</div>
+    <div v-if="mobile" class="container">
+      <dm-button @click="showHideCoins" full-width="true" color="black" class="mb-2">SELECT COIN</dm-button>
+    </div>
 
-
-      <div class="container-fluid">
-        <span v-for="(item, idx) in coins" :key="idx" class="select-coin">
-
+    <div v-if="isShow" class="container-fluid">
+        <span v-for="(item, idx) in coins" :key="idx" class="select-coin" @click="selectCoin(idx)">
             <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
-
         </span>
-      </div>
-
+    </div>
 
     <div class="container-fluid">
-    <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
-    <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
+      <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
+      <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
 
-    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+      </dm-button>
 
-    <div class="container mt-4">
-      <div class="result-generate" v-if="address.keyHex">
-        <div class="row">
+      <div class="container mt-4">
+        <div class="result-generate" v-if="address.keyHex">
+          <div class="row">
 
-          <div class="col-md-5">
+            <div class="col-md-5">
 
-            <div class="qr-container">
-              <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
-              <p class="text-secondary">Public Address</p>
+              <div class="qr-container">
+                <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+                <p class="text-secondary">Public Address</p>
+              </div>
+
+
+              <div class="qr-container">
+                <VueQrcode :value="address.privateWif" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+                <p class="text-secondary">Private Key</p>
+              </div>
             </div>
 
-
-            <div class="qr-container">
-              <VueQrcode :value="address.privateWif" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
-              <p class="text-secondary">Private Key</p>
-            </div>
-          </div>
-
-          <div class="col-md-7">
-            <table class="table table-responsive-sm text-info">
-              <tr>
-                <td class="text-right">Address</td>
-                <td>
-                  <img src="static/svg/copy.svg" width="20px" class="clipboard"
-                       v-clipboard="() => address.publicAddress"
-                       v-clipboard:success="clipboardSuccessHandler"/>
-                </td>
-                <td class="text-left">
+            <div class="col-md-7">
+              <table class="table table-responsive-sm text-info">
+                <tr>
+                  <td class="text-right">Address</td>
+                  <td>
+                    <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                         v-clipboard="() => address.publicAddress"
+                         v-clipboard:success="clipboardSuccessHandler"/>
+                  </td>
+                  <td class="text-left">
               <span class="barley-white">
                 {{address.publicAddress}}
               </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right">PrivateKey</td>
-                <td>
-                  <img src="static/svg/copy.svg" width="20px" class="clipboard"
-                       v-clipboard="() => address.privateWif"
-                       v-clipboard:success="clipboardSuccessHandler"/>
-                </td>
-                <td class="text-left">
-                  <span class="barley-white">{{address.privateWif}}</span>
-                </td>
-              </tr>
-            </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-right">PrivateKey</td>
+                  <td>
+                    <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                         v-clipboard="() => address.privateWif"
+                         v-clipboard:success="clipboardSuccessHandler"/>
+                  </td>
+                  <td class="text-left">
+                    <span class="barley-white">{{address.privateWif}}</span>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
 
           </div>
-
+          <small class="text-success">~ {{copied}} ~</small>
 
         </div>
-        <small class="text-success">~ {{copied}} ~</small>
 
       </div>
-
-    </div>
     </div>
     <dm-divider></dm-divider>
 
@@ -198,6 +195,9 @@
       }
     },
     methods: {
+      showHideCoins: function() {
+        this.isShow = this.isShow ? false: true;
+      },
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64});
         const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
@@ -225,6 +225,7 @@
     mounted: function () {
       if (screen.width < 700) {
         this.mobile = true;
+        this.isShow = false;
       }
     },
   }
@@ -278,11 +279,10 @@
     background: #323E4F
   }
 
-
   .clipboard:hover {
     color: #28a745 !important;
     cursor: pointer;
-    border:solid 1px #232d3d;
+    border: solid 1px #232d3d;
 
   }
 
