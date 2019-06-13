@@ -4,10 +4,13 @@
       <dm-button @click="showHideCoins" full-width color="black" class="mb-2">SELECT COIN</dm-button>
     </div>
 
+
     <div v-if="isShow" class="container-fluid">
+      <div class="row">
         <span v-for="(item, idx) in coins" :key="idx" class="select-coin" @click="selectCoin(idx)">
             <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
         </span>
+    </div>
     </div>
 
     <div class="container-fluid">
