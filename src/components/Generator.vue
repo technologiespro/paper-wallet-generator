@@ -13,7 +13,8 @@
     <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
     <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
 
-    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+    </dm-button>
 
     <div class="container mt-4">
       <div class="result-generate" v-if="address.keyHex">
@@ -21,10 +22,10 @@
 
           <div class="col-md-5">
 
-              <div class="qr-container">
-                <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
-                <p class="text-secondary">Public Address</p>
-              </div>
+            <div class="qr-container">
+              <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+              <p class="text-secondary">Public Address</p>
+            </div>
 
 
             <div class="qr-container">
@@ -70,9 +71,9 @@
 
     </div>
 
-    <dm-divider class="isMobile"></dm-divider>
+    <dm-divider></dm-divider>
 
-    <div class="container instruction p-3 mb-5">
+    <div v-if="address.publicAddress" class="container instruction p-3 mb-5">
       <ul>
         <li>
           <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
@@ -81,7 +82,8 @@
           <dm-list-item :number=2>Select: <span class="text-info">Help > Debug window > Console</span></dm-list-item>
         </li>
         <li>
-          <dm-list-item :number=3>Enter: <span class="text-info">importprivkey {{address.privateWif}} PaperWallet</span></dm-list-item>
+          <dm-list-item :number=3>Enter: <span class="text-info">importprivkey {{address.privateWif}} PaperWallet</span>
+          </dm-list-item>
         </li>
         <li>
           <dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item>
@@ -208,8 +210,8 @@
         }
       },
       clipboardSuccessHandler({value, event}) {
-          this.copied = 'Copied to clipboard';
-          setTimeout(() => (this.copied = null), 1500);
+        this.copied = 'Copied to clipboard';
+        setTimeout(() => (this.copied = null), 1500);
         // Copied to clipboard
       },
     }
@@ -222,31 +224,22 @@
     display: none;
   }
 
-
   @media screen and (max-width: 700px) {
     .instruction {
       display: none;
-    }
-
-    .isMobile {
-      display: block;
     }
   }
 
   h2 {
     color: #A9C7DF;
   }
+
   .hello {
     flex: 1 0 auto;
   }
+
   a {
     color: #42b983;
-  }
-
-  .inst-title {
-    text-align: left !important;
-    font-size: 1.5em;
-    color: #fff;
   }
 
   .barley-white {
@@ -282,14 +275,15 @@
   .clipboard {
     color: #eee !important;
   }
+
   .clipboard:hover {
     color: #28a745 !important;
     cursor: pointer;
   }
 
   .qr-container {
-    width:50%;
-    float:left;
+    width: 50%;
+    float: left;
     margin: 0 auto;
   }
 </style>
