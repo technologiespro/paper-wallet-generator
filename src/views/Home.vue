@@ -16,6 +16,7 @@
 <script>
     // @ is an alias to /src
     import Generator from '@/components/Generator.vue'
+    // import open from 'open'
 
     export default {
         name: 'home',
