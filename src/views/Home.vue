@@ -4,7 +4,6 @@
     <footer id="sticky-footer" class="py-2 bg-dark">
       <div class="container text-center">
         <small>
-          Powered by TechnoL0g
             <img class="link" @click="openLink('https://github.com/technologiespro/paper-wallet-generator/releases')" height="26px" src="static/logo/github.png"/>
             <img class="link" @click="openLink('https://ex.xbts.io')" height="24px" src="static/logo/xbts.png"/>
         </small>

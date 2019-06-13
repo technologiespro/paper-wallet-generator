@@ -1,20 +1,24 @@
 <template>
   <div class="hello">
-    <div class="row mb-4" style="width: 100%;">
-      <div class="container-fluid">
-        <div v-for="(item, idx) in coins" :key="idx" style="float:left;">
-          <span class="select-coin" @click="selectCoin(idx)">
-            <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
-          </span>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <dm-button @click="generateAddress" full-width="true" color="black" class="mb-2">SELECT COIN</dm-button>
+</div>
 
+
+      <div class="container-fluid">
+        <span v-for="(item, idx) in coins" :key="idx" class="select-coin">
+
+            <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
+
+        </span>
+      </div>
+
+
+    <div class="container-fluid">
     <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
     <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
 
-    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
-    </dm-button>
+    <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
 
     <div class="container mt-4">
       <div class="result-generate" v-if="address.keyHex">
@@ -71,7 +75,7 @@
       </div>
 
     </div>
-
+    </div>
     <dm-divider></dm-divider>
 
     <div v-if="address.publicAddress" class="container instruction p-3 mb-5">
@@ -108,6 +112,8 @@
     },
     data() {
       return {
+        mobile: false,
+        isShow: true,
         currentCoin: "post",
         coins: {
           "42": {
@@ -215,7 +221,12 @@
         setTimeout(() => (this.copied = null), 1500);
         // Copied to clipboard
       },
-    }
+    },
+    mounted: function () {
+      if (screen.width < 700) {
+        this.mobile = true;
+      }
+    },
   }
 </script>
 
@@ -223,12 +234,6 @@
 <style>
   .isMobile {
     display: none;
-  }
-
-  @media screen and (max-width: 700px) {
-    .instruction {
-      display: none;
-    }
   }
 
   h2 {
@@ -273,14 +278,12 @@
     background: #323E4F
   }
 
-  .clipboard {
-    color: #eee !important;
-
-  }
 
   .clipboard:hover {
     color: #28a745 !important;
     cursor: pointer;
+    border:solid 1px #232d3d;
+
   }
 
   .qr-container {
@@ -289,6 +292,16 @@
     margin: 0 auto;
   }
 
+  @media screen and (max-width: 700px) {
+    .instruction {
+      display: none;
+    }
 
+    .select-coin {
+      width: 47% !important;
+      margin-left: 1% !important;
+    }
+
+  }
 </style>
 
