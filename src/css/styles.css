@@ -13,6 +13,7 @@ body {
 ::-webkit-scrollbar, -moz-scrollbar {
   width: 7px;
   height: 7px;
+  background: #1b2532;
 }
 
 ::-webkit-scrollbar-thumb {

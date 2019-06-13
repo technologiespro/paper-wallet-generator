@@ -44,7 +44,8 @@ function createWindow () {
     show: true,
     skipTaskbar: false,
     darkTheme: true,
-    autoHideMenuBar: false
+    icon: './build/icons/icon.ico',
+    autoHideMenuBar: true
   });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

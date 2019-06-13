@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Generator/>
-      <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+      <footer id="sticky-footer" class="py-2 bg-dark">
         <div class="container text-center">
           <small>
             Powered by TechnoL0g
@@ -28,12 +28,20 @@
 
 <style>
   #sticky-footer {
+    background: #1C2532 !important;
     flex-shrink: none;
     color: #FAFBFC !important;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
   }
 
   #sticky-footer a {
     margin-left: 15px;
 
   }
+
+
 </style>

@@ -47,7 +47,7 @@
     </div>
 
 
-    <div class="container instruction p-3 mb-4">
+    <div class="container instruction p-3 mb-5">
       <ul>
         <li>
           <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
@@ -186,7 +186,13 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scss scoped>
+<style>
+  h2 {
+    color: #A9C7DF;
+  }
+  .hello {
+    flex: 1 0 auto;
+  }
   a {
     color: #42b983;
   }
