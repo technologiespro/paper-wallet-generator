@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <div v-if="mobile" class="container">
-      <dm-button @click="showHideCoins" full-width="true" color="black" class="mb-2">SELECT COIN</dm-button>
+      <dm-button @click="showHideCoins" full-width color="black" class="mb-2">SELECT COIN</dm-button>
     </div>
 
     <div v-if="isShow" class="container-fluid">
@@ -60,6 +60,11 @@
                   <td class="text-left">
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" ></td>
+                  <td></td>
                 </tr>
               </table>
 
@@ -200,6 +205,9 @@
       showHideCoins: function() {
         this.isShow = this.isShow ? false: true;
       },
+      showHideHelp: function() {
+        this.help = this.help ? false: true;
+      },
       generateAddress: function () {
         let privateKeyHex = cryptoRandomString({length: 64});
         const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
@@ -216,6 +224,9 @@
           keyHex: null,
           publicAddress: null,
           privateWif: null,
+        }
+        if (this.mobile) {
+          this.isShow = false;
         }
       },
       clipboardSuccessHandler({value, event}) {
@@ -235,10 +246,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  .isMobile {
-    display: none;
-  }
-
   h2 {
     color: #A9C7DF;
   }
@@ -260,7 +267,9 @@
   }
 
   .instruction {
-    background: #18191A
+    background: #18191A;
+    overflow: hidden;
+    line-height: 140%;
   }
 
   .select-coin {
@@ -295,15 +304,15 @@
   }
 
   @media screen and (max-width: 700px) {
-    .instruction {
-      display: none;
-    }
-
     .select-coin {
       width: 47% !important;
       margin-left: 1% !important;
     }
 
+    .instruction p {
+      font-size: 0.85em !important;
+      line-height: 140%;
+    }
+
   }
 </style>
-
