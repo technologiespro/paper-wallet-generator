@@ -17,47 +17,55 @@
 
     <div class="container mt-4">
       <div class="result-generate" v-if="address.keyHex">
-        <!--<h3>KeyHex: {{address.keyHex}}</h3>-->
-        <table class="table table">
-          <tr>
-            <td>
-              <VueQrcode :value="address.publicAddress" :options="{size:196, foreground: '#232D3D',level: 'H'}"/>
-              <p class="text-secondary">Public Address</p>
-            </td>
-            <td>
-              <VueQrcode :value="address.privateWif" :options="{size:196, foreground: '#232D3D',level: 'H'}"/>
-              <p class="text-secondary">Private Key</p>
-            </td>
-          </tr>
-        </table>
+        <div class="row">
 
-        <small class="text-success">~ {{copied}} ~</small>
-        <table class="table text-info">
-          <tr>
-            <td class="text-right">Address</td>
-            <td>
-              <dm-icon name="add_to_photos" class="clipboard"
-                       v-clipboard="() => address.publicAddress"
-                       v-clipboard:success="clipboardSuccessHandler"></dm-icon>
-            </td>
-            <td class="text-left">
+          <div class="col-md-5">
+
+              <div class="qr-container">
+                <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+                <p class="text-secondary">Public Address</p>
+              </div>
+
+
+            <div class="qr-container">
+              <VueQrcode :value="address.privateWif" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+              <p class="text-secondary">Private Key</p>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <table class="table text-info">
+              <tr>
+                <td class="text-right">Address</td>
+                <td>
+                  <dm-icon name="add_to_photos" class="clipboard"
+                           v-clipboard="() => address.publicAddress"
+                           v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+                </td>
+                <td class="text-left">
               <span class="barley-white">
                 {{address.publicAddress}}
               </span>
-            </td>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">PrivateKey</td>
+                <td>
+                  <dm-icon name="add_to_photos" class="clipboard" v-clipboard="() => address.privateWif"
+                           v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+                </td>
+                <td class="text-left">
+                  <span class="barley-white">{{address.privateWif}}</span>
+                </td>
+              </tr>
+            </table>
 
-          </tr>
-          <tr>
-            <td class="text-right">Private key</td>
-            <td>
-              <dm-icon name="add_to_photos" class="clipboard" v-clipboard="() => address.privateWif"
-                       v-clipboard:success="clipboardSuccessHandler"></dm-icon>
-            </td>
-            <td class="text-left">
-              <span class="barley-white">{{address.privateWif}}</span>
-            </td>
-          </tr>
-        </table>
+          </div>
+
+
+        </div>
+        <small class="text-success">~ {{copied}} ~</small>
+
       </div>
 
     </div>
@@ -264,5 +272,10 @@
     cursor: pointer;
   }
 
+  .qr-container {
+    width:50%;
+    float:left;
+    margin: 0 auto;
+  }
 </style>
 
