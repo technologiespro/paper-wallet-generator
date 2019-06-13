@@ -12,7 +12,7 @@
 
     <div class="container-fluid">
       <img width="112px" alt="coin logo" :src="coins[currentCoin].logo"/>
-      <h2>{{coins[currentCoin].title}} Wallet Generator</h2>
+      <h2>{{coins[currentCoin].title}} Wallet</h2>
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
       </dm-button>
@@ -75,7 +75,8 @@
     </div>
     <dm-divider></dm-divider>
 
-    <div v-if="address.publicAddress" class="container instruction p-3 mb-5">
+
+    <div v-if="help" class="container instruction p-3 mb-5">
       <ul>
         <li>
           <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
@@ -109,6 +110,7 @@
     },
     data() {
       return {
+        help: false,
         mobile: false,
         isShow: true,
         currentCoin: "post",
