@@ -34,7 +34,7 @@
           </div>
 
           <div class="col-md-7">
-            <table class="table text-info">
+            <table class="table table-responsive-sm text-info">
               <tr>
                 <td class="text-right">Address</td>
                 <td>
@@ -70,6 +70,7 @@
 
     </div>
 
+    <dm-divider class="isMobile"></dm-divider>
 
     <div class="container instruction p-3 mb-5">
       <ul>
@@ -217,6 +218,21 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+  .isMobile {
+    display: none;
+  }
+
+
+  @media screen and (max-width: 700px) {
+    .instruction {
+      display: none;
+    }
+
+    .isMobile {
+      display: block;
+    }
+  }
+
   h2 {
     color: #A9C7DF;
   }
@@ -261,7 +277,6 @@
   .select-coin:hover {
     cursor: pointer;
     background: #323E4F
-
   }
 
   .clipboard {
