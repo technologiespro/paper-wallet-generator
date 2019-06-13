@@ -1,29 +1,34 @@
 <template>
-    <div class="home">
-        <Generator/>
-      <footer id="sticky-footer" class="py-2 bg-dark">
-        <div class="container text-center">
-          <small>
-            Powered by TechnoL0g
-            <a href="https://github.com/technologiespro/paper-wallet-generator/releases"><img height="26px" src="static/logo/github.png"/></a>
-            <a href="https://ex.xbts.io"><img height="24px" src="static/logo/xbts.png"/></a>
-          </small>
-        </div>
-      </footer>
-    </div>
+  <div class="home">
+    <Generator/>
+    <footer id="sticky-footer" class="py-2 bg-dark">
+      <div class="container text-center">
+        <small>
+          Powered by TechnoL0g
+            <img class="link" @click="openLink('https://github.com/technologiespro/paper-wallet-generator/releases')" height="26px" src="static/logo/github.png"/>
+            <img class="link" @click="openLink('https://ex.xbts.io')" height="24px" src="static/logo/xbts.png"/>
+        </small>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <script>
-    // @ is an alias to /src
-    import Generator from '@/components/Generator.vue'
-    // import open from 'open'
+  // @ is an alias to /src
+  import Generator from '@/components/Generator.vue'
+  import {openUrl} from 'src/util/url'
 
-    export default {
-        name: 'home',
-        components: {
-            Generator
-        }
+  export default {
+    name: 'home',
+    components: {
+      Generator,
+    },
+    methods: {
+      openLink(link) {
+        openUrl(link);
+      }
     }
+  }
 </script>
 
 <style>
@@ -38,9 +43,12 @@
     text-align: center;
   }
 
-  #sticky-footer a {
+  #sticky-footer .link {
     margin-left: 15px;
+  }
 
+  #sticky-footer .link:hover {
+    cursor: pointer;
   }
 
   .dm-base-divider--large {
