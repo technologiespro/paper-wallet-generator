@@ -219,11 +219,10 @@
           "vtc": {
             title: "Vertcoin",
             logo: "static/coins/vtc.png",
-            public: 0x1e,
-            private: 0xd4,
+            public: 0x47,
+            private: 0x80,
             validator: 'btcValidator'
           },
-
         },
         address: {
           keyHex: null,
