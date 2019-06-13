@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '@/css/styles.css';
 
 Vue.use(VueDarkMode);
+Vue.use(Clipboard);
 
 Vue.config.productionTip = false
 
