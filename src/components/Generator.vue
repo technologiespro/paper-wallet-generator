@@ -109,7 +109,8 @@
 <script>
   import CoinKey from 'coinkey';
   import cryptoRandomString from 'crypto-random-string';
-  import VueQrcode from '@/components/utils/QRCode'
+  import VueQrcode from '@/components/utils/QRCode';
+  import sth from 'sthjs';
 
   export default {
     name: 'Generator',
