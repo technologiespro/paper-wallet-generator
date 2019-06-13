@@ -27,13 +27,13 @@
             <div class="col-md-5">
 
               <div class="qr-container">
-                <VueQrcode :value="address.publicAddress" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Public Address</p>
               </div>
 
 
               <div class="qr-container">
-                <VueQrcode :value="address.privateWif" :options="{size:150, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode :value="address.privateWif" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Private Key</p>
               </div>
             </div>
