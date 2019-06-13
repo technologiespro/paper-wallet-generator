@@ -39,9 +39,9 @@
               <tr>
                 <td class="text-right">Address</td>
                 <td>
-                  <dm-icon name="add_to_photos" class="clipboard"
-                           v-clipboard="() => address.publicAddress"
-                           v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+                  <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                       v-clipboard="() => address.publicAddress"
+                       v-clipboard:success="clipboardSuccessHandler"/>
                 </td>
                 <td class="text-left">
               <span class="barley-white">
@@ -52,8 +52,9 @@
               <tr>
                 <td class="text-right">PrivateKey</td>
                 <td>
-                  <dm-icon name="add_to_photos" class="clipboard" v-clipboard="() => address.privateWif"
-                           v-clipboard:success="clipboardSuccessHandler"></dm-icon>
+                  <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                       v-clipboard="() => address.privateWif"
+                       v-clipboard:success="clipboardSuccessHandler"/>
                 </td>
                 <td class="text-left">
                   <span class="barley-white">{{address.privateWif}}</span>
@@ -274,6 +275,7 @@
 
   .clipboard {
     color: #eee !important;
+
   }
 
   .clipboard:hover {
@@ -286,5 +288,7 @@
     float: left;
     margin: 0 auto;
   }
+
+
 </style>
 
