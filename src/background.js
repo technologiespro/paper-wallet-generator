@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, screen } from 'electron'
 import winState from 'electron-window-state'
 import {
   createProtocol,
@@ -17,9 +17,35 @@ let win
 
 function createWindow () {
   // Create the browser window.
+  /*
   win = new BrowserWindow({ width: 1024, height: 768, webPreferences: {
     nodeIntegration: true
   } })
+  */
+
+  // Create the browser window.
+  const {width, height} = screen.getPrimaryDisplay().workAreaSize;
+
+  const windowState = winState({
+    defaultWidth: width,
+    defaultHeight: height
+  });
+
+  win = new BrowserWindow({
+    backgroundColor: '#12151f',
+    minWidth: 1024,
+    minHeight: 768,
+    width: windowState.width,
+    height: windowState.height,
+    x: windowState.x,
+    y: windowState.y,
+    center: true,
+    frame: true, // удалить в продакшн
+    show: true,
+    skipTaskbar: false,
+    darkTheme: true,
+    autoHideMenuBar: false
+  });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
