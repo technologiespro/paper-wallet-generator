@@ -21,7 +21,7 @@
       </dm-button>
 
       <div class="container mt-4">
-        <div class="result-generate" v-if="address.keyHex">
+        <div class="result-generate" v-if="address.publicAddress">
           <div class="row">
 
             <div class="col-md-5">
@@ -64,7 +64,7 @@
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
                 </tr>
-                <tr>
+                <tr v-if="coins[currentCoin].validator === 'btcValidator'">
                   <td></td>
                   <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" ></td>
                   <td></td>
@@ -111,7 +111,7 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
-  import bip39 from 'bip39';
+  import {generateMnemonic, entropyToMnemonic} from 'bip39';
 
   export default {
     name: 'Generator',
@@ -212,10 +212,18 @@
           "sth": {
             title: "STH",
             logo: "static/coins/sth.png",
-            public: 0x1e,
-            private: 0xd4,
+            public: 0x3f,
+            private: 0xff,
             validator: 'sthValidator'
           },
+          "vtc": {
+            title: "Vertcoin",
+            logo: "static/coins/vtc.png",
+            public: 0x1e,
+            private: 0xd4,
+            validator: 'btcValidator'
+          },
+
         },
         address: {
           keyHex: null,
@@ -226,16 +234,6 @@
       }
     },
     methods: {
-      async getNewAddressBIP39() {
-        let MNEMONIC = bip39.generateMnemonic();
-        let PUB_KEY = sth.crypto.getKeys(MNEMONIC).publicKey;
-        let ADDR = sth.crypto.getAddress(PUB_KEY);
-        return ({
-          "address": ADDR,
-          "passphrase": MNEMONIC,
-          "pubkey": PUB_KEY
-        })
-      },
       showHideCoins: function() {
         this.isShow = this.isShow ? false: true;
       },
@@ -255,17 +253,23 @@
         }
 
         if (this.coins[this.currentCoin].validator === 'sthValidator') {
-
+          let privateKeyHex = cryptoRandomString({length: 32});
+          const mnemonic = entropyToMnemonic(privateKeyHex);
+          const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
+          this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
+          this.address.privateWif = mnemonic;
         }
 
       },
       selectCoin: function (selectedCoin) {
+        this.help = false;
         this.currentCoin = selectedCoin;
         this.address = {
           keyHex: null,
           publicAddress: null,
           privateWif: null,
-        }
+        };
+
         if (this.mobile) {
           this.isShow = false;
         }
