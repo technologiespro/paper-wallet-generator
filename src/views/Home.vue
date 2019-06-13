@@ -51,7 +51,5 @@
     cursor: pointer;
   }
 
-  .dm-base-divider--large {
-    margin: 20px auto !important;
-  }
+
 </style>
