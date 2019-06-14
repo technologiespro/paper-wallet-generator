@@ -18,7 +18,8 @@
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
       </dm-button>
-      <img v-if="address.publicAddress && !mobile" @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="ml-2">
+      <img v-if="address.publicAddress && !mobile" @click="pdfDownload" src="static/svg/pdf.svg" width="40px"
+           class="ml-2">
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
@@ -170,7 +171,7 @@
             public: 0x26,
             private: 0x80,
             generator: 'btcGenerator'
-          },
+          },/*
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
@@ -278,7 +279,7 @@
       pdfDownload() {
         var doc = new jsPDF({
           orientation: 'landscape',
-          pagesplit: true,
+          // pagesplit: true,
           //format: [900, 510]
         });
 
@@ -310,12 +311,12 @@
               var qrPriv = document.getElementById('qrPriv');
               doc.addImage(qrPriv.toDataURL("image/jpg"), 'JPEG', 70, 80, 50, 50);
               doc.text('Private Key', 78, 138);
-                doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
+              doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
             }
           )
           .catch(
             (error) => {
-              console.log(error); //Exepection error....
+              //console.log(error); //Exepection error....
             }
           )
         //
