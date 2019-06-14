@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
       <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
-      <h2>{{coins[currentCoin].title}} Wallet <span class="text-white">[{{currentCoin.toUpperCase()}}]</span></h2>
+      <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
       </dm-button>
@@ -350,6 +350,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+  .small {
+    font-size: 70% !important;
+    font-weight: 400;
+  }
   h2 {
     color: #A9C7DF;
   }
