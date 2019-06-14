@@ -7,6 +7,8 @@ Designed to securely generate altcoins addresses offline
 - PostCoin (POST) https://postcoin.top
 - Bitcoin (BTC) https://bitcoin.org
 - NobtCoin (NOBT) http://nobt.info
+- 42-Coin (42) https://42-coin.org
+- BitcoinGold (BTG) https://bitcoingold.org
 
 ## Project setup
 ```
