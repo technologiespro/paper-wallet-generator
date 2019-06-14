@@ -26,7 +26,7 @@
             <div class="col-md-5">
 
               <div class="qr-container">
-                <VueQrcode :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode id="canvasPub" :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Public Address</p>
               </div>
 
@@ -298,6 +298,12 @@
 
               doc.textWithLink('XBTS DEX', 12, 200, { url: 'https://ex.xbts.io' });
               doc.textWithLink('GitHub', 50, 200, { url: 'https://github.com/technologiespro/paper-wallet-generator/releases' });
+
+
+              var canvas = document.getElementById('canvasPub');
+              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 12, 80, 40, 40);
+
+              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 90, 80, 40, 40);
 
               doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
 
