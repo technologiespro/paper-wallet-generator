@@ -245,9 +245,23 @@
             private: null,
             generator: 'ethGenerator'
           },
+          "xsm": {
+            title: "Smilo",
+            logo: "static/coins/xsm.png",
+            public: null,
+            private: null,
+            generator: 'ethGenerator'
+          },
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
+            public: 0x46,
+            private: 0x84,
+            generator: 'btcGenerator'
+          },
+          "vrm": {
+            title: "Verium",
+            logo: "static/coins/vrm.png",
             public: 0x46,
             private: 0x84,
             generator: 'btcGenerator'
