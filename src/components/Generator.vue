@@ -167,7 +167,7 @@
             public: 0x26,
             private: 0x80,
             generator: 'btcGenerator'
-          },/*
+          },
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
@@ -258,7 +258,7 @@
             public: null,
             private: null,
             generator: 'wavesGenerator'
-          },*/
+          },
            /*
           "vtc": {
             title: "Vertcoin",
@@ -275,7 +275,8 @@
       pdfDownload () {
         var doc = new jsPDF({
           orientation: 'landscape',
-          format: [700, 510]
+          pagesplit: true,
+          //format: [900, 510]
         });
 
         image2base64(this.coins[this.currentCoin].logo) // you can also to use url
@@ -287,13 +288,16 @@
               doc.setFontSize(35);
               doc.text(this.coins[this.currentCoin].title + ' Paper Wallet', 33, 18);
 
-              doc.setFontSize(16);
+              doc.setFontSize(14);
               doc.text('Public Address: ' + this.address.publicAddress, 12, 40);
               doc.text('Private Key: ' + this.address.privateWif, 12, 50);
 
               if (this.coins[this.currentCoin].generator !== 'btcGenerator' && this.address.keyHex) {
-                doc.text('Seed:' + this.address.keyHex, 12, 60);
+                doc.text('Seed: ' + this.address.keyHex, 12, 60);
               }
+
+              doc.textWithLink('XBTS DEX', 12, 200, { url: 'https://ex.xbts.io' });
+              doc.textWithLink('GitHub', 50, 200, { url: 'https://github.com/technologiespro/paper-wallet-generator/releases' });
 
               doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
 
