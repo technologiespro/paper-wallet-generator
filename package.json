@@ -1,6 +1,6 @@
 {
   "name": "paper-wallet-generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "description": "Paper Wallet Generator for Bitcoin & Altcoins",
   "author": "technologiespro",
@@ -24,6 +24,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@waves/waves-crypto": "^3.0.11",
     "bip39": "^3.0.2",
     "bootstrap": "^4.3.1",
     "coinkey": "^3.0.0",
