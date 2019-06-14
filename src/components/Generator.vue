@@ -4,7 +4,6 @@
       <dm-button @click="showHideCoins" full-width color="black" class="mb-2">SELECT COIN</dm-button>
     </div>
 
-
     <div v-if="isShow" class="container-fluid">
       <div class="row">
         <span v-for="(item, idx) in coins" :key="idx" class="select-coin" @click="selectCoin(idx)">
@@ -77,19 +76,13 @@
                   <td></td>
                 </tr>
               </table>
-
             </div>
-
-
           </div>
           <small class="text-success">~ {{copied}} ~</small>
-
         </div>
-
       </div>
     </div>
     <dm-divider></dm-divider>
-
     <div v-if="help" class="container instruction p-3 mb-5">
       <ul>
         <li>
@@ -107,9 +100,7 @@
         </li>
       </ul>
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -123,7 +114,7 @@
   export default {
     name: 'Generator',
     components: {
-      VueQrcode
+      VueQrcode,
     },
     data() {
       return {
@@ -137,14 +128,14 @@
             logo: "static/coins/42.png",
             public: 0x08,
             private: 0x88,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
           },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
             public: 0x0,
             private: 0x80,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
           },
           "btg": {
             title: "BitcoinGold",
