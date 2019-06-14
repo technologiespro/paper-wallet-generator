@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="container-fluid">
-      <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
-      <h2>{{coins[currentCoin].title}} Wallet</h2>
+      <img width="96px" alt="coin logo" :src="coinData.logo"/>
+      <h2>{{coinData.title}} Wallet</h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coinData.title}} address
       </dm-button>
 
       <div class="container mt-4">
@@ -51,14 +51,14 @@
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
                 </tr>
-                <tr v-if="address.keyHex && coins[currentCoin].generator !== 'btcGenerator'">
+                <tr v-if="address.keyHex && coinData.generator !== 'btcGenerator'">
                   <td>Seed</td>
                   <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
                            v-clipboard="() => address.keyHex"
                            v-clipboard:success="clipboardSuccessHandler"/></td>
                   <td class="barley-white">{{address.keyHex}}</td>
                 </tr>
-                <tr v-if="coins[currentCoin].generator === 'btcGenerator'">
+                <tr v-if="coinData.generator === 'btcGenerator'">
                   <td></td>
                   <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px"></td>
                   <td></td>
@@ -80,7 +80,7 @@
     <div v-if="help" class="container instruction p-3 mb-5">
       <ul>
         <li>
-          <dm-list-item icon-size="15" :number=1>Open Your {{coins[currentCoin].title}} Wallet</dm-list-item>
+          <dm-list-item icon-size="15" :number=1>Open Your {{coinData.title}} Wallet</dm-list-item>
         </li>
         <li>
           <dm-list-item :number=2>Select: <span class="text-info">Help > Debug window > Console</span></dm-list-item>
@@ -108,14 +108,17 @@
       VueQrcode
     },
     props: {
-      coin: Object
+      coinData: Object,
+      currentCoin: {
+        type: String,
+        default: "post"
+      }
     },
     data() {
       return {
         help: false,
         mobile: false,
         isShow: true,
-        currentCoin: "post",
         address: {
           keyHex: null,
           publicAddress: null,
@@ -126,53 +129,21 @@
     },
     methods: {
       showHideCoins: function () {
-        this.isShow = this.isShow ? false : true;
+        this.isShow = this.isShow === true;
       },
       showHideHelp: function () {
-        this.help = this.help ? false : true;
+        this.help = this.help === true;
       },
       generateAddress: function () {
-        if (this.coins[this.currentCoin].generator === 'btcGenerator') {
+        if (this.coinData.generator === 'btcGenerator') {
           let privateKeyHex = cryptoRandomString({length: 64});
           const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
-            private: this.coins[this.currentCoin].private,
-            public: this.coins[this.currentCoin].public
+            private: this.coinData.private,
+            public: this.coinData.public
           }));
           this.address.keyHex = privateKeyHex;
           this.address.publicAddress = key.publicAddress;
           this.address.privateWif = key.privateWif;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'sthGenerator') {
-          const privateKeyHex = cryptoRandomString({length: 32});
-          const mnemonic = entropyToMnemonic(privateKeyHex);
-          const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
-          this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
-          this.address.privateWif = mnemonic;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
-          const {randomSeed} = crypto()
-          const seed = randomSeed()
-          const {address, keyPair} = crypto()
-          const kp = keyPair(seed)
-          this.address.publicAddress = address(seed);
-          this.address.privateWif = kp.privateKey;
-          this.address.keyHex = seed;
-        }
-
-      },
-      selectCoin: function (selectedCoin) {
-        this.help = false;
-        this.currentCoin = selectedCoin;
-        this.address = {
-          keyHex: null,
-          publicAddress: null,
-          privateWif: null,
-        };
-
-        if (this.mobile) {
-          this.isShow = false;
         }
       },
       clipboardSuccessHandler({value, event}) {
