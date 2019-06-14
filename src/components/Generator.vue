@@ -26,13 +26,13 @@
             <div class="col-md-5">
 
               <div class="qr-container">
-                <VueQrcode id="canvasPub" :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode id="qrPub" :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Public Address</p>
               </div>
 
 
               <div class="qr-container">
-                <VueQrcode :value="address.privateWif" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode id="qrPriv" :value="address.privateWif" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Private Key</p>
               </div>
             </div>
@@ -300,10 +300,11 @@
               doc.textWithLink('GitHub', 50, 200, { url: 'https://github.com/technologiespro/paper-wallet-generator/releases' });
 
 
-              var canvas = document.getElementById('canvasPub');
-              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 12, 80, 50, 50);
+              var qrPub = document.getElementById('qrPub');
+              doc.addImage(qrPub.toDataURL("image/png"), 'PNG', 12, 80, 50, 50);
 
-              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 70, 80, 50, 50);
+              var qrPriv = document.getElementById('qrPriv');
+              doc.addImage(qrPriv.toDataURL("image/png"), 'PNG', 70, 80, 50, 50);
 
               doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
 
