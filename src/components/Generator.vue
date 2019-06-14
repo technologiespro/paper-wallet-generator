@@ -301,9 +301,9 @@
 
 
               var canvas = document.getElementById('canvasPub');
-              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 12, 80, 40, 40);
+              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 12, 80, 50, 50);
 
-              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 90, 80, 40, 40);
+              doc.addImage(canvas.toDataURL("image/png"), 'PNG', 70, 80, 50, 50);
 
               doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
 
