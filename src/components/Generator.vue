@@ -90,7 +90,6 @@
     </div>
     <dm-divider></dm-divider>
 
-
     <div v-if="help" class="container instruction p-3 mb-5">
       <ul>
         <li>
