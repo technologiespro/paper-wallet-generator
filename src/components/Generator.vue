@@ -131,12 +131,12 @@
         },
         copied: null,
         coins: {
-          "42": {
-            title: "42-Coin",
-            logo: "static/coins/42.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
+          "post": {
+            title: "PostCoin",
+            logo: "static/coins/post.png",
+            public: 0x37,
+            private: 0xb7,
+            generator: 'btcGenerator'
           },
           "btc": {
             title: "Bitcoin",
@@ -145,13 +145,27 @@
             private: 0x80,
             generator: 'btcGenerator',
           },
+          "nobt": {
+            title: "NobtCoin",
+            logo: "static/coins/nobt.png",
+            public: 0xf,
+            private: 0x55,
+            generator: 'btcGenerator'
+          },
+          "42": {
+            title: "42-Coin",
+            logo: "static/coins/42.png",
+            public: 0x08,
+            private: 0x88,
+            generator: 'btcGenerator',
+          },
           "btg": {
             title: "BitcoinGold",
             logo: "static/coins/btg.png",
             public: 0x26,
             private: 0x80,
             generator: 'btcGenerator'
-          },
+          },/*
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
@@ -187,13 +201,6 @@
             private: 0xb0,
             generator: 'btcGenerator'
           },
-          "nobt": {
-            title: "NobtCoin",
-            logo: "static/coins/nobt.png",
-            public: 0xf,
-            private: 0x55,
-            generator: 'btcGenerator'
-          },
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
@@ -215,13 +222,6 @@
             private: 0xd4,
             generator: 'btcGenerator'
           },
-          "post": {
-            title: "PostCoin",
-            logo: "static/coins/post.png",
-            public: 0x37,
-            private: 0xb7,
-            generator: 'btcGenerator'
-          },
           "xsm": {
             title: "Smilo",
             logo: "static/coins/xsm.png",
@@ -236,15 +236,6 @@
             private: 0xff,
             generator: 'sthGenerator'
           },
-          /*
-          "vtc": {
-            title: "Vertcoin",
-            logo: "static/coins/vtc.png",
-            public: 0x47,
-            private: 0x80,
-            generator: 'btcGenerator'
-          },
-          */
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
@@ -265,7 +256,16 @@
             public: null,
             private: null,
             generator: 'wavesGenerator'
+          },*/
+           /*
+          "vtc": {
+            title: "Vertcoin",
+            logo: "static/coins/vtc.png",
+            public: 0x47,
+            private: 0x80,
+            generator: 'btcGenerator'
           },
+          */
         },
       }
     },
