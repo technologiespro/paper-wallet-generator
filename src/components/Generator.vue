@@ -64,7 +64,7 @@
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
                 </tr>
-                <tr v-if="address.keyHex">
+                <tr v-if="address.keyHex && coins[currentCoin].validator !== 'btcValidator'">
                   <td>Seed</td>
                   <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
                            v-clipboard="() => address.keyHex"
