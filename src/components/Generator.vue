@@ -282,8 +282,6 @@
           const seed = randomSeed()
           const { keyPair } = crypto()
           const kp = keyPair(seed)
-          console.log(kp)
-
           this.address.publicAddress = kp.publicKey;
           this.address.privateWif = kp.privateKey;
           this.address.keyHex = seed;
