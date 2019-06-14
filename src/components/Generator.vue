@@ -16,8 +16,8 @@
       <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
-      </dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <img v-if="address.publicAddress" @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="ml-2">
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
@@ -111,6 +111,8 @@
   import {entropyToMnemonic, mnemonicToSeed} from 'bip39';
   import { crypto  } from '@waves/waves-crypto';
   import ethWallet from 'ethereumjs-wallet';
+  import jsPDF from 'jspdf'
+  import image2base64 from 'image-to-base64'
 
   export default {
     name: 'Generator',
@@ -270,6 +272,40 @@
       }
     },
     methods: {
+      pdfDownload () {
+        var doc = new jsPDF({
+          orientation: 'landscape',
+          format: [700, 510]
+        });
+
+        image2base64(this.coins[this.currentCoin].logo) // you can also to use url
+          .then(
+            (response) => {
+              var imgData = 'data:image/png;base64,' + response;
+              doc.addImage(imgData, 'PNG', 9, 5, 20, 20);
+
+              doc.setFontSize(35);
+              doc.text(this.coins[this.currentCoin].title + ' Paper Wallet', 33, 18);
+
+              doc.setFontSize(16);
+              doc.text('Public Address: ' + this.address.publicAddress, 12, 40);
+              doc.text('Private Key: ' + this.address.privateWif, 12, 50);
+
+              if (this.coins[this.currentCoin].generator !== 'btcGenerator' && this.address.keyHex) {
+                doc.text('Seed:' + this.address.keyHex, 12, 60);
+              }
+
+              doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
+
+            }
+          )
+          .catch(
+            (error) => {
+              console.log(error); //Exepection error....
+            }
+          )
+        //
+      },
       generateEth() {
         const wallet = ethWallet.generate();
         return {
