@@ -166,6 +166,13 @@
             private: 0x9e,
             generator: 'btcGenerator'
           },
+          "eth": {
+            title: "Ethereum",
+            logo: "static/coins/eth.png",
+            public: null,
+            private: null,
+            generator: 'ethGenerator'
+          },
           "ltc": {
             title: "Litecoin",
             logo: "static/coins/ltc.png",
@@ -201,6 +208,13 @@
             private: 0x9f,
             generator: 'btcGenerator'
           },
+          "pivx": {
+            title: "PIVX",
+            logo: "static/coins/pivx.png",
+            public: 0x1e,
+            private: 0xd4,
+            generator: 'btcGenerator'
+          },
           "post": {
             title: "PostCoin",
             logo: "static/coins/post.png",
@@ -208,12 +222,12 @@
             private: 0xb7,
             generator: 'btcGenerator'
           },
-          "pivx": {
-            title: "PIVX",
-            logo: "static/coins/pivx.png",
-            public: 0x1e,
-            private: 0xd4,
-            generator: 'btcGenerator'
+          "xsm": {
+            title: "Smilo",
+            logo: "static/coins/xsm.png",
+            public: null,
+            private: null,
+            generator: 'ethGenerator'
           },
           "sth": {
             title: "STH",
@@ -231,27 +245,6 @@
             generator: 'btcGenerator'
           },
           */
-          "waves": {
-            title: "WAVES",
-            logo: "static/coins/waves.png",
-            public: null,
-            private: null,
-            generator: 'wavesGenerator'
-          },
-          "eth": {
-            title: "Ethereum",
-            logo: "static/coins/eth.png",
-            public: null,
-            private: null,
-            generator: 'ethGenerator'
-          },
-          "xsm": {
-            title: "Smilo",
-            logo: "static/coins/xsm.png",
-            public: null,
-            private: null,
-            generator: 'ethGenerator'
-          },
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
@@ -265,6 +258,13 @@
             public: 0x46,
             private: 0x84,
             generator: 'btcGenerator'
+          },
+          "waves": {
+            title: "WAVES",
+            logo: "static/coins/waves.png",
+            public: null,
+            private: null,
+            generator: 'wavesGenerator'
           },
         },
       }
