@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
       <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
-      <h2>{{coins[currentCoin].title}} Wallet</h2>
+      <h2>{{coins[currentCoin].title}} Wallet <span class="text-white">({{currentCoin.toUpperCase()}})</span></h2>
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
       </dm-button>
@@ -159,6 +159,13 @@
             private: 0xcc,
             generator: 'btcGenerator'
           },
+          "onion": {
+            title: "DeepOnion",
+            logo: "static/coins/onion.png",
+            public: 0x1f,
+            private: 0x9f,
+            generator: 'btcGenerator'
+          },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
@@ -199,13 +206,6 @@
             logo: "static/coins/nmc.png",
             public: 0x34,
             private: 0x80,
-            generator: 'btcGenerator'
-          },
-          "onion": {
-            title: "DeepOnion",
-            logo: "static/coins/onion.png",
-            public: 0x1f,
-            private: 0x9f,
             generator: 'btcGenerator'
           },
           "pivx": {
