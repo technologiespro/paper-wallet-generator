@@ -108,7 +108,7 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
-  import {entropyToMnemonic} from 'bip39';
+  import {entropyToMnemonic, mnemonicToSeed} from 'bip39';
   import { crypto  } from '@waves/waves-crypto'
 
   export default {
@@ -122,6 +122,13 @@
         mobile: false,
         isShow: true,
         currentCoin: "post",
+        address: {
+          keyHex: null,
+          publicAddress: null,
+          privateWif: null,
+          seed: null
+        },
+        copied: null,
         coins: {
           "42": {
             title: "42-Coin",
@@ -230,17 +237,25 @@
             private: null,
             generator: 'wavesGenerator'
           },
-
+          "eth": {
+            title: "Ethereum",
+            logo: "static/coins/eth.png",
+            public: null,
+            private: null,
+            generator: 'ethGenerator'
+          },
         },
-        address: {
-          keyHex: null,
-          publicAddress: null,
-          privateWif: null,
-        },
-        copied: null
       }
     },
     methods: {
+      async generateEth() {
+        const privateKeyHex = cryptoRandomString({length: 32});
+        const mnemonic = entropyToMnemonic(privateKeyHex);
+        const seedHex = (await mnemonicToSeed(mnemonic)).toString('hex');
+        console.log('mnemonic',mnemonic);
+        console.log('seed',seedHex);
+
+      },
       showHideCoins: function () {
         this.isShow = this.isShow ? false : true;
       },
@@ -275,6 +290,10 @@
           this.address.publicAddress = address(seed);
           this.address.privateWif = kp.privateKey;
           this.address.keyHex = seed;
+        }
+
+        if (this.coins[this.currentCoin].generator === 'ethGenerator') {
+          this.generateEth();
         }
 
       },
