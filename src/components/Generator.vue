@@ -245,6 +245,13 @@
             private: null,
             generator: 'ethGenerator'
           },
+          "vrc": {
+            title: "Vericoin",
+            logo: "static/coins/vrc.png",
+            public: 0x46,
+            private: 0x84,
+            generator: 'btcGenerator'
+          },
         },
       }
     },
