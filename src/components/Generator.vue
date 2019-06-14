@@ -16,7 +16,8 @@
       <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+      </dm-button>
       <img v-if="address.publicAddress" @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="ml-2">
 
       <div class="container mt-4">
@@ -26,13 +27,15 @@
             <div class="col-md-5">
 
               <div class="qr-container">
-                <VueQrcode id="qrPub" :value="address.publicAddress" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode id="qrPub" :value="address.publicAddress"
+                           :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Public Address</p>
               </div>
 
 
               <div class="qr-container">
-                <VueQrcode id="qrPriv" :value="address.privateWif" :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
+                <VueQrcode id="qrPriv" :value="address.privateWif"
+                           :options="{size:125, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-secondary">Private Key</p>
               </div>
             </div>
@@ -109,7 +112,7 @@
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
   import {entropyToMnemonic, mnemonicToSeed} from 'bip39';
-  import { crypto  } from '@waves/waves-crypto';
+  import {crypto} from '@waves/waves-crypto';
   import ethWallet from 'ethereumjs-wallet';
   import jsPDF from 'jspdf'
   import image2base64 from 'image-to-base64'
@@ -259,20 +262,20 @@
             private: null,
             generator: 'wavesGenerator'
           },
-           /*
-          "vtc": {
-            title: "Vertcoin",
-            logo: "static/coins/vtc.png",
-            public: 0x47,
-            private: 0x80,
-            generator: 'btcGenerator'
-          },
-          */
+          /*
+         "vtc": {
+           title: "Vertcoin",
+           logo: "static/coins/vtc.png",
+           public: 0x47,
+           private: 0x80,
+           generator: 'btcGenerator'
+         },
+         */
         },
       }
     },
     methods: {
-      pdfDownload () {
+      pdfDownload() {
         var doc = new jsPDF({
           orientation: 'landscape',
           pagesplit: true,
@@ -296,15 +299,17 @@
                 doc.text('Seed: ' + this.address.keyHex, 12, 60);
               }
 
-              doc.textWithLink('XBTS DEX', 12, 200, { url: 'https://ex.xbts.io' });
-              doc.textWithLink('GitHub', 50, 200, { url: 'https://github.com/technologiespro/paper-wallet-generator/releases' });
-
+              doc.setFontSize(12);
+              doc.textWithLink('XBTS DEX', 12, 200, {url: 'https://ex.xbts.io'});
+              doc.textWithLink('GitHub', 50, 200, {url: 'https://github.com/technologiespro/paper-wallet-generator/releases'});
 
               var qrPub = document.getElementById('qrPub');
-              doc.addImage(qrPub.toDataURL("image/png"), 'PNG', 12, 80, 50, 50);
+              doc.addImage(qrPub.toDataURL("image/jpg"), 'JPEG', 12, 80, 50, 50);
+              doc.text('Public Address', 18, 138);
 
               var qrPriv = document.getElementById('qrPriv');
-              doc.addImage(qrPriv.toDataURL("image/png"), 'PNG', 70, 80, 50, 50);
+              doc.addImage(qrPriv.toDataURL("image/jpg"), 'JPEG', 70, 80, 50, 50);
+              doc.text('Private Key', 78, 138);
 
               doc.save(this.coins[this.currentCoin].title + '-PaperWallet' + '.pdf');
 
@@ -351,9 +356,9 @@
         }
 
         if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
-          const { randomSeed } = crypto()
+          const {randomSeed} = crypto()
           const seed = randomSeed()
-          const { address, keyPair } = crypto()
+          const {address, keyPair} = crypto()
           const kp = keyPair(seed)
           this.address.publicAddress = address(seed);
           this.address.privateWif = kp.privateKey;
@@ -401,6 +406,7 @@
     font-size: 70% !important;
     font-weight: 400;
   }
+
   h2 {
     color: #A9C7DF;
   }
