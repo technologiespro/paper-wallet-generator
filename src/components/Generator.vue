@@ -64,14 +64,14 @@
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
                 </tr>
-                <tr v-if="address.keyHex && coins[currentCoin].validator !== 'btcValidator'">
+                <tr v-if="address.keyHex && coins[currentCoin].generator !== 'btcGenerator'">
                   <td>Seed</td>
                   <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
                            v-clipboard="() => address.keyHex"
                            v-clipboard:success="clipboardSuccessHandler"/></td>
                   <td class="barley-white">{{address.keyHex}}</td>
                 </tr>
-                <tr v-if="coins[currentCoin].validator === 'btcValidator'">
+                <tr v-if="coins[currentCoin].generator === 'btcGenerator'">
                   <td></td>
                   <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px"></td>
                   <td></td>
@@ -138,91 +138,91 @@
             logo: "static/coins/42.png",
             public: 0x08,
             private: 0x88,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
             public: 0x0,
             private: 0x80,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "btg": {
             title: "BitcoinGold",
             logo: "static/coins/btg.png",
             public: 0x26,
             private: 0x80,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
             public: 0x4c,
             private: 0xcc,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
             public: 0x1e,
             private: 0x9e,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "ltc": {
             title: "Litecoin",
             logo: "static/coins/ltc.png",
             public: 0x30,
             private: 0xb0,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
             public: 0xf,
             private: 0x55,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
             public: 0x08,
             private: 0x88,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
             public: 0x34,
             private: 0x80,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
             public: 0x1f,
             private: 0x9f,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "post": {
             title: "PostCoin",
             logo: "static/coins/post.png",
             public: 0x37,
             private: 0xb7,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
             public: 0x1e,
             private: 0xd4,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           "sth": {
             title: "STH",
             logo: "static/coins/sth.png",
             public: 0x3f,
             private: 0xff,
-            validator: 'sthGenerator'
+            generator: 'sthGenerator'
           },
           /*
           "vtc": {
@@ -230,7 +230,7 @@
             logo: "static/coins/vtc.png",
             public: 0x47,
             private: 0x80,
-            validator: 'btcValidator'
+            generator: 'btcGenerator'
           },
           */
           "waves": {
@@ -238,7 +238,7 @@
             logo: "static/coins/waves.png",
             public: null,
             private: null,
-            validator: 'wavesGenerator'
+            generator: 'wavesGenerator'
           },
 
         },
@@ -258,7 +258,7 @@
         this.help = this.help ? false : true;
       },
       generateAddress: function () {
-        if (this.coins[this.currentCoin].validator === 'btcValidator') {
+        if (this.coins[this.currentCoin].generator === 'btcGenerator') {
           let privateKeyHex = cryptoRandomString({length: 64});
           const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
             private: this.coins[this.currentCoin].private,
@@ -269,7 +269,7 @@
           this.address.privateWif = key.privateWif;
         }
 
-        if (this.coins[this.currentCoin].validator === 'sthGenerator') {
+        if (this.coins[this.currentCoin].generator === 'sthGenerator') {
           const privateKeyHex = cryptoRandomString({length: 32});
           const mnemonic = entropyToMnemonic(privateKeyHex);
           const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
@@ -277,7 +277,7 @@
           this.address.privateWif = mnemonic;
         }
 
-        if (this.coins[this.currentCoin].validator === 'wavesGenerator') {
+        if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
           const { randomSeed } = crypto()
           const seed = randomSeed()
           const { keyPair } = crypto()
