@@ -280,9 +280,9 @@
         if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
           const { randomSeed } = crypto()
           const seed = randomSeed()
-          const { keyPair } = crypto()
+          const { address, keyPair } = crypto()
           const kp = keyPair(seed)
-          this.address.publicAddress = kp.publicKey;
+          this.address.publicAddress = address(seed);
           this.address.privateWif = kp.privateKey;
           this.address.keyHex = seed;
         }
