@@ -1,4 +1,4 @@
-# Paper Wallet Generator
+# Paper Wallet Generator Desktop & Mobile
 
 Designed to securely generate altcoins addresses offline
 
