@@ -109,7 +109,8 @@
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
   import {entropyToMnemonic, mnemonicToSeed} from 'bip39';
-  import { crypto  } from '@waves/waves-crypto'
+  import { crypto  } from '@waves/waves-crypto';
+  import ethWallet from 'ethereumjs-wallet';
 
   export default {
     name: 'Generator',
@@ -248,19 +249,18 @@
       }
     },
     methods: {
-      async generateEth() {
-        const privateKeyHex = cryptoRandomString({length: 32});
-        const mnemonic = entropyToMnemonic(privateKeyHex);
-        const seedHex = (await mnemonicToSeed(mnemonic)).toString('hex');
-        console.log('mnemonic',mnemonic);
-        console.log('seed',seedHex);
-
+      generateEth() {
+        const wallet = ethWallet.generate();
+        return {
+          privateKey: wallet.getPrivateKeyString(),
+          address: wallet.getAddressString()
+        }
       },
       showHideCoins: function () {
-        this.isShow = this.isShow ? false : true;
+        this.isShow = !this.isShow;
       },
       showHideHelp: function () {
-        this.help = this.help ? false : true;
+        this.help = !this.help;
       },
       generateAddress: function () {
         if (this.coins[this.currentCoin].generator === 'btcGenerator') {
@@ -293,7 +293,9 @@
         }
 
         if (this.coins[this.currentCoin].generator === 'ethGenerator') {
-          this.generateEth();
+          const ethData = this.generateEth();
+          this.address.publicAddress = ethData.address;
+          this.address.privateWif = ethData.privateKey;
         }
 
       },
