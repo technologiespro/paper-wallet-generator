@@ -64,6 +64,13 @@
                     <span class="barley-white">{{address.privateWif}}</span>
                   </td>
                 </tr>
+                <tr v-if="address.keyHex">
+                  <td>Seed</td>
+                  <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
+                           v-clipboard="() => address.keyHex"
+                           v-clipboard:success="clipboardSuccessHandler"/></td>
+                  <td class="barley-white">{{address.keyHex}}</td>
+                </tr>
                 <tr v-if="coins[currentCoin].validator === 'btcValidator'">
                   <td></td>
                   <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px"></td>
@@ -215,8 +222,9 @@
             logo: "static/coins/sth.png",
             public: 0x3f,
             private: 0xff,
-            validator: 'sthValidator'
+            validator: 'sthGenerator'
           },
+          /*
           "vtc": {
             title: "Vertcoin",
             logo: "static/coins/vtc.png",
@@ -224,6 +232,7 @@
             private: 0x80,
             validator: 'btcValidator'
           },
+          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -260,12 +269,24 @@
           this.address.privateWif = key.privateWif;
         }
 
-        if (this.coins[this.currentCoin].validator === 'sthValidator') {
+        if (this.coins[this.currentCoin].validator === 'sthGenerator') {
           const privateKeyHex = cryptoRandomString({length: 32});
           const mnemonic = entropyToMnemonic(privateKeyHex);
           const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
           this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
           this.address.privateWif = mnemonic;
+        }
+
+        if (this.coins[this.currentCoin].validator === 'wavesGenerator') {
+          const { randomSeed } = crypto()
+          const seed = randomSeed()
+          const { keyPair } = crypto()
+          const kp = keyPair(seed)
+          console.log(kp)
+
+          this.address.publicAddress = kp.publicKey;
+          this.address.privateWif = kp.privateKey;
+          this.address.keyHex = seed;
         }
 
       },
