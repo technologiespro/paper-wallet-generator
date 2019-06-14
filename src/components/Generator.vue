@@ -10,7 +10,7 @@
         <span v-for="(item, idx) in coins" :key="idx" class="select-coin" @click="selectCoin(idx)">
             <img width="18px" alt="item.title" :src="item.logo"/> {{item.title}}
         </span>
-    </div>
+      </div>
     </div>
 
     <div class="container-fluid">
@@ -66,7 +66,7 @@
                 </tr>
                 <tr v-if="coins[currentCoin].validator === 'btcValidator'">
                   <td></td>
-                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" ></td>
+                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px"></td>
                   <td></td>
                 </tr>
               </table>
@@ -111,7 +111,8 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import sth from 'sthjs';
-  import {generateMnemonic, entropyToMnemonic} from 'bip39';
+  import {entropyToMnemonic} from 'bip39';
+  import { crypto  } from '@waves/waves-crypto'
 
   export default {
     name: 'Generator',
@@ -223,6 +224,14 @@
             private: 0x80,
             validator: 'btcValidator'
           },
+          "waves": {
+            title: "WAVES",
+            logo: "static/coins/waves.png",
+            public: null,
+            private: null,
+            validator: 'wavesGenerator'
+          },
+
         },
         address: {
           keyHex: null,
@@ -233,11 +242,11 @@
       }
     },
     methods: {
-      showHideCoins: function() {
-        this.isShow = this.isShow ? false: true;
+      showHideCoins: function () {
+        this.isShow = this.isShow ? false : true;
       },
-      showHideHelp: function() {
-        this.help = this.help ? false: true;
+      showHideHelp: function () {
+        this.help = this.help ? false : true;
       },
       generateAddress: function () {
         if (this.coins[this.currentCoin].validator === 'btcValidator') {
