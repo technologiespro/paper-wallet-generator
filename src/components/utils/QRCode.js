@@ -35,7 +35,6 @@ export default {
         element: this.$el,
         value: this.value
       }, this.options))
-
       return qr
     }
   }
