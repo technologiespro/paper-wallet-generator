@@ -13,7 +13,7 @@
     </div>
 
     <div class="container-fluid">
-      <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
+      <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo" :src="coins[currentCoin].logo" class="pointer"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
@@ -116,6 +116,8 @@
   import { entropyToMnemonic } from 'bip39';
   import { crypto } from '@waves/waves-crypto';
   import ethWallet from 'ethereumjs-wallet';
+
+  import {openUrl} from 'src/util/url'
 
   export default {
     name: 'Generator',
@@ -294,6 +296,9 @@
       }
     },
     methods: {
+      openLink(link) {
+        openUrl(link);
+      },
       generateEth() {
         const wallet = ethWallet.generate();
         return {

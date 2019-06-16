@@ -1,6 +1,6 @@
 <template>
   <span class="ml-2">
-    <img @click="pdfDownload" src="static/svg/pdf.svg" width="40px"/>
+    <img @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="pointer"/>
   </span>
 </template>
 

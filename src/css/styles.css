@@ -20,3 +20,7 @@ body {
   background: #2fa0ba;
   border: 1px solid #434a52;
 }
+
+.pointer:hover {
+  cursor: pointer;
+}
