@@ -287,8 +287,18 @@
             logo: "static/coins/rdd.png",
             public: 0x3d,
             private: 0xbd,
+            scripthash: 0x05,
             generator: 'btcGenerator',
             downloadWallet: 'https://reddcoin.com/get-started/',
+          },
+          "ppc": {
+            title: "Peercoin",
+            logo: "static/coins/ppc.png",
+            public: 0x37,
+            private: 0xb7,
+            scripthash: 0xc4,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://peercoin.net/wallet.html',
           },
           /*
          "vtc": {
