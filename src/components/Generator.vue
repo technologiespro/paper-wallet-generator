@@ -142,7 +142,8 @@
             logo: "static/coins/post.png",
             public: 0x37,
             private: 0xb7,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
           },
           "btc": {
             title: "Bitcoin",
@@ -150,13 +151,15 @@
             public: 0x0,
             private: 0x80,
             generator: 'btcGenerator',
+            downloadWallet: 'https://bitcoin.org/en/choose-your-wallet',
           },
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
             public: 0xf,
             private: 0x55,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
           },
           "42": {
             title: "42-Coin",
@@ -164,104 +167,119 @@
             public: 0x08,
             private: 0x88,
             generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/42-coin/42/releases',
           },
           "btg": {
             title: "BitcoinGold",
             logo: "static/coins/btg.png",
             public: 0x26,
             private: 0x80,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://bitcoingold.org/ecosystem/#wallets',
           },
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
             public: 0x4c,
             private: 0xcc,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://www.dash.org/downloads/',
           },
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
             public: 0x1f,
             private: 0x9f,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/deeponion/deeponion/releases',
           },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
             public: 0x1e,
             private: 0x9e,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/dogecoin/dogecoin/releases',
           },
           "eth": {
             title: "Ethereum",
             logo: "static/coins/eth.png",
             public: null,
             private: null,
-            generator: 'ethGenerator'
+            generator: 'ethGenerator',
+            downloadWallet: 'https://www.myetherwallet.com/',
           },
           "ltc": {
             title: "Litecoin",
             logo: "static/coins/ltc.png",
             public: 0x30,
             private: 0xb0,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://litecoin.org',
           },
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
             public: 0x08,
             private: 0x88,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
           },
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
             public: 0x34,
             private: 0x80,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://namecoin.org/download/',
           },
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
             public: 0x1e,
             private: 0xd4,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://pivx.org/wallet/',
           },
           "xsm": {
             title: "Smilo",
             logo: "static/coins/xsm.png",
             public: null,
             private: null,
-            generator: 'ethGenerator'
+            generator: 'ethGenerator',
+            downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
           },
           "sth": {
             title: "STH",
             logo: "static/coins/sth.png",
             public: 0x3f,
             private: 0xff,
-            generator: 'sthGenerator'
+            generator: 'sthGenerator',
+            downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
           },
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
             public: 0x46,
             private: 0x84,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://vericoin.info/vericoin-digital-currency/',
           },
           "vrm": {
             title: "Verium",
             logo: "static/coins/vrm.png",
             public: 0x46,
             private: 0x84,
-            generator: 'btcGenerator'
+            generator: 'btcGenerator',
+            downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
           },
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
             public: null,
             private: null,
-            generator: 'wavesGenerator'
+            generator: 'wavesGenerator',
+            downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
           /*
          "vtc": {
