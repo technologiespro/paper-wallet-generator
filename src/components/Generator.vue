@@ -171,7 +171,7 @@
             public: 0x26,
             private: 0x80,
             generator: 'btcGenerator'
-          },/*
+          },
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
@@ -186,6 +186,7 @@
             private: 0x9f,
             generator: 'btcGenerator'
           },
+          /*
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
