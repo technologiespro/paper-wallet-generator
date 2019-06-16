@@ -59,6 +59,7 @@ module.exports = {
         }
       }
     },
+    cordovaPath: 'src-cordova'
   },
 
   publicPath: '',
