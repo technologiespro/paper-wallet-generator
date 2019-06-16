@@ -16,10 +16,8 @@
       <img width="96px" alt="coin logo" :src="coins[currentCoin].logo"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
-      </dm-button>
-      <img v-if="address.publicAddress && !mobile" @click="pdfDownload" src="static/svg/pdf.svg" width="40px"
-           class="ml-2">
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <img v-if="address.publicAddress && !mobile" @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="ml-2"/>
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
