@@ -16,9 +16,8 @@
       <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo" :src="coins[currentCoin].logo" class="pointer"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
-      </dm-button>
-      <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <DownloadPdf v-if="address.publicAddress" :address="address" :coin="coins[currentCoin]"/>
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
@@ -75,7 +74,7 @@
                 </tr>
                 <tr v-if="coins[currentCoin].generator === 'btcGenerator'">
                   <td></td>
-                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px"></td>
+                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" class="pointer"></td>
                   <td></td>
                 </tr>
               </table>
