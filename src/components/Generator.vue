@@ -28,14 +28,14 @@
               <div class="qr-container">
                 <VueQrcode id="qrPub" :value="address.publicAddress"
                            :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
-                <p class="text-secondary">Public Address</p>
+                <p class="text-white-50">Public Address</p>
               </div>
 
 
               <div class="qr-container">
                 <VueQrcode id="qrPriv" :value="address.privateWif"
                            :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
-                <p class="text-secondary">Private Key</p>
+                <p class="text-white-50">Private Key</p>
               </div>
             </div>
 
