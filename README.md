@@ -9,6 +9,8 @@ Designed to securely generate altcoins addresses offline
 - NobtCoin (NOBT) http://nobt.info
 - 42-Coin (42) https://42-coin.org
 - BitcoinGold (BTG) https://bitcoingold.org
+- DASH (DASH) https://www.dash.org
+- DeepOnion (ONION) https://deeponion.org
 
 # IMPORTANT NOTE
 
