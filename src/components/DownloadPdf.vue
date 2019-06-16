@@ -25,6 +25,9 @@
         const paperWalletLogo = 'data:image/png;base64,' + (await image2base64('static/logo/logo64.png'));
         doc.addImage(paperWalletLogo, 'PNG', 281, 195, 10, 10);
 
+        const xbtsLogo = 'data:image/png;base64,' + (await image2base64('static/logo/xbts.png'));
+        doc.addImage(xbtsLogo, 'PNG', 250, 195, 25, 10);
+
         image2base64(this.coin.logo) // you can also to use url
           .then(
             (response) => {
