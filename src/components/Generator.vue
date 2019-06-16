@@ -186,7 +186,6 @@
             private: 0x9f,
             generator: 'btcGenerator'
           },
-          /*
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
