@@ -282,6 +282,14 @@
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
+          "rdd": {
+            title: "ReddCoin",
+            logo: "static/coins/rdd.png",
+            public: 0x3d,
+            private: 0xbd,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://reddcoin.com/get-started/',
+          },
           /*
          "vtc": {
            title: "Vertcoin",
