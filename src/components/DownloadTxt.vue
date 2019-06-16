@@ -7,8 +7,12 @@
 <script>
   export default {
     name: "DownloadTxt",
+    props: {
+      coin: Object,
+      address: Object
+    },
     methods: {
-      downloadTxt(filename, text) {
+      downloadTxt() {
         let element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         element.setAttribute('download', filename);
