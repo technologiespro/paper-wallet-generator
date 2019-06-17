@@ -13,10 +13,12 @@
     </div>
 
     <div class="container-fluid">
-      <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo" :src="coins[currentCoin].logo" class="pointer"/>
+      <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo"
+           :src="coins[currentCoin].logo" class="pointer"/>
       <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
+      </dm-button>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
       <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
 
@@ -100,7 +102,7 @@
           </dm-list-item>
         </li>
         <li>
-          <dm-list-item :number=4>Wait for the import to complete and then restart the wallet</dm-list-item>
+          <dm-list-item :number=4>Wait for the import/rescan to complete and then restart the wallet</dm-list-item>
         </li>
       </ul>
     </div>
@@ -115,8 +117,8 @@
   import DownloadTxt from '@/components/DownloadTxt';
 
   import sth from 'sthjs';
-  import { entropyToMnemonic } from 'bip39';
-  import { crypto } from '@waves/waves-crypto';
+  import {entropyToMnemonic} from 'bip39';
+  import {crypto} from '@waves/waves-crypto';
   import ethWallet from 'ethereumjs-wallet';
 
   import {openUrl} from 'src/util/url'
@@ -304,15 +306,22 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://peercoin.net/wallet.html',
           },
-          /*
-         "vtc": {
-           title: "Vertcoin",
-           logo: "static/coins/vtc.png",
-           public: 0x47,
-           private: 0x80,
-           generator: 'btcGenerator'
-         },
-         */
+          "vtc": {
+            title: "Vertcoin",
+            logo: "static/coins/vtc.png",
+            public: 0x47,
+            private: 0x80,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://vertcoin.org/download-wallet/',
+          },
+          "block": {
+            title: "Blocknet",
+            logo: "static/coins/block.png",
+            public: 0x1a,
+            private: 0x9a,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://blocknet.co/',
+          },
         },
       }
     },
