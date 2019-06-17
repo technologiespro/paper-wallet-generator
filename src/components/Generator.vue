@@ -14,14 +14,12 @@
 
     <div class="container-fluid">
       <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo"
-           :src="coins[currentCoin].logo" class="pointer"/>
-      <h2>{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
+           :src="coins[currentCoin].logo" class="pointer noselect"/>
+      <h2 class="noselect">{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address
-      </dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
       <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
-
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
@@ -34,7 +32,6 @@
                            :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
                 <p class="text-white-50">Public Address</p>
               </div>
-
 
               <div class="qr-container">
                 <VueQrcode id="qrPriv" :value="address.privateWif"
