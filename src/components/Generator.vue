@@ -211,7 +211,7 @@
             public: null,
             private: null,
             generator: 'ethGenerator',
-            downloadWallet: 'https://www.myetherwallet.com/',
+            downloadWallet: 'https://metamask.io/',
           },
           "ltc": {
             title: "Litecoin",
