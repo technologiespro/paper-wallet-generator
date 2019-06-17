@@ -338,14 +338,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.potcoin.com/wallets',
           },
-          "strat": {
-            title: "Stratis",
-            logo: "static/coins/strat.png",
-            public: 0x3f,
-            private: 0xbf,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://stratisplatform.com/wallets/',
-          },
         },
       }
     },
