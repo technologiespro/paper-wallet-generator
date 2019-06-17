@@ -18,7 +18,7 @@
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
-      <DownloadTxt v-if="address.publicAddress" :address="address" :coin="coins[currentCoin]"/>
+      <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
 
 
       <div class="container mt-4">
