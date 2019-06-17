@@ -322,6 +322,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://blocknet.co/',
           },
+          "emc": {
+            title: "Emercoin",
+            logo: "static/coins/emc.png",
+            public: 0x21,
+            private: 0x80,
+            generator: 'btcGenerator',
+            downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
+          },
         },
       }
     },
