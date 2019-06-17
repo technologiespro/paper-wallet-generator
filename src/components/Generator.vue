@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div v-if="mobile" class="container">
+    <div v-if="mobile" class="container noselect">
       <dm-button @click="showHideCoins" full-width color="black" class="mb-2">SELECT COIN</dm-button>
     </div>
 
