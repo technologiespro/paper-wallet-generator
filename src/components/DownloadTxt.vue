@@ -22,7 +22,10 @@
           text = text + 'Seed:' + this.address.keyHex + '\r\n';
         }
 
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        let url = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+
+
+        element.setAttribute('href', url);
         element.setAttribute('download', this.coin.title + '-PaperWallet.txt');
 
         element.style.display = 'none';
@@ -31,6 +34,8 @@
         element.click();
 
         document.body.removeChild(element);
+
+
       }
     }
   }
