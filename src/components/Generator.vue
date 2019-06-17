@@ -144,13 +144,13 @@
         },
         copied: null,
         coins: {
-          "post": {
-            title: "PostCoin",
-            logo: "static/coins/post.png",
-            public: 0x37,
-            private: 0xb7,
+          "42": {
+            title: "42-Coin",
+            logo: "static/coins/42.png",
+            public: 0x08,
+            private: 0x88,
             generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
+            downloadWallet: 'https://github.com/42-coin/42/releases',
           },
           "btc": {
             title: "Bitcoin",
@@ -159,22 +159,6 @@
             private: 0x80,
             generator: 'btcGenerator',
             downloadWallet: 'https://bitcoin.org/en/choose-your-wallet',
-          },
-          "nobt": {
-            title: "NobtCoin",
-            logo: "static/coins/nobt.png",
-            public: 0xf,
-            private: 0x55,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
-          },
-          "42": {
-            title: "42-Coin",
-            logo: "static/coins/42.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/42-coin/42/releases',
           },
           "btg": {
             title: "BitcoinGold",
@@ -192,6 +176,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.dash.org/downloads/',
           },
+          "nobt": {
+            title: "NobtCoin",
+            logo: "static/coins/nobt.png",
+            public: 0xf,
+            private: 0x55,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
+          },
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
@@ -199,6 +191,14 @@
             private: 0x9f,
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/deeponion/deeponion/releases',
+          },
+          "post": {
+            title: "PostCoin",
+            logo: "static/coins/post.png",
+            public: 0x37,
+            private: 0xb7,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
           },
           "doge": {
             title: "Dogecoin",
@@ -257,7 +257,7 @@
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
           },
           "sth": {
-            title: "STH",
+            title: "SmartHoldem",
             logo: "static/coins/sth.png",
             public: 0x3f,
             private: 0xff,
@@ -458,12 +458,13 @@
 
   .select-coin {
     float: left;
+    font-size: 0.9em;
     margin-right: 4px;
     margin-left: 4px;
     padding: 5px;
     border: solid 1px #323E4F;
     background: #18191A;
-    width: 118px;
+    width: 122px;
     min-width: 118px;
     border-radius: 5px;
     margin-bottom: 6px;
@@ -491,6 +492,7 @@
     .select-coin {
       width: 47% !important;
       margin-left: 1% !important;
+      font-size: 1.05em;
     }
 
     .instruction p {
