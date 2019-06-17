@@ -18,6 +18,8 @@
 
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
+      <DownloadTxt v-if="address.publicAddress && mobile" :address="address" :coin="coins[currentCoin]"/>
+
 
       <div class="container mt-4">
         <div class="result-generate" v-if="address.publicAddress">
@@ -110,6 +112,7 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import DownloadPdf from '@/components/DownloadPdf';
+  import DownloadTxt from '@/components/DownloadTxt';
 
   import sth from 'sthjs';
   import { entropyToMnemonic } from 'bip39';
@@ -122,7 +125,8 @@
     name: 'Generator',
     components: {
       VueQrcode,
-      DownloadPdf
+      DownloadPdf,
+      DownloadTxt,
     },
     data() {
       return {
