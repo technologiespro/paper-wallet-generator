@@ -148,6 +148,13 @@
             private: 0x88,
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/42-coin/42/releases',
+            detail: {
+              description: "",
+              website: "",
+              community: "",
+              explorer: "",
+              github: ""
+            }
           },
           "btc": {
             title: "Bitcoin",
