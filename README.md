@@ -11,6 +11,8 @@ Designed to securely generate altcoins addresses offline
 - BitcoinGold (BTG) https://bitcoingold.org
 - DASH (DASH) https://www.dash.org
 - DeepOnion (ONION) https://deeponion.org
+- Dogecoin (DOGE) https://dogecoin.com
+- Ethereum (ETH) https://www.ethereum.org
 
 # IMPORTANT NOTE
 

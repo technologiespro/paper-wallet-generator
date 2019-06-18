@@ -203,7 +203,7 @@
             public: 0x1e,
             private: 0x9e,
             generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/dogecoin/dogecoin/releases',
+            downloadWallet: 'https://dogecoin.com/',
           },
           "eth": {
             title: "Ethereum",
@@ -212,6 +212,14 @@
             private: null,
             generator: 'ethGenerator',
             downloadWallet: 'https://metamask.io/',
+          },/*
+          "emc": {
+            title: "Emercoin",
+            logo: "static/coins/emc.png",
+            public: 0x21,
+            private: 0x80,
+            generator: 'btcGenerator',
+            downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
           },
           "ltc": {
             title: "Litecoin",
@@ -244,6 +252,23 @@
             private: 0xd4,
             generator: 'btcGenerator',
             downloadWallet: 'https://pivx.org/wallet/',
+          },
+          "pot": {
+            title: "Potcoin",
+            logo: "static/coins/pot.png",
+            public: 0x37,
+            private: 0xb7,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://www.potcoin.com/wallets',
+          },
+          "ppc": {
+            title: "Peercoin",
+            logo: "static/coins/ppc.png",
+            public: 0x37,
+            private: 0xb7,
+            scripthash: 0xc4,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://peercoin.net/wallet.html',
           },
           "xsm": {
             title: "Smilo",
@@ -294,15 +319,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://reddcoin.com/get-started/',
           },
-          "ppc": {
-            title: "Peercoin",
-            logo: "static/coins/ppc.png",
-            public: 0x37,
-            private: 0xb7,
-            scripthash: 0xc4,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://peercoin.net/wallet.html',
-          },
           "vtc": {
             title: "Vertcoin",
             logo: "static/coins/vtc.png",
@@ -319,22 +335,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://blocknet.co/',
           },
-          "emc": {
-            title: "Emercoin",
-            logo: "static/coins/emc.png",
-            public: 0x21,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
-          },
-          "pot": {
-            title: "Potcoin",
-            logo: "static/coins/pot.png",
-            public: 0x37,
-            private: 0xb7,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.potcoin.com/wallets',
-          },
+          /* */
         },
       }
     },
