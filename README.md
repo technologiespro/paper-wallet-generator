@@ -13,6 +13,8 @@ Designed to securely generate altcoins addresses offline
 - DeepOnion (ONION) https://deeponion.org
 - Dogecoin (DOGE) https://dogecoin.com
 - Ethereum (ETH) https://www.ethereum.org
+- Emercoin (EMC) https://emercoin.com
+- Litecoin (LTC) https://litecoin.org
 
 # IMPORTANT NOTE
 
