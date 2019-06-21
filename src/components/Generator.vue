@@ -276,7 +276,7 @@
             scripthash: 0xc4,
             generator: 'btcGenerator',
             downloadWallet: 'https://peercoin.net/wallet.html',
-          },
+          },*/
           "xsm": {
             title: "Smilo",
             logo: "static/coins/xsm.png",
@@ -293,6 +293,7 @@
             generator: 'sthGenerator',
             downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
           },
+          /*
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
