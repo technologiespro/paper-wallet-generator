@@ -2,7 +2,8 @@
 Powered by TechnoL0g
  */
 body {
-    background: #232D3D;
+    /*background: #1a181f; /*#232D3D;*/
+    background: #1b1b25 url('/static/bg-dark.png');
     overflow-x: hidden;
 }
 
