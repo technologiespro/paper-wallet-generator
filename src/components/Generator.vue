@@ -219,7 +219,7 @@
             private: null,
             generator: 'ethGenerator',
             downloadWallet: 'https://metamask.io/',
-          },/*
+          },
           "emc": {
             title: "Emercoin",
             logo: "static/coins/emc.png",
@@ -235,7 +235,7 @@
             private: 0xb0,
             generator: 'btcGenerator',
             downloadWallet: 'https://litecoin.org',
-          },
+          },/*
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
