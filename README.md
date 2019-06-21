@@ -15,6 +15,8 @@ Designed to securely generate altcoins addresses offline
 - Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
 - Litecoin (LTC) https://litecoin.org
+- SmartHoldem (STH) https://smartholdem.io
+- Smilo (XSM) https://smilo.io
 
 # IMPORTANT NOTE
 
