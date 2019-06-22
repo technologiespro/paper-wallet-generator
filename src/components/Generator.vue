@@ -470,8 +470,8 @@
     padding: 5px;
     border: solid 1px #323E4F;
     background: #18191A;
-    width: 122px;
-    min-width: 118px;
+    width: 126px;
+    min-width: 126px;
     border-radius: 5px;
     margin-bottom: 6px;
   }
