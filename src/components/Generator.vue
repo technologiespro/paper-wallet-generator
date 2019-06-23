@@ -212,14 +212,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://litecoin.org',
           },
-          "nvc": {
-            title: "Novacoin",
-            logo: "static/coins/nvc.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
-          },
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
@@ -235,6 +227,14 @@
             private: 0x55,
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
+          },
+          "nvc": {
+            title: "Novacoin",
+            logo: "static/coins/nvc.png",
+            public: 0x08,
+            private: 0x88,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
           },
           "onion": {
             title: "DeepOnion",
