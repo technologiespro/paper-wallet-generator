@@ -235,7 +235,7 @@
             private: 0xb0,
             generator: 'btcGenerator',
             downloadWallet: 'https://litecoin.org',
-          },/*
+          },
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
@@ -251,7 +251,7 @@
             private: 0x80,
             generator: 'btcGenerator',
             downloadWallet: 'https://namecoin.org/download/',
-          },
+          },/*
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
