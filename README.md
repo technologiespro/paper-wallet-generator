@@ -17,8 +17,7 @@ Designed to securely generate altcoins addresses offline
 - Litecoin (LTC) https://litecoin.org
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
-- Novacoin (NVC) http://novacoin.org
-- Namecoin (NMC) https://namecoin.org
+- Bitshares (BTS) https://bitshares.org
 
 # IMPORTANT NOTE
 
