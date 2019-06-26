@@ -242,9 +242,11 @@
       </ul>
     </div>
 
+    <!--
     <div v-if="coins.bts.account.owner.pubKey" class="container instruction p-3 mb-5 pointer" @click="openLink('https://bitsharestalk.org/index.php?topic=24495.0')">
       <img src="static/svg/help.svg" width="20px" class="pointer"/> How to use a Bitshares paper wallet, please see the forum Bitshares.
     </div>
+    -->
   </div>
 </template>
 

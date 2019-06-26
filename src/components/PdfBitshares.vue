@@ -102,9 +102,11 @@
         doc.line(12, 101 + offsetY * 2, 200, 101 + offsetY * 2);
 
 
+        /*
         doc.setFontSize(12);
         doc.text('How to use a Bitshares paper wallet, please see the forum', 10, 220);
         doc.text('https://bitsharestalk.org/index.php?topic=24495.0', 10, 226);
+        */
 
 
         doc.setFontSize(12);
