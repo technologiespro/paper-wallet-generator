@@ -34,6 +34,7 @@
     "crypto-random-string": "^3.0.0",
     "eckey": "^1.0.0",
     "electron-window-state": "^5.0.3",
+    "emittery": "^0.4.1",
     "ethereumjs-wallet": "^0.6.3",
     "image-to-base64": "^2.0.1",
     "jquery": "^3.4.1",
