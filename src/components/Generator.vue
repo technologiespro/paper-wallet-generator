@@ -22,6 +22,7 @@
       <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}}
         account
       </dm-button>
+      <PdfBitshares v-if="coins.bts.account.name && !mobile" :coin="coins[currentCoin]"/>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
       <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
 
@@ -93,6 +94,7 @@
         <small class="text-success">~ {{copied}} ~</small>
 
         <!-- Bitshares Generator Result -->
+        <div v-if="onProcess"><h1>Loading...</h1></div>
         <div v-if="coins[this.currentCoin].generator === 'btsGenerator'">
           <div class="result-generate" v-if="coins.bts.account.owner.pubKey">
             <div class="row">
@@ -115,7 +117,7 @@
                   </tr>
                   <tr class="bg-dark">
                     <td>
-                      <VueQrcode :value="coins.bts.account.owner.pubKey"
+                      <VueQrcode id="qrPubOwner" :value="coins.bts.account.owner.pubKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                     <td class="text-left pt-5">
@@ -132,7 +134,7 @@
                       </div>
                     </td>
                     <td>
-                      <VueQrcode :value="coins.bts.account.owner.privateKey"
+                      <VueQrcode id="qrPrivOwner" :value="coins.bts.account.owner.privateKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                   </tr>
@@ -152,7 +154,7 @@
                   </tr>
                   <tr class="bg-dark">
                     <td>
-                      <VueQrcode :value="coins.bts.account.active.pubKey"
+                      <VueQrcode id="qrPubActive" :value="coins.bts.account.active.pubKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                     <td class="text-left pt-5">
@@ -169,7 +171,7 @@
                       </div>
                     </td>
                     <td>
-                      <VueQrcode :value="coins.bts.account.active.privateKey"
+                      <VueQrcode id="qrPrivActive" :value="coins.bts.account.active.privateKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                   </tr>
@@ -189,7 +191,7 @@
                   </tr>
                   <tr class="bg-dark">
                     <td>
-                      <VueQrcode :value="coins.bts.account.memo.pubKey"
+                      <VueQrcode id="qrPubMemo" :value="coins.bts.account.memo.pubKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                     <td class="text-left pt-5">
@@ -206,7 +208,7 @@
                       </div>
                     </td>
                     <td>
-                      <VueQrcode :value="coins.bts.account.memo.privateKey"
+                      <VueQrcode id="qrPrivMemo" :value="coins.bts.account.memo.privateKey"
                                  :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
                     </td>
                   </tr>
@@ -247,6 +249,7 @@
   import cryptoRandomString from 'crypto-random-string';
   import VueQrcode from '@/components/utils/QRCode';
   import DownloadPdf from '@/components/DownloadPdf';
+  import PdfBitshares from '@/components/PdfBitshares';
   import DownloadTxt from '@/components/DownloadTxt';
   import CopyClipboard from '@/components/CopyClipboard';
 
@@ -265,9 +268,11 @@
       VueQrcode,
       DownloadPdf,
       DownloadTxt,
+      PdfBitshares,
     },
     data() {
       return {
+        onProcess: false,
         help: false,
         mobile: false,
         isShow: true,
@@ -474,6 +479,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
           },
+          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -482,6 +488,7 @@
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
+          /*
           "rdd": {
             title: "ReddCoin",
             logo: "static/coins/rdd.png",
@@ -528,7 +535,38 @@
       showHideHelp: function () {
         this.help = !this.help;
       },
-      generateAddress: function () {
+      async BitsharesGenerator() {
+        const seed = await cryptoRandomString({length: 48});
+        const mnemonic = await entropyToMnemonic(seed);
+        const randName = await cryptoRandomString({length: 18});
+
+        let loginKey = await Login.generateKeys(
+          randName,
+          mnemonic,
+          ["owner", "active", "memo"],
+          "BTS"
+        );
+
+        this.coins.bts.account = {
+          "name": randName,
+          "bip39": mnemonic,
+          "active": {
+            pubKey: loginKey.pubKeys.active,
+            privateKey: loginKey.privKeys.active.toWif(),
+          },
+          "owner": {
+            pubKey: loginKey.pubKeys.owner,
+            privateKey: loginKey.privKeys.owner.toWif(),
+          },
+          "memo": {
+            pubKey: loginKey.pubKeys.memo,
+            privateKey: loginKey.privKeys.memo.toWif(),
+          }
+        };
+
+      },
+      async generateAddress() {
+        this.onProcess = true;
         if (this.coins[this.currentCoin].generator === 'btcGenerator') {
           let privateKeyHex = cryptoRandomString({length: 64});
           const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
@@ -549,10 +587,10 @@
         }
 
         if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
-          const {randomSeed} = crypto()
-          const seed = randomSeed()
-          const {address, keyPair} = crypto()
-          const kp = keyPair(seed)
+          const {randomSeed} = crypto();
+          const seed = randomSeed();
+          const {address, keyPair} = crypto();
+          const kp = keyPair(seed);
           this.address.publicAddress = address(seed);
           this.address.privateWif = kp.privateKey;
           this.address.keyHex = seed;
@@ -565,35 +603,10 @@
         }
 
         if (this.coins[this.currentCoin].generator === 'btsGenerator') {
-          const seed = cryptoRandomString({length: 48});
-          const mnemonic = entropyToMnemonic(seed);
-          const randName = cryptoRandomString({length: 18});
-
-          let loginKey = Login.generateKeys(
-            randName,
-            mnemonic,
-            ["owner", "active", "memo"],
-            "BTS"
-          );
-
-          this.coins.bts.account = {
-            "name": randName,
-            "bip39": mnemonic,
-            "active": {
-              pubKey: loginKey.pubKeys.active,
-              privateKey: loginKey.privKeys.active.toWif(),
-            },
-            "owner": {
-              pubKey: loginKey.pubKeys.owner,
-              privateKey: loginKey.privKeys.owner.toWif(),
-            },
-            "memo": {
-              pubKey: loginKey.pubKeys.memo,
-              privateKey: loginKey.privKeys.memo.toWif(),
-            }
-          };
-
+          await this.BitsharesGenerator();
         }
+
+        this.onProcess = false;
       },
       selectCoin: function (selectedCoin) {
         this.help = false;
@@ -611,7 +624,6 @@
       clipboardSuccessHandler({value, event}) {
         this.copied = 'Copied to clipboard';
         setTimeout(() => (this.copied = null), 1500);
-        // Copied to clipboard
       },
     },
     mounted: function () {
