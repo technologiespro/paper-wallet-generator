@@ -380,6 +380,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://litecoin.org',
           },
+          /*
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
@@ -388,6 +389,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://namecoin.org/download/',
           },
+          */
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
@@ -396,6 +398,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
           },
+          /*
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
@@ -404,6 +407,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
           },
+          */
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
@@ -479,7 +483,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
           },
-          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -488,7 +491,6 @@
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
-          /*
           "rdd": {
             title: "ReddCoin",
             logo: "static/coins/rdd.png",
