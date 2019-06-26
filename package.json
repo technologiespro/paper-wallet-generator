@@ -26,6 +26,7 @@
   "dependencies": {
     "@waves/waves-crypto": "^3.0.11",
     "bip39": "^3.0.2",
+    "bitsharesjs": "^1.8.3",
     "bootstrap": "^4.3.1",
     "coinkey": "^3.0.0",
     "core-js": "^2.6.5",
