@@ -611,6 +611,23 @@
         this.onProcess = false;
       },
       selectCoin: function (selectedCoin) {
+        this.coins.bts.account = {
+          name: null,
+          bip39: null,
+          owner: {
+            pubKey: null,
+            privateKey: null,
+          },
+          active: {
+            pubKey: null,
+            privateKey: null,
+          },
+          memo: {
+            pubKey: null,
+            privateKey: null,
+          },
+        };
+
         this.help = false;
         this.currentCoin = selectedCoin;
         this.address = {
