@@ -73,10 +73,10 @@
 
         doc.setFontSize(10);
         doc.text('Public Key', 46, 68 + offsetY);
-        doc.text(this.coin.account.owner.pubKey, 46, 73 + offsetY);
+        doc.text(this.coin.account.active.pubKey, 46, 73 + offsetY);
 
-        doc.text('Private Key', 46, 82);
-        doc.text(this.coin.account.owner.privateKey, 46, 87 + offsetY);
+        doc.text('Private Key', 46, 82 + offsetY);
+        doc.text(this.coin.account.active.privateKey, 46, 87 + offsetY);
 
         doc.line(12, 101 + offsetY, 200, 101 + offsetY);
 
@@ -94,16 +94,17 @@
 
         doc.setFontSize(10);
         doc.text('Public Key', 46, 68 + offsetY * 2);
-        doc.text(this.coin.account.owner.pubKey, 46, 73 + offsetY * 2);
+        doc.text(this.coin.account.memo.pubKey, 46, 73 + offsetY * 2);
 
-        doc.text('Private Key', 46, 82);
-        doc.text(this.coin.account.owner.privateKey, 46, 87 + offsetY * 2);
+        doc.text('Private Key', 46, 82 + offsetY * 2);
+        doc.text(this.coin.account.memo.privateKey, 46, 87 + offsetY * 2);
 
         doc.line(12, 101 + offsetY * 2, 200, 101 + offsetY * 2);
 
 
         doc.setFontSize(12);
-        doc.text('How to use a Bitshares paper wallet, please see the forum: https://bitsharestalk.org/index.php?topic=24495.0', 10, 220);
+        doc.text('How to use a Bitshares paper wallet, please see the forum', 10, 220);
+        doc.text('https://bitsharestalk.org/index.php?topic=24495.0', 10, 226);
 
 
         doc.setFontSize(12);
