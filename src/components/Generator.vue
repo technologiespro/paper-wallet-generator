@@ -96,6 +96,7 @@
         <!-- Bitshares Generator Result -->
         <div v-if="onProcess"><h1>Loading...</h1></div>
         <div v-if="coins[this.currentCoin].generator === 'btsGenerator'">
+          <h2 class="text-warning">For advanced users only!</h2>
           <div class="result-generate" v-if="coins.bts.account.owner.pubKey">
             <div class="row">
               <div class="col-md-12">
