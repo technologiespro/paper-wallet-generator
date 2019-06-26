@@ -156,6 +156,14 @@
               github: ""
             }
           },
+          "bts": {
+            title: "Bitshares",
+            logo: "static/coins/bts.png",
+            public: null,
+            private: null,
+            generator: 'btsGenerator',
+            downloadWallet: 'https://bitshares.org',
+          },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
