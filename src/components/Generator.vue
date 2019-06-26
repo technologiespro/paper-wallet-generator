@@ -161,7 +161,7 @@
                       <div class="mb-3">
                         <CopyClipboard :value="coins.bts.account.active.pubKey" class="clipboard-bts"/>
                         <span class="text-info float-left mr-1">Public:</span>
-                        <span class="text-center">{{coins.bts.account.owner.pubKey}}</span>
+                        <span class="text-center">{{coins.bts.account.active.pubKey}}</span>
                       </div>
 
                       <div>
@@ -241,6 +241,10 @@
         </li>
       </ul>
     </div>
+
+    <div v-if="coins.bts.account.owner.pubKey" class="container instruction p-3 mb-5 pointer" @click="openLink('https://bitsharestalk.org/index.php?topic=24495.0')">
+      <img src="static/svg/help.svg" width="20px" class="pointer"/> How to use a Bitshares paper wallet, please see the forum Bitshares.
+    </div>
   </div>
 </template>
 
@@ -319,6 +323,7 @@
           "bts": {
             title: "Bitshares",
             logo: "static/coins/bts.png",
+            help: false,
             public: null,
             private: null,
             generator: 'btsGenerator',
@@ -536,6 +541,9 @@
       },
       showHideHelp: function () {
         this.help = !this.help;
+      },
+      showHideHelpBts: function () {
+        this.coins.bts.help = !this.coins.bts.help;
       },
       async BitsharesGenerator() {
         const seed = await cryptoRandomString({length: 48});
