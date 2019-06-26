@@ -12,77 +12,212 @@
       </div>
     </div>
 
+
     <div class="container-fluid">
       <img @click="openLink(coins[currentCoin].downloadWallet)" width="96px" alt="coin logo"
            :src="coins[currentCoin].logo" class="pointer noselect"/>
-      <h2 class="noselect">{{coins[currentCoin].title}} <span class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
+      <h2 class="noselect">{{coins[currentCoin].title}} <span
+        class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
-      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}} address</dm-button>
+      <dm-button size="large" @click="generateAddress" color="black">Generate new {{coins[currentCoin].title}}
+        account
+      </dm-button>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
       <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
 
       <div class="container mt-4">
-        <div class="result-generate" v-if="address.publicAddress">
-          <div class="row">
+        <div v-if="coins[this.currentCoin].generator !== 'btsGenerator'">
+          <div class="result-generate" v-if="address.publicAddress">
+            <div class="row">
 
-            <div class="col-md-5">
+              <div class="col-md-5">
 
-              <div class="qr-container">
-                <VueQrcode id="qrPub" :value="address.publicAddress"
-                           :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
-                <p class="text-white-50">Public Address</p>
+                <div class="qr-container">
+                  <VueQrcode id="qrPub" :value="address.publicAddress"
+                             :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
+                  <p class="text-white-50">Public Address</p>
+                </div>
+
+                <div class="qr-container">
+                  <VueQrcode id="qrPriv" :value="address.privateWif"
+                             :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
+                  <p class="text-white-50">Private Key</p>
+                </div>
               </div>
 
-              <div class="qr-container">
-                <VueQrcode id="qrPriv" :value="address.privateWif"
-                           :options="{size:138, foreground: '#232D3D',level: 'H'}"/>
-                <p class="text-white-50">Private Key</p>
-              </div>
-            </div>
-
-            <div class="col-md-7">
-              <table class="table table-responsive-sm text-info">
-                <tr>
-                  <td class="text-right">Address</td>
-                  <td>
-                    <img src="static/svg/copy.svg" width="20px" class="clipboard"
-                         v-clipboard="() => address.publicAddress"
-                         v-clipboard:success="clipboardSuccessHandler"/>
-                  </td>
-                  <td class="text-left">
+              <div class="col-md-7">
+                <table class="table table-responsive-sm text-info">
+                  <tr>
+                    <td class="text-right">Address</td>
+                    <td>
+                      <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                           v-clipboard="() => address.publicAddress"
+                           v-clipboard:success="clipboardSuccessHandler"/>
+                    </td>
+                    <td class="text-left">
               <span class="barley-white">
                 {{address.publicAddress}}
               </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-right">PrivateKey</td>
-                  <td>
-                    <img src="static/svg/copy.svg" width="20px" class="clipboard"
-                         v-clipboard="() => address.privateWif"
-                         v-clipboard:success="clipboardSuccessHandler"/>
-                  </td>
-                  <td class="text-left">
-                    <span class="barley-white">{{address.privateWif}}</span>
-                  </td>
-                </tr>
-                <tr v-if="address.keyHex && coins[currentCoin].generator !== 'btcGenerator'">
-                  <td>Seed</td>
-                  <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
-                           v-clipboard="() => address.keyHex"
-                           v-clipboard:success="clipboardSuccessHandler"/></td>
-                  <td class="barley-white">{{address.keyHex}}</td>
-                </tr>
-                <tr v-if="coins[currentCoin].generator === 'btcGenerator'">
-                  <td></td>
-                  <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" class="pointer"/></td>
-                  <td></td>
-                </tr>
-              </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">PrivateKey</td>
+                    <td>
+                      <img src="static/svg/copy.svg" width="20px" class="clipboard"
+                           v-clipboard="() => address.privateWif"
+                           v-clipboard:success="clipboardSuccessHandler"/>
+                    </td>
+                    <td class="text-left">
+                      <span class="barley-white">{{address.privateWif}}</span>
+                    </td>
+                  </tr>
+                  <tr v-if="address.keyHex && coins[currentCoin].generator !== 'btcGenerator'">
+                    <td>Seed</td>
+                    <td><img src="static/svg/copy.svg" width="20px" class="clipboard"
+                             v-clipboard="() => address.keyHex"
+                             v-clipboard:success="clipboardSuccessHandler"/></td>
+                    <td class="barley-white">{{address.keyHex}}</td>
+                  </tr>
+                  <tr v-if="coins[currentCoin].generator === 'btcGenerator'">
+                    <td></td>
+                    <td @click="showHideHelp"><img src="static/svg/help.svg" width="20px" class="pointer"/></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <small class="text-success">~ {{copied}} ~</small>
+
+        <!-- Bitshares Generator Result -->
+        <div v-if="coins[this.currentCoin].generator === 'btsGenerator'">
+          <div class="result-generate" v-if="coins.bts.account.owner.pubKey">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-2 text-left"><CopyClipboard :value="coins.bts.account.name"/> Rand Account Name: <span class="text-white">{{coins.bts.account.name}}</span></div>
+                <div class="mb-2 text-left"><CopyClipboard :value="coins.bts.account.bip39"/> Mnemonic Phrase: <span class="text-white text-sm-right">{{coins.bts.account.bip39}}</span></div>
+              </div>
+              <div class="col-md-12">
+                <table class="table table-responsive-sm text-white">
+                  <tr class="thead-dark">
+                    <th>
+                      <span class="text-white">Public</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Owner Keys</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Private</span>
+                    </th>
+                  </tr>
+                  <tr class="bg-dark">
+                    <td>
+                      <VueQrcode :value="coins.bts.account.owner.pubKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                    <td class="text-left pt-5">
+                      <div class="mb-3">
+                        <CopyClipboard :value="coins.bts.account.owner.pubKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Public:</span>
+                        <span class="text-center">{{coins.bts.account.owner.pubKey}}</span>
+                      </div>
+
+                      <div>
+                        <CopyClipboard :value="coins.bts.account.owner.privateKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Private:</span>
+                        <span class="text-center">{{coins.bts.account.owner.privateKey}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <VueQrcode :value="coins.bts.account.owner.privateKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                  </tr>
+                </table>
+
+                <table class="table table-responsive-sm text-white">
+                  <tr class="thead-dark">
+                    <th>
+                      <span class="text-white">Public</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Active Keys</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Private</span>
+                    </th>
+                  </tr>
+                  <tr class="bg-dark">
+                    <td>
+                      <VueQrcode :value="coins.bts.account.active.pubKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                    <td class="text-left pt-5">
+                      <div class="mb-3">
+                        <CopyClipboard :value="coins.bts.account.active.pubKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Public:</span>
+                        <span class="text-center">{{coins.bts.account.owner.pubKey}}</span>
+                      </div>
+
+                      <div>
+                        <CopyClipboard :value="coins.bts.account.active.privateKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Private:</span>
+                        <span class="text-center">{{coins.bts.account.active.privateKey}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <VueQrcode :value="coins.bts.account.active.privateKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                  </tr>
+                </table>
+
+                <table class="table table-responsive-sm text-white">
+                  <tr class="thead-dark">
+                    <th>
+                      <span class="text-white">Public</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Memo Keys</span>
+                    </th>
+                    <th>
+                      <span class="text-white">Private</span>
+                    </th>
+                  </tr>
+                  <tr class="bg-dark">
+                    <td>
+                      <VueQrcode :value="coins.bts.account.memo.pubKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                    <td class="text-left pt-5">
+                      <div class="mb-3">
+                        <CopyClipboard :value="coins.bts.account.memo.pubKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Public:</span>
+                        <span class="text-center">{{coins.bts.account.memo.pubKey}}</span>
+                      </div>
+
+                      <div>
+                        <CopyClipboard :value="coins.bts.account.memo.privateKey" class="clipboard-bts"/>
+                        <span class="text-info float-left mr-1">Private:</span>
+                        <span class="text-center">{{coins.bts.account.memo.privateKey}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <VueQrcode :value="coins.bts.account.memo.privateKey"
+                                 :options="{size:160, foreground: '#232D3D',level: 'H'}"/>
+                    </td>
+                  </tr>
+                </table>
+
+              </div>
+
             </div>
           </div>
-          <small class="text-success">~ {{copied}} ~</small>
         </div>
+
       </div>
     </div>
     <dm-divider></dm-divider>
@@ -95,7 +230,8 @@
           <dm-list-item :number=2>Select: <span class="text-info">Help > Debug window > Console</span></dm-list-item>
         </li>
         <li>
-          <dm-list-item :number=3>Enter: <span class="text-info">importprivkey {{address.privateWif}} PaperWallet</span>
+          <dm-list-item :number=3>Enter: <span
+            class="text-info">importprivkey {{address.privateWif}} PaperWallet</span>
           </dm-list-item>
         </li>
         <li>
@@ -112,17 +248,20 @@
   import VueQrcode from '@/components/utils/QRCode';
   import DownloadPdf from '@/components/DownloadPdf';
   import DownloadTxt from '@/components/DownloadTxt';
+  import CopyClipboard from '@/components/CopyClipboard';
 
   import sth from 'sthjs';
   import {entropyToMnemonic} from 'bip39';
   import {crypto} from '@waves/waves-crypto';
   import ethWallet from 'ethereumjs-wallet';
 
-  import {openUrl} from 'src/util/url'
+  import {openUrl} from 'src/util/url';
+  import {Login} from "bitsharesjs";
 
   export default {
     name: 'Generator',
     components: {
+      CopyClipboard,
       VueQrcode,
       DownloadPdf,
       DownloadTxt,
@@ -156,14 +295,6 @@
               github: ""
             }
           },
-          "bts": {
-            title: "Bitshares",
-            logo: "static/coins/bts.png",
-            public: null,
-            private: null,
-            generator: 'btsGenerator',
-            downloadWallet: 'https://bitshares.org',
-          },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
@@ -179,6 +310,30 @@
             private: 0x80,
             generator: 'btcGenerator',
             downloadWallet: 'https://bitcoingold.org/ecosystem/#wallets',
+          },
+          "bts": {
+            title: "Bitshares",
+            logo: "static/coins/bts.png",
+            public: null,
+            private: null,
+            generator: 'btsGenerator',
+            downloadWallet: 'https://bitshares.org',
+            account: {
+              name: null,
+              bip39: null,
+              owner: {
+                pubKey: null,
+                privateKey: null,
+              },
+              active: {
+                pubKey: null,
+                privateKey: null,
+              },
+              memo: {
+                pubKey: null,
+                privateKey: null,
+              },
+            },
           },
           "dash": {
             title: "Dash",
@@ -259,7 +414,8 @@
             private: 0xb7,
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
-          },/*
+          },
+          /*
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
@@ -408,6 +564,36 @@
           this.address.privateWif = ethData.privateKey;
         }
 
+        if (this.coins[this.currentCoin].generator === 'btsGenerator') {
+          const seed = cryptoRandomString({length: 48});
+          const mnemonic = entropyToMnemonic(seed);
+          const randName = cryptoRandomString({length: 18});
+
+          let loginKey = Login.generateKeys(
+            randName,
+            mnemonic,
+            ["owner", "active", "memo"],
+            "BTS"
+          );
+
+          this.coins.bts.account = {
+            "name": randName,
+            "bip39": mnemonic,
+            "active": {
+              pubKey: loginKey.pubKeys.active,
+              privateKey: loginKey.privKeys.active.toWif(),
+            },
+            "owner": {
+              pubKey: loginKey.pubKeys.owner,
+              privateKey: loginKey.privKeys.owner.toWif(),
+            },
+            "memo": {
+              pubKey: loginKey.pubKeys.memo,
+              privateKey: loginKey.privKeys.memo.toWif(),
+            }
+          };
+
+        }
       },
       selectCoin: function (selectedCoin) {
         this.help = false;
@@ -439,6 +625,13 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+  .clipboard-bts {
+    margin-right: 5px;
+    text-align: left;
+    float: left;
+    clear: left;
+  }
+
   .small {
     font-size: 70% !important;
     font-weight: 400;
