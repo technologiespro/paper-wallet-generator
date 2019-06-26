@@ -620,6 +620,13 @@
         this.isShow = false;
       }
     },
+
+    async created() {
+      this.$eventBus.on('copied', () => {
+        this.copied = 'Copied to clipboard';
+        setTimeout(() => (this.copied = null), 1500);
+      });
+    }
   }
 </script>
 

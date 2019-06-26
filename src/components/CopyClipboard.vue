@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import CopyClipboard from '@/components/CopyClipboard';
+  import eventBus from '@/plugins/event-bus'
   export default {
     name: "CopyClipboard",
     data() {
@@ -20,10 +20,7 @@
     },
     methods: {
       clipboardSuccessHandler({value, event}) {
-        console.log(value)
-        this.copied = 'Copied to clipboard';
-        setTimeout(() => (this.copied = null), 1500);
-        // Copied to clipboard
+        eventBus.emit('copied');
       },
     }
   }
