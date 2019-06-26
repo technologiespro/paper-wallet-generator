@@ -10,11 +10,6 @@
   import eventBus from '@/plugins/event-bus'
   export default {
     name: "CopyClipboard",
-    data() {
-      return {
-        copied: null
-      }
-    },
     props: {
       value: String
     },
