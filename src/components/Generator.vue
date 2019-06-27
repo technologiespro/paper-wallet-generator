@@ -491,6 +491,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
           },
+          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -499,6 +500,7 @@
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
+          /*
           "rdd": {
             title: "ReddCoin",
             logo: "static/coins/rdd.png",
