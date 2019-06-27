@@ -18,6 +18,7 @@ Designed to securely generate altcoins addresses offline
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
 - Bitshares (BTS) https://bitshares.org
+- Waves (WAVES) https://wavesplatform.com
 
 # IMPORTANT NOTE
 
