@@ -16,7 +16,7 @@ Designed to securely generate altcoins addresses offline
 - Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
 - Litecoin (LTC) https://litecoin.org
-- NameCoin (NMC) https://namecoin.or
+- NameCoin (NMC) https://namecoin.org
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
 - Bitshares (BTS) https://bitshares.org
