@@ -10,11 +10,13 @@ Designed to securely generate altcoins addresses offline
 - 42-Coin (42) https://42-coin.org
 - BitcoinGold (BTG) https://bitcoingold.org
 - DASH (DASH) https://www.dash.org
+- DigiByte (DGB) https://www.digibyte.io
 - DeepOnion (ONION) https://deeponion.org
 - Dogecoin (DOGE) https://dogecoin.com
 - Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
 - Litecoin (LTC) https://litecoin.org
+- NameCoin (NMC) https://namecoin.or
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
 - Bitshares (BTS) https://bitshares.org
