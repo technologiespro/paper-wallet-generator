@@ -396,7 +396,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://litecoin.org',
           },
-          /*
           "nmc": {
             title: "NameCoin",
             logo: "static/coins/nmc.png",
@@ -405,7 +404,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://namecoin.org/download/',
           },
-          */
           "nobt": {
             title: "NobtCoin",
             logo: "static/coins/nobt.png",
