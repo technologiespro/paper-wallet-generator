@@ -4,10 +4,9 @@ Designed to securely generate altcoins addresses offline
 
 ### Available Coins
 
-- PostCoin (POST) https://postcoin.top
-- Bitcoin (BTC) https://bitcoin.org
-- NobtCoin (NOBT) http://nobt.info
 - 42-Coin (42) https://42-coin.org
+- Bitcoin (BTC) https://bitcoin.org
+- Bitshares (BTS) https://bitshares.org
 - BitcoinGold (BTG) https://bitcoingold.org
 - DASH (DASH) https://www.dash.org
 - DigiByte (DGB) https://www.digibyte.io
@@ -17,9 +16,10 @@ Designed to securely generate altcoins addresses offline
 - Emercoin (EMC) https://emercoin.com
 - Litecoin (LTC) https://litecoin.org
 - NameCoin (NMC) https://namecoin.org
+- NobtCoin (NOBT) http://nobt.info
+- PostCoin (POST) https://postcoin.top
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
-- Bitshares (BTS) https://bitshares.org
 - Waves (WAVES) https://wavesplatform.com
 
 # IMPORTANT NOTE
