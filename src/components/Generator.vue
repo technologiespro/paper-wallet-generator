@@ -356,6 +356,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.dash.org/downloads/',
           },
+          "dgb": {
+            title: "DigiByte",
+            logo: "static/coins/dgb.png",
+            public: 0x1e,
+            private: 0x9e,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
+          },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
