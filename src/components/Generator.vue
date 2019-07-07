@@ -364,6 +364,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
           },
+          "onion": {
+            title: "DeepOnion",
+            logo: "static/coins/onion.png",
+            public: 0x1f,
+            private: 0x9f,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/deeponion/deeponion/releases',
+          },
           "doge": {
             title: "Dogecoin",
             logo: "static/coins/doge.png",
@@ -419,14 +427,6 @@
             private: 0x88,
             generator: 'btcGenerator',
             downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
-          },
-          "onion": {
-            title: "DeepOnion",
-            logo: "static/coins/onion.png",
-            public: 0x1f,
-            private: 0x9f,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/deeponion/deeponion/releases',
           },
           "post": {
             title: "PostCoin",
