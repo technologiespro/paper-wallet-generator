@@ -412,7 +412,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
           },
-          /*
           "nvc": {
             title: "Novacoin",
             logo: "static/coins/nvc.png",
@@ -421,7 +420,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
           },
-          */
           "onion": {
             title: "DeepOnion",
             logo: "static/coins/onion.png",
@@ -438,7 +436,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
           },
-          /*
           "pivx": {
             title: "PIVX",
             logo: "static/coins/pivx.png",
@@ -447,6 +444,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://pivx.org/wallet/',
           },
+          /*
           "pot": {
             title: "Potcoin",
             logo: "static/coins/pot.png",
