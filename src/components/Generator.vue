@@ -463,6 +463,15 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://peercoin.net/wallet.html',
           },
+          "rdd": {
+            title: "ReddCoin",
+            logo: "static/coins/rdd.png",
+            public: 0x3d,
+            private: 0xbd,
+            scripthash: 0x05,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://reddcoin.com/get-started',
+          },
           "xsm": {
             title: "Smilo",
             logo: "static/coins/xsm.png",
@@ -504,15 +513,6 @@
             private: null,
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
-          },
-          "rdd": {
-            title: "ReddCoin",
-            logo: "static/coins/rdd.png",
-            public: 0x3d,
-            private: 0xbd,
-            scripthash: 0x05,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://reddcoin.com/get-started/',
           },
           /*
           "vtc": {

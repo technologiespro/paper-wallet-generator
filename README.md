@@ -18,8 +18,10 @@ Designed to securely generate altcoins addresses offline
 - NameCoin (NMC) https://namecoin.org
 - NobtCoin (NOBT) http://nobt.info
 - NovaCoin (NVC) http://novacoin.org
+- PeerCoin (PPC) https://peercoin.net
 - PIVX (PIVX) https://pivx.org
 - PostCoin (POST) https://postcoin.top
+- ReddCoin (RDD) https://reddcoin.com
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
 - Waves (WAVES) https://wavesplatform.com
