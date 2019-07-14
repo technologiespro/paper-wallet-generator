@@ -453,6 +453,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.potcoin.com/wallets',
           },
+          */
           "ppc": {
             title: "Peercoin",
             logo: "static/coins/ppc.png",
@@ -461,7 +462,7 @@
             scripthash: 0xc4,
             generator: 'btcGenerator',
             downloadWallet: 'https://peercoin.net/wallet.html',
-          },*/
+          },
           "xsm": {
             title: "Smilo",
             logo: "static/coins/xsm.png",
@@ -504,7 +505,6 @@
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
           },
-          /*
           "rdd": {
             title: "ReddCoin",
             logo: "static/coins/rdd.png",
@@ -514,6 +514,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://reddcoin.com/get-started/',
           },
+          /*
           "vtc": {
             title: "Vertcoin",
             logo: "static/coins/vtc.png",
