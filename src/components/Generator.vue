@@ -25,7 +25,7 @@
       <PdfBitshares v-if="coins.bts.account.name && !mobile" :coin="coins[currentCoin]"/>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
       <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]" methodOut="download"/>
-      <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]" methodOut="print"/>
+      <!--<DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]" methodOut="print"/>-->
 
       <div class="container mt-4">
         <div v-if="coins[this.currentCoin].generator !== 'btsGenerator'">
