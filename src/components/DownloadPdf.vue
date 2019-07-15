@@ -1,6 +1,7 @@
 <template>
   <span class="ml-2">
-    <img @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="pointer"/>
+    <img v-if="methodOut!=='print'" @click="pdfDownload" src="static/svg/pdf.svg" width="40px" class="pointer"/>
+    <img v-if="methodOut==='print'" @click="pdfDownload" src="static/svg/print.svg" width="40px" class="pointer"/>
   </span>
 </template>
 
@@ -12,7 +13,8 @@
     name: "DownloadPdf",
     props: {
       coin: Object,
-      address: Object
+      address: Object,
+      methodOut: String
     },
     methods: {
       async pdfDownload() {
@@ -55,8 +57,12 @@
         doc.addImage(qrPriv.toDataURL("image/jpg"), 'JPEG', 70, 80, 50, 50);
         doc.text('Private Key', 78, 138);
 
-        doc.save('PaperWallet-' + this.coin.title + '.pdf');
-
+        if (this.methodOut === 'print') {
+          doc.autoPrint();
+          doc.output('dataurlnewwindow')
+        } else {
+          doc.save('PaperWallet-' + this.coin.title + '.pdf');
+        }
       },
     }
   }
