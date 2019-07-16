@@ -263,8 +263,7 @@
 
   import sth from 'sthjs';
   import {entropyToMnemonic, mnemonicToSeed} from 'bip39'
-  import {crypto} from '@waves/waves-crypto'
-  // import * as wavesCrypto from '@waves/waves-crypto'
+  import * as wavesCrypto from '@waves/waves-crypto'
   import ethWallet from 'ethereumjs-wallet'
   import * as liskCrypto from '@liskhq/lisk-cryptography'
 
@@ -627,9 +626,9 @@
         }
 
         if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
-          const {randomSeed} = crypto();
+          const {randomSeed} = wavesCrypto.crypto();
           const seed = randomSeed();
-          const {address, keyPair} = crypto();
+          const {address, keyPair} = wavesCrypto.crypto();
           const kp = keyPair(seed);
           this.address.publicAddress = address(seed);
           this.address.privateWif = kp.privateKey;
