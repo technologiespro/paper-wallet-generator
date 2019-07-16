@@ -14,6 +14,7 @@ Designed to securely generate altcoins addresses offline
 - Dogecoin (DOGE) https://dogecoin.com
 - Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
+- Lisk (LSK) https://lisk.io
 - Litecoin (LTC) https://litecoin.org
 - NameCoin (NMC) https://namecoin.org
 - NobtCoin (NOBT) http://nobt.info

@@ -399,7 +399,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
           },
-          "lisk": {
+          "lsk": {
             title: "Lisk",
             logo: "static/coins/lisk.png",
             public: null,
