@@ -253,21 +253,24 @@
 </template>
 
 <script>
-  import CoinKey from 'coinkey';
-  import cryptoRandomString from 'crypto-random-string';
-  import VueQrcode from '@/components/utils/QRCode';
-  import DownloadPdf from '@/components/DownloadPdf';
-  import PdfBitshares from '@/components/PdfBitshares';
-  import DownloadTxt from '@/components/DownloadTxt';
-  import CopyClipboard from '@/components/CopyClipboard';
+  import CoinKey from 'coinkey'
+  import cryptoRandomString from 'crypto-random-string'
+  import VueQrcode from '@/components/utils/QRCode'
+  import DownloadPdf from '@/components/DownloadPdf'
+  import PdfBitshares from '@/components/PdfBitshares'
+  import DownloadTxt from '@/components/DownloadTxt'
+  import CopyClipboard from '@/components/CopyClipboard'
 
   import sth from 'sthjs';
-  import {entropyToMnemonic} from 'bip39';
-  import {crypto} from '@waves/waves-crypto';
-  import ethWallet from 'ethereumjs-wallet';
+  import {entropyToMnemonic, mnemonicToSeed} from 'bip39'
+  import {crypto} from '@waves/waves-crypto'
+  // import * as wavesCrypto from '@waves/waves-crypto'
+  import ethWallet from 'ethereumjs-wallet'
+  import * as liskCrypto from '@liskhq/lisk-cryptography'
 
-  import {openUrl} from 'src/util/url';
-  import {Login} from "bitsharesjs";
+
+  import {openUrl} from 'src/util/url'
+  import {Login} from "bitsharesjs"
 
   export default {
     name: 'Generator',
@@ -396,6 +399,14 @@
             private: 0x80,
             generator: 'btcGenerator',
             downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
+          },
+          "lisk": {
+            title: "Lisk",
+            logo: "static/coins/lisk.png",
+            public: null,
+            private: null,
+            generator: 'liskGenerator',
+            downloadWallet: 'https://lisk.io',
           },
           "ltc": {
             title: "Litecoin",
@@ -604,6 +615,14 @@
           const mnemonic = entropyToMnemonic(privateKeyHex);
           const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
           this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
+          this.address.privateWif = mnemonic;
+        }
+
+        if (this.coins[this.currentCoin].generator === 'liskGenerator') {
+          const privateKeyHex = cryptoRandomString({length: 32})
+          const mnemonic = entropyToMnemonic(privateKeyHex)
+          const Keys = liskCrypto.getAddressAndPublicKeyFromPassphrase(mnemonic)
+          this.address.publicAddress = Keys.address;
           this.address.privateWif = mnemonic;
         }
 
