@@ -517,14 +517,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://reddcoin.com/get-started',
           },
-          "xsm": {
-            title: "Smilo",
-            logo: "static/coins/xsm.png",
-            public: null,
-            private: null,
-            generator: 'ethGenerator',
-            downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
-          },
           "sth": {
             title: "SmartHoldem",
             logo: "static/coins/sth.png",
@@ -558,6 +550,14 @@
             private: null,
             generator: 'wavesGenerator',
             downloadWallet: 'https://wavesplatform.com/products-wallet',
+          },
+          "xsm": {
+            title: "Smilo",
+            logo: "static/coins/xsm.png",
+            public: null,
+            private: null,
+            generator: 'ethGenerator',
+            downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
           },
           /*
           "vtc": {

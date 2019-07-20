@@ -5,6 +5,7 @@ Designed to securely generate altcoins addresses offline
 ### Available Coins
 
 - 42-Coin (42) https://42-coin.org
+- Ark (ARK) https://ark.io
 - Bitcoin (BTC) https://bitcoin.org
 - Bitshares (BTS) https://bitshares.org
 - BitcoinGold (BTG) https://bitcoingold.org
@@ -19,6 +20,7 @@ Designed to securely generate altcoins addresses offline
 - NameCoin (NMC) https://namecoin.org
 - NobtCoin (NOBT) http://nobt.info
 - NovaCoin (NVC) http://novacoin.org
+- PotCoin (POT) https://www.potcoin.com
 - PeerCoin (PPC) https://peercoin.net
 - PIVX (PIVX) https://pivx.org
 - PostCoin (POST) https://postcoin.top
