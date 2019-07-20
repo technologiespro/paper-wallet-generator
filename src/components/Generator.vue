@@ -387,6 +387,16 @@
               },
             },
           },
+          /*
+          "block": {
+            title: "Blocknet",
+            logo: "static/coins/block.png",
+            public: 0x1a,
+            private: 0x9a,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://blocknet.co/',
+          },
+          */
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",
@@ -542,6 +552,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
           },
+          "vtc": {
+            title: "Vertcoin",
+            logo: "static/coins/vtc.png",
+            public: 0x47,
+            private: 0x80,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://vertcoin.org/download-wallet/',
+          },
           */
           "waves": {
             title: "WAVES",
@@ -558,25 +576,7 @@
             private: null,
             generator: 'ethGenerator',
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
-          },
-          /*
-          "vtc": {
-            title: "Vertcoin",
-            logo: "static/coins/vtc.png",
-            public: 0x47,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://vertcoin.org/download-wallet/',
-          },
-          "block": {
-            title: "Blocknet",
-            logo: "static/coins/block.png",
-            public: 0x1a,
-            private: 0x9a,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://blocknet.co/',
-          },
-          /* */
+          }
         },
       }
     },
