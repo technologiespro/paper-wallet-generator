@@ -333,6 +333,14 @@
               github: ""
             }
           },
+          "ark": {
+            title: "Ark",
+            logo: "static/coins/ark.png",
+            public: null,
+            private: null,
+            generator: 'arkGenerator',
+            downloadWallet: 'https://ark.io/wallet',
+          },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
