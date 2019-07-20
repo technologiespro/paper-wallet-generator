@@ -491,7 +491,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://pivx.org/wallet/',
           },
-          /*
           "pot": {
             title: "Potcoin",
             logo: "static/coins/pot.png",
@@ -500,7 +499,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.potcoin.com/wallets',
           },
-          */
           "ppc": {
             title: "Peercoin",
             logo: "static/coins/ppc.png",
