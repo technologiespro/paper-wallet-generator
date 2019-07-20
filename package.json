@@ -24,6 +24,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@arkecosystem/crypto": "^2.5.7",
     "@liskhq/lisk-cryptography": "^2.0.0",
     "@waves/waves-crypto": "^3.0.11",
     "bip39": "^3.0.2",
