@@ -1,4 +1,3 @@
-
 <!--
   - Copyright (c) 2019 TechnoL0g.
   -
@@ -47,7 +46,8 @@
       </dm-button>
       <PdfBitshares v-if="coins.bts.account.name && !mobile" :coin="coins[currentCoin]"/>
       <DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"/>
-      <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]" methodOut="download"/>
+      <DownloadTxt v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]"
+                   methodOut="download"/>
       <!--<DownloadPdf v-if="address.publicAddress && !mobile" :address="address" :coin="coins[currentCoin]" methodOut="print"/>-->
 
       <div class="container mt-4">
@@ -124,8 +124,12 @@
           <div class="result-generate" v-if="coins.bts.account.owner.pubKey">
             <div class="row">
               <div class="col-md-12">
-                <div class="mb-2 text-left"><CopyClipboard :value="coins.bts.account.name"/> Rand Account Name: <span class="text-white">{{coins.bts.account.name}}</span></div>
-                <div class="mb-2 text-left"><CopyClipboard :value="coins.bts.account.bip39"/> Mnemonic Phrase: <span class="text-white text-sm-right">{{coins.bts.account.bip39}}</span></div>
+                <div class="mb-2 text-left">
+                  <CopyClipboard :value="coins.bts.account.name"/>
+                  Rand Account Name: <span class="text-white">{{coins.bts.account.name}}</span></div>
+                <div class="mb-2 text-left">
+                  <CopyClipboard :value="coins.bts.account.bip39"/>
+                  Mnemonic Phrase: <span class="text-white text-sm-right">{{coins.bts.account.bip39}}</span></div>
               </div>
               <div class="col-md-12">
                 <table class="table table-responsive-sm text-white">
@@ -289,6 +293,7 @@
   import * as wavesCrypto from '@waves/waves-crypto'
   import ethWallet from 'ethereumjs-wallet'
   import * as liskCrypto from '@liskhq/lisk-cryptography'
+  import * as arkCrypto from 'arkjs'
 
 
   import {openUrl} from 'src/util/url'
@@ -674,6 +679,14 @@
 
         if (this.coins[this.currentCoin].generator === 'btsGenerator') {
           await this.BitsharesGenerator();
+        }
+
+        if (this.coins[this.currentCoin].generator === 'arkGenerator') {
+          const privateKeyHex = cryptoRandomString({length: 32})
+          const mnemonic = entropyToMnemonic(privateKeyHex)
+          const PUB_KEY = arkCrypto.crypto.getKeys(mnemonic).publicKey
+          this.address.publicAddress = arkCrypto.crypto.getAddress(PUB_KEY)
+          this.address.privateWif = mnemonic
         }
 
         this.onProcess = false;
