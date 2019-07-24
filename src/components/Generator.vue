@@ -387,16 +387,14 @@
               },
             },
           },
-          /*
           "block": {
             title: "Blocknet",
             logo: "static/coins/block.png",
             public: 0x1a,
             private: 0x9a,
             generator: 'btcGenerator',
-            downloadWallet: 'https://blocknet.co/',
+            downloadWallet: 'https://blocknet.co',
           },
-          */
           "dash": {
             title: "Dash",
             logo: "static/coins/dash.png",

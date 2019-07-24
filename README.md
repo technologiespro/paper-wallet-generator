@@ -9,6 +9,7 @@ Designed to securely generate altcoins addresses offline
 - Bitcoin (BTC) https://bitcoin.org
 - Bitshares (BTS) https://bitshares.org
 - BitcoinGold (BTG) https://bitcoingold.org
+- Blocknet (BLOCK) https://blocknet.co
 - DASH (DASH) https://www.dash.org
 - DigiByte (DGB) https://www.digibyte.io
 - DeepOnion (ONION) https://deeponion.org
