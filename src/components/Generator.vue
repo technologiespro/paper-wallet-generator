@@ -288,12 +288,12 @@
   import DownloadTxt from '@/components/DownloadTxt'
   import CopyClipboard from '@/components/CopyClipboard'
 
-  import sth from 'sthjs';
+  import sthCrypto from 'sthjs'
   import {entropyToMnemonic, mnemonicToSeed} from 'bip39'
   import * as wavesCrypto from '@waves/waves-crypto'
   import ethWallet from 'ethereumjs-wallet'
-  import * as liskCrypto from '@liskhq/lisk-cryptography'
-  import * as arkCrypto from 'arkjs'
+  import liskCrypto from '@liskhq/lisk-cryptography'
+  import arkCrypto from 'arkjs'
 
 
   import {openUrl} from 'src/util/url'
@@ -644,8 +644,8 @@
         if (this.coins[this.currentCoin].generator === 'sthGenerator') {
           const privateKeyHex = cryptoRandomString({length: 32});
           const mnemonic = entropyToMnemonic(privateKeyHex);
-          const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey;
-          this.address.publicAddress = sth.crypto.getAddress(PUB_KEY);
+          const PUB_KEY = sthCrypto.crypto.getKeys(mnemonic).publicKey;
+          this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY);
           this.address.privateWif = mnemonic;
         }
 
