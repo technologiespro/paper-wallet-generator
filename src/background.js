@@ -44,13 +44,15 @@ function createWindow () {
     x: windowState.x,
     y: windowState.y,
     center: true,
-    frame: true, // удалить в продакшн
+    frame: true,
     show: true,
     skipTaskbar: false,
     darkTheme: true,
     icon: './build/icons/icon.ico',
     autoHideMenuBar: true
   });
+
+  // win.webContents.openDevTools()
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode

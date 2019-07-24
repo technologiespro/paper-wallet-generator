@@ -293,8 +293,6 @@
   import * as wavesCrypto from '@waves/waves-crypto'
   import ethWallet from 'ethereumjs-wallet'
   import liskCrypto from '@liskhq/lisk-cryptography'
-  import arkCrypto from 'arkjs'
-
 
   import {openUrl} from 'src/util/url'
   import {Login} from "bitsharesjs"
@@ -341,9 +339,9 @@
           "ark": {
             title: "Ark",
             logo: "static/coins/ark.png",
-            public: null,
-            private: null,
-            generator: 'arkGenerator',
+            public: 0x17,
+            private: 0xaa,
+            generator: 'sthGenerator',
             downloadWallet: 'https://ark.io/wallet',
           },
           "btc": {
@@ -645,7 +643,7 @@
           const privateKeyHex = cryptoRandomString({length: 32});
           const mnemonic = entropyToMnemonic(privateKeyHex);
           const PUB_KEY = sthCrypto.crypto.getKeys(mnemonic).publicKey;
-          this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY);
+          this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY, this.coins[this.currentCoin].public);
           this.address.privateWif = mnemonic;
         }
 
@@ -675,14 +673,6 @@
 
         if (this.coins[this.currentCoin].generator === 'btsGenerator') {
           await this.BitsharesGenerator();
-        }
-
-        if (this.coins[this.currentCoin].generator === 'arkGenerator') {
-          const privateKeyHex = cryptoRandomString({length: 32})
-          const mnemonic = entropyToMnemonic(privateKeyHex)
-          const PUB_KEY = arkCrypto.crypto.getKeys(mnemonic).publicKey
-          this.address.publicAddress = arkCrypto.crypto.getAddress(PUB_KEY)
-          this.address.privateWif = mnemonic
         }
 
         this.onProcess = false;

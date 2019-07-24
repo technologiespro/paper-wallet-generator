@@ -26,7 +26,6 @@
   "dependencies": {
     "@liskhq/lisk-cryptography": "^2.0.0",
     "@waves/waves-crypto": "^3.0.11",
-    "arkjs": "^0.2.1",
     "bip39": "^3.0.2",
     "bitsharesjs": "^1.8.3",
     "bootstrap": "^4.3.1",
