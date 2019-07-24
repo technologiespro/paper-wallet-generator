@@ -43,7 +43,7 @@ module.exports = {
       builderOptions: {
         productName: 'PaperWallet',
         appId: 'top.postcoin.paperwallet',
-        compression: 'maximum',
+        compression: 'store',
         artifactName: '${name}-${os}-${arch}-${version}.${ext}',
         directories: {
           output: 'build/target'
