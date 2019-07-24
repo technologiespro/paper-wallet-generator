@@ -289,10 +289,10 @@
   import CopyClipboard from '@/components/CopyClipboard'
 
   import sthCrypto from 'sthjs'
-  import {entropyToMnemonic, mnemonicToSeed} from 'bip39'
+  import {entropyToMnemonic} from 'bip39'
   import * as wavesCrypto from '@waves/waves-crypto'
   import ethWallet from 'ethereumjs-wallet'
-  import liskCrypto from '@liskhq/lisk-cryptography'
+  import * as liskCrypto from '@liskhq/lisk-cryptography'
 
   import {openUrl} from 'src/util/url'
   import {Login} from "bitsharesjs"
