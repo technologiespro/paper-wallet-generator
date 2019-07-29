@@ -537,7 +537,7 @@
             public: 0x46,
             private: 0x84,
             generator: 'btcGenerator',
-            downloadWallet: 'https://vericoin.info/vericoin-digital-currency/',
+            downloadWallet: 'https://vericoin.info/vericoin-digital-currency',
           },
           "vrm": {
             title: "Verium",
@@ -545,7 +545,7 @@
             public: 0x46,
             private: 0x84,
             generator: 'btcGenerator',
-            downloadWallet: 'https://vericoin.info/verium-digital-reserve/',
+            downloadWallet: 'https://vericoin.info/verium-digital-reserve',
           },
           "vtc": {
             title: "Vertcoin",
@@ -553,7 +553,7 @@
             public: 0x47,
             private: 0x80,
             generator: 'btcGenerator',
-            downloadWallet: 'https://vertcoin.org/download-wallet/',
+            downloadWallet: 'https://vertcoin.org/download-wallet',
           },
           "waves": {
             title: "WAVES",

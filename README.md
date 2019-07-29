@@ -28,6 +28,9 @@ Designed to securely generate altcoins addresses offline
 - ReddCoin (RDD) https://reddcoin.com
 - SmartHoldem (STH) https://smartholdem.io
 - Smilo (XSM) https://smilo.io
+- Vericoin (VRC) https://vericoin.info/vericoin-digital-currency
+- Verium (VRM) https://vericoin.info/verium-digital-reserve
+- Vertcoin (VTC) https://vertcoin.org/download-wallet
 - Waves (WAVES) https://wavesplatform.com
 
 # IMPORTANT NOTE
