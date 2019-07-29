@@ -531,7 +531,6 @@
             generator: 'sthGenerator',
             downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
           },
-          /*
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
@@ -556,7 +555,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vertcoin.org/download-wallet/',
           },
-          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
