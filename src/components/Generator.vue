@@ -570,6 +570,14 @@
             private: null,
             generator: 'ethGenerator',
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
+          },
+          "znz": {
+            title: "ZENZO",
+            logo: "static/coins/znz.png",
+            public: 0x51,
+            private: 0xd7,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://zenzo.io/resources/',
           }
         },
       }
