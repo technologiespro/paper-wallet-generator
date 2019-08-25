@@ -531,6 +531,14 @@
             generator: 'sthGenerator',
             downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
           },
+          "steep": {
+            title: "SteepCoin",
+            logo: "static/coins/steep.png",
+            public: 0x7d,
+            private: 0x3f,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://steepcoin.org/en',
+          },
           "vrc": {
             title: "Vericoin",
             logo: "static/coins/vrc.png",
