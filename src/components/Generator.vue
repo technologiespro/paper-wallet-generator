@@ -312,7 +312,7 @@
         help: false,
         mobile: false,
         isShow: true,
-        currentCoin: "btc",
+        currentCoin: "sth",
         address: {
           keyHex: null,
           publicAddress: null,
@@ -440,6 +440,14 @@
             private: 0x80,
             generator: 'btcGenerator',
             downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
+          },
+          "egc": {
+            title: "EverGreen",
+            logo: "static/coins/egc.png",
+            public: 0x21,
+            private: 0x55,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://evergreencoin.org',
           },
           "lsk": {
             title: "Lisk",
