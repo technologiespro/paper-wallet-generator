@@ -32,6 +32,7 @@ Designed to securely generate altcoins addresses offline
 - Verium (VRM) https://vericoin.info/verium-digital-reserve
 - Vertcoin (VTC) https://vertcoin.org/download-wallet
 - Waves (WAVES) https://wavesplatform.com
+- ZENZO (ZNZ) https://zenzo.io/
 
 # IMPORTANT NOTE
 
