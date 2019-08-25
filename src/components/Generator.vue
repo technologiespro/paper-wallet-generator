@@ -312,7 +312,7 @@
         help: false,
         mobile: false,
         isShow: true,
-        currentCoin: "post",
+        currentCoin: "btc",
         address: {
           keyHex: null,
           publicAddress: null,
@@ -555,6 +555,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vertcoin.org/download-wallet',
           },
+          "uni": {
+            title: "Universe",
+            logo: "static/coins/uni.png",
+            public: 0x44,
+            private: 0x55,
+            generator: 'btcGenerator',
+            downloadWallet: 'http://universe-project.com',
+          },
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -570,6 +578,14 @@
             private: null,
             generator: 'ethGenerator',
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
+          },
+          "xspec": {
+            title: "Spectrecoin",
+            logo: "static/coins/xspec.png",
+            public: 0x3f,
+            private: 0x55,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://spectreproject.io/',
           },
           "znz": {
             title: "ZENZO",
