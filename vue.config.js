@@ -56,7 +56,27 @@ module.exports = {
           perMachine: true,
           oneClick: false,
           allowToChangeInstallationDirectory: true
-        }
+        },
+        mac: {
+          category: 'public.app-category.finance',
+          icon: 'build/icons/icon.icns'
+        },
+        dmg: {
+          background: 'build/background.tif',
+          icon: 'build/icons/icon.icns',
+          contents: [
+            {
+              x: 130,
+              y: 220
+            },
+            {
+              x: 410,
+              y: 220,
+              type: 'link',
+              path: '/Applications'
+            }
+          ]
+        },
       }
     },
     cordovaPath: 'src-cordova'
