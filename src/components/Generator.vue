@@ -571,6 +571,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vertcoin.org/download-wallet',
           },
+          /*
           "uni": {
             title: "Universe",
             logo: "static/coins/uni.png",
@@ -579,6 +580,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'http://universe-project.com',
           },
+          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
@@ -595,6 +597,7 @@
             generator: 'ethGenerator',
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
           },
+          /*
           "xspec": {
             title: "Spectrecoin",
             logo: "static/coins/xspec.png",
@@ -603,6 +606,7 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://spectreproject.io/',
           },
+          */
           "znz": {
             title: "ZENZO",
             logo: "static/coins/znz.png",

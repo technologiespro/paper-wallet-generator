@@ -33,9 +33,9 @@ Designed to securely generate altcoins addresses offline
 - Vertcoin (VTC) https://vertcoin.org/download-wallet
 - Waves (WAVES) https://wavesplatform.com
 - ZENZO (ZNZ) https://zenzo.io
+- EverGreen (EGC) https://evergreencoin.org
+- SteepCoin (STEEP) https://steepcoin.org/en
 
-- EverGreen (EGC) https://evergreencoin.org (prepare)
-- SteepCoin (STEEP) https://steepcoin.org/en (prepare)
 - UniverseCoin (UNI) http://universe-project.com (prepare)
 - SpectreCoin (XSPEC) https://spectreproject.io (prepare)
 
