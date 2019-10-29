@@ -38,6 +38,7 @@ Designed to securely generate altcoins addresses offline
 - UniverseCoin (UNI) http://universe-project.com
 - SpectreCoin (XSPEC) https://spectreproject.io (prepare)
 - BitConnectX (BCCX) https://www.thebitconnectcoincommunity.com/
+- eXperience Points (XP) https://www.experiencepoints.io/
 
 # IMPORTANT NOTE
 
