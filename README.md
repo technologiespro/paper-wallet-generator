@@ -35,9 +35,9 @@ Designed to securely generate altcoins addresses offline
 - ZENZO (ZNZ) https://zenzo.io
 - EverGreen (EGC) https://evergreencoin.org
 - SteepCoin (STEEP) https://steepcoin.org/en
-
-- UniverseCoin (UNI) http://universe-project.com (prepare)
+- UniverseCoin (UNI) http://universe-project.com
 - SpectreCoin (XSPEC) https://spectreproject.io (prepare)
+- BitConnectX (BCCX) https://www.thebitconnectcoincommunity.com/
 
 # IMPORTANT NOTE
 
