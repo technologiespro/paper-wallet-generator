@@ -571,7 +571,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://vertcoin.org/download-wallet',
           },
-          /*
           "uni": {
             title: "Universe",
             logo: "static/coins/uni.png",
@@ -580,7 +579,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'http://universe-project.com',
           },
-          */
           "waves": {
             title: "WAVES",
             logo: "static/coins/waves.png",
