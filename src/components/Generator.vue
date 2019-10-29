@@ -542,8 +542,8 @@
           "steep": {
             title: "SteepCoin",
             logo: "static/coins/steep.png",
-            public: 0x7d,
             private: 0x3f,
+            public: 0x7d,
             generator: 'btcGenerator',
             downloadWallet: 'https://steepcoin.org/en',
           },
@@ -612,6 +612,14 @@
             private: 0xd7,
             generator: 'btcGenerator',
             downloadWallet: 'https://zenzo.io/resources/',
+          },
+          "bccx": {
+            title: "BCCX",
+            logo: "static/coins/bccx.png",
+            private: 0x55,
+            public: 0x4b,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           }
         },
       }
