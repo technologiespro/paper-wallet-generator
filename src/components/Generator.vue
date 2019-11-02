@@ -552,7 +552,7 @@
             title: "Universe",
             logo: "static/coins/uni.png",
             public: 0x44,
-            private: 0x55,
+            private: 0xc4,
             generator: 'btcGenerator',
             downloadWallet: 'http://universe-project.com',
           },
