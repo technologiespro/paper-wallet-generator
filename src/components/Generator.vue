@@ -572,7 +572,6 @@
             generator: 'ethGenerator',
             downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
           },
-          /*
           "xspec": {
             title: "Spectrecoin",
             logo: "static/coins/xspec.png",
@@ -581,7 +580,6 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://spectreproject.io/',
           },
-          */
           "znz": {
             title: "ZENZO",
             logo: "static/coins/znz.png",
