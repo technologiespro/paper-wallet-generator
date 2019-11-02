@@ -36,8 +36,9 @@ Designed to securely generate altcoins addresses offline
 - EverGreen (EGC) https://evergreencoin.org
 - SteepCoin (STEEP) https://steepcoin.org/en
 - UniverseCoin (UNI) http://universe-project.com
-- SpectreCoin (XSPEC) https://spectreproject.io (prepare)
 - BitConnectX (BCCX) https://www.thebitconnectcoincommunity.com/
+- SpectreCoin (XSPEC) https://spectreproject.io (prepare)
+- GuapCoin (GUAP) http://www.guapcoin.org/
 
 # IMPORTANT NOTE
 

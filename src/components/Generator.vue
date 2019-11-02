@@ -621,6 +621,14 @@
             generator: 'sthGenerator',
             downloadWallet: 'https://ark.io/wallet',
           },
+          "guap": {
+            title: "GUAP",
+            logo: "static/coins/guap.png",
+            private: 0x26,
+            public: 0x2e,
+            generator: 'btcGenerator',
+            downloadWallet: 'http://www.guapcoin.org/',
+          },
         },
       }
     },
