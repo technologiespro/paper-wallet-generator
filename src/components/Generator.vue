@@ -421,8 +421,8 @@
           "egc": {
             title: "EverGreen",
             logo: "static/coins/egc.png",
-            private: 0xa1,
             public: 0x21,
+            private: 0xa1,
             generator: 'btcGenerator',
             downloadWallet: 'https://evergreencoin.org',
           },
@@ -588,14 +588,16 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://zenzo.io/resources/',
           },
+          /*
           "bccx": {
             title: "BCCX",
             logo: "static/coins/bccx.png",
-            public: 75,
-            private: 65,
+            public: 0x4b,
+            private: 0x88,
             generator: 'btcGenerator',
             downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           },
+          */
           "xp": {
             title: "eXperience",
             logo: "static/coins/xp.png",
