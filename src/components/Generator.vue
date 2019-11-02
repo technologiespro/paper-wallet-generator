@@ -321,29 +321,6 @@
         },
         copied: null,
         coins: {
-          "42": {
-            title: "42-Coin",
-            logo: "static/coins/42.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/42-coin/42/releases',
-            detail: {
-              description: "",
-              website: "",
-              community: "",
-              explorer: "",
-              github: ""
-            }
-          },
-          "ark": {
-            title: "Ark",
-            logo: "static/coins/ark.png",
-            public: 0x17,
-            private: 0xaa,
-            generator: 'sthGenerator',
-            downloadWallet: 'https://ark.io/wallet',
-          },
           "btc": {
             title: "Bitcoin",
             logo: "static/coins/btc.png",
@@ -629,6 +606,37 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.experiencepoints.io/downloads/',
           }
+          "42": {
+            title: "42-Coin",
+            logo: "static/coins/42.png",
+            public: 0x08,
+            private: 0x88,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://github.com/42-coin/42/releases',
+            detail: {
+              description: "",
+              website: "",
+              community: "",
+              explorer: "",
+              github: ""
+            }
+          },
+          "ark": {
+            title: "Ark",
+            logo: "static/coins/ark.png",
+            public: 0x17,
+            private: 0xaa,
+            generator: 'sthGenerator',
+            downloadWallet: 'https://ark.io/wallet',
+          },
+          "guap": {
+            title: "GUAP",
+            logo: "static/coins/guap.png",
+            private: 0x26,
+            public: 0x2e,
+            generator: 'btcGenerator',
+            downloadWallet: 'http://www.guapcoin.org/',
+          },
         },
       }
     },
