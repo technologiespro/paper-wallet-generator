@@ -588,16 +588,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://zenzo.io/resources/',
           },
-          /*
           "bccx": {
             title: "BCCX",
             logo: "static/coins/bccx.png",
             public: 0x4b,
-            private: 0x88,
+            private: 0xcb,
             generator: 'btcGenerator',
             downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           },
-          */
           "xp": {
             title: "eXperience",
             logo: "static/coins/xp.png",
