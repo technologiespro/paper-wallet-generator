@@ -588,14 +588,16 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://zenzo.io/resources/',
           },
+          /*
           "bccx": {
             title: "BCCX",
             logo: "static/coins/bccx.png",
-            private: 0x55,
-            public: 0x4b,
+            public: 75,
+            private: 85,
             generator: 'btcGenerator',
             downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           },
+          */
           "xp": {
             title: "eXperience",
             logo: "static/coins/xp.png",
@@ -630,8 +632,8 @@
           "guap": {
             title: "GUAP",
             logo: "static/coins/guap.png",
-            private: 0x26,
-            public: 0x2e,
+            public: 0x26,
+            private: 0x2e,
             generator: 'btcGenerator',
             downloadWallet: 'http://www.guapcoin.org/',
           },
