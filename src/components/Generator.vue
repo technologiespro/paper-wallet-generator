@@ -628,7 +628,7 @@
             downloadWallet: 'https://ark.io/wallet',
           },
           "guap": {
-            title: "GUAP",
+            title: "GuapCoin",
             logo: "static/coins/guap.png",
             public: 0x26,
             private: 0x2e,
