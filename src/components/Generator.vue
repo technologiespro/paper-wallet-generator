@@ -599,7 +599,7 @@
             downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           },
           "xp": {
-            title: "eXperience Points",
+            title: "eXperience",
             logo: "static/coins/xp.png",
             public: 0x37,
             private: 0x49,
