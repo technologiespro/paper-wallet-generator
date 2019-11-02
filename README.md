@@ -37,6 +37,7 @@ Designed to securely generate altcoins addresses offline
 - SteepCoin (STEEP) https://steepcoin.org/en
 - UniverseCoin (UNI) http://universe-project.com
 - BitConnectX (BCCX) https://www.thebitconnectcoincommunity.com/
+- eXperience Points (XP) https://www.experiencepoints.io/
 - SpectreCoin (XSPEC) https://spectreproject.io (prepare)
 - GuapCoin (GUAP) http://www.guapcoin.org/
 

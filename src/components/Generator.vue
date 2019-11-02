@@ -598,6 +598,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'https://www.thebitconnectcoincommunity.com',
           },
+          "xp": {
+            title: "eXperience Points",
+            logo: "static/coins/xp.png",
+            public: 0x37,
+            private: 0x49,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://www.experiencepoints.io/downloads/',
+          }
           "42": {
             title: "42-Coin",
             logo: "static/coins/42.png",
