@@ -519,8 +519,8 @@
           "steep": {
             title: "SteepCoin",
             logo: "static/coins/steep.png",
-            private: 0x3f,
             public: 0x7d,
+            private: 0xfd,
             generator: 'btcGenerator',
             downloadWallet: 'https://steepcoin.org/en',
           },
@@ -576,7 +576,7 @@
             title: "Spectrecoin",
             logo: "static/coins/xspec.png",
             public: 0x3f,
-            private: 0x55,
+            private: 0xb3,
             generator: 'btcGenerator',
             downloadWallet: 'https://spectreproject.io/',
           },
