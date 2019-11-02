@@ -73,11 +73,13 @@
   },
   "keywords": [
     "paperwallet",
+    "smartholdem",
     "crypto",
     "bitcoin",
     "litecoin",
     "postcoin",
-    "altcoins"
+    "altcoins",
+    "xbts"
   ],
   "license": "MIT"
 }
