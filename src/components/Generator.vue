@@ -635,6 +635,14 @@
             generator: 'btcGenerator',
             downloadWallet: 'http://www.guapcoin.org/',
           },
+          "rvn": {
+            title: "Ravencoin",
+            logo: "static/coins/rvn.png",
+            public: 0x3c,
+            private: 0x80,
+            generator: 'btcGenerator',
+            downloadWallet: 'https://ravencoin.org/',
+          },
         },
       }
     },

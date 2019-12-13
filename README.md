@@ -40,6 +40,7 @@ Designed to securely generate altcoins addresses offline
 - eXperience Points (XP) https://www.experiencepoints.io/
 - SpectreCoin (XSPEC) https://spectreproject.io
 - GuapCoin (GUAP) http://www.guapcoin.org/
+- Ravencoin (RVN) https://ravencoin.org/ (prepare)
 
 # IMPORTANT NOTE
 
