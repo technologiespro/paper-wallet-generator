@@ -280,522 +280,522 @@
 </template>
 
 <script>
-  import CoinKey from 'coinkey'
-  import cryptoRandomString from 'crypto-random-string'
-  import VueQrcode from '@/components/utils/QRCode'
-  import DownloadPdf from '@/components/DownloadPdf'
-  import PdfBitshares from '@/components/PdfBitshares'
-  import DownloadTxt from '@/components/DownloadTxt'
-  import CopyClipboard from '@/components/CopyClipboard'
+import CoinKey from 'coinkey'
+import cryptoRandomString from 'crypto-random-string'
+import VueQrcode from '@/components/utils/QRCode'
+import DownloadPdf from '@/components/DownloadPdf'
+import PdfBitshares from '@/components/PdfBitshares'
+import DownloadTxt from '@/components/DownloadTxt'
+import CopyClipboard from '@/components/CopyClipboard'
 
-  import sthCrypto from 'sthjs'
-  import {entropyToMnemonic} from 'bip39'
-  import * as wavesCrypto from '@waves/waves-crypto'
-  import ethWallet from 'ethereumjs-wallet'
-  import * as liskCrypto from '@liskhq/lisk-cryptography'
+import sthCrypto from 'sthjs'
+import {entropyToMnemonic} from 'bip39'
+import * as wavesCrypto from '@waves/waves-crypto'
+import ethWallet from 'ethereumjs-wallet'
+import * as liskCrypto from '@liskhq/lisk-cryptography'
 
-  import {openUrl} from 'src/util/url'
-  import {Login} from "bitsharesjs"
+import {openUrl} from 'src/util/url'
+import {Login} from "bitsharesjs"
 
-  export default {
-    name: 'Generator',
-    components: {
-      CopyClipboard,
-      VueQrcode,
-      DownloadPdf,
-      DownloadTxt,
-      PdfBitshares,
-    },
-    data() {
-      return {
-        onProcess: false,
-        help: false,
-        mobile: false,
-        isShow: true,
-        currentCoin: "sth",
-        address: {
-          keyHex: null,
-          publicAddress: null,
-          privateWif: null,
-          seed: null
+export default {
+  name: 'Generator',
+  components: {
+    CopyClipboard,
+    VueQrcode,
+    DownloadPdf,
+    DownloadTxt,
+    PdfBitshares,
+  },
+  data() {
+    return {
+      onProcess: false,
+      help: false,
+      mobile: false,
+      isShow: true,
+      currentCoin: "sth",
+      address: {
+        keyHex: null,
+        publicAddress: null,
+        privateWif: null,
+        seed: null
+      },
+      copied: null,
+      coins: {
+        "btc": {
+          title: "Bitcoin",
+          logo: "static/coins/btc.png",
+          public: 0x0,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://bitcoin.org/en/choose-your-wallet',
         },
-        copied: null,
-        coins: {
-          "btc": {
-            title: "Bitcoin",
-            logo: "static/coins/btc.png",
-            public: 0x0,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://bitcoin.org/en/choose-your-wallet',
-          },
-          "btg": {
-            title: "BitcoinGold",
-            logo: "static/coins/btg.png",
-            public: 0x26,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://bitcoingold.org/ecosystem/#wallets',
-          },
-          "bts": {
-            title: "Bitshares",
-            logo: "static/coins/bts.png",
-            help: false,
-            public: null,
-            private: null,
-            generator: 'btsGenerator',
-            downloadWallet: 'https://bitshares.org',
-            account: {
-              name: null,
-              bip39: null,
-              owner: {
-                pubKey: null,
-                privateKey: null,
-              },
-              active: {
-                pubKey: null,
-                privateKey: null,
-              },
-              memo: {
-                pubKey: null,
-                privateKey: null,
-              },
+        "btg": {
+          title: "BitcoinGold",
+          logo: "static/coins/btg.png",
+          public: 0x26,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://bitcoingold.org/ecosystem/#wallets',
+        },
+        "bts": {
+          title: "Bitshares",
+          logo: "static/coins/bts.png",
+          help: false,
+          public: null,
+          private: null,
+          generator: 'btsGenerator',
+          downloadWallet: 'https://bitshares.org',
+          account: {
+            name: null,
+            bip39: null,
+            owner: {
+              pubKey: null,
+              privateKey: null,
+            },
+            active: {
+              pubKey: null,
+              privateKey: null,
+            },
+            memo: {
+              pubKey: null,
+              privateKey: null,
             },
           },
-          "block": {
-            title: "Blocknet",
-            logo: "static/coins/block.png",
-            public: 0x1a,
-            private: 0x9a,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://blocknet.co',
-          },
-          "dash": {
-            title: "Dash",
-            logo: "static/coins/dash.png",
-            public: 0x4c,
-            private: 0xcc,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.dash.org/downloads/',
-          },
-          "dgb": {
-            title: "DigiByte",
-            logo: "static/coins/dgb.png",
-            public: 0x1e,
-            private: 0x9e,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
-          },
-          "onion": {
-            title: "DeepOnion",
-            logo: "static/coins/onion.png",
-            public: 0x1f,
-            private: 0x9f,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/deeponion/deeponion/releases',
-          },
-          "doge": {
-            title: "Dogecoin",
-            logo: "static/coins/doge.png",
-            public: 0x1e,
-            private: 0x9e,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://dogecoin.com/',
-          },
-          "eth": {
-            title: "Ethereum",
-            logo: "static/coins/eth.png",
-            public: null,
-            private: null,
-            generator: 'ethGenerator',
-            downloadWallet: 'https://metamask.io/',
-          },
-          "emc": {
-            title: "Emercoin",
-            logo: "static/coins/emc.png",
-            public: 0x21,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
-          },
-          "egc": {
-            title: "EverGreen",
-            logo: "static/coins/egc.png",
-            public: 0x21,
-            private: 0xa1,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://evergreencoin.org',
-          },
-          "lsk": {
-            title: "Lisk",
-            logo: "static/coins/lisk.png",
-            public: null,
-            private: null,
-            generator: 'liskGenerator',
-            downloadWallet: 'https://lisk.io',
-          },
-          "ltc": {
-            title: "Litecoin",
-            logo: "static/coins/ltc.png",
-            public: 0x30,
-            private: 0xb0,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://litecoin.org',
-          },
-          "nmc": {
-            title: "NameCoin",
-            logo: "static/coins/nmc.png",
-            public: 0x34,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://namecoin.org/download/',
-          },
-          "nobt": {
-            title: "NobtCoin",
-            logo: "static/coins/nobt.png",
-            public: 0xf,
-            private: 0x55,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
-          },
-          "nvc": {
-            title: "Novacoin",
-            logo: "static/coins/nvc.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
-          },
-          "post": {
-            title: "PostCoin",
-            logo: "static/coins/post.png",
-            public: 0x37,
-            private: 0xb7,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
-          },
-          "pivx": {
-            title: "PIVX",
-            logo: "static/coins/pivx.png",
-            public: 0x1e,
-            private: 0xd4,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://pivx.org/wallet/',
-          },
-          "pot": {
-            title: "Potcoin",
-            logo: "static/coins/pot.png",
-            public: 0x37,
-            private: 0xb7,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.potcoin.com/wallets',
-          },
-          "ppc": {
-            title: "Peercoin",
-            logo: "static/coins/ppc.png",
-            public: 0x37,
-            private: 0xb7,
-            scripthash: 0xc4,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://peercoin.net/wallet.html',
-          },
-          "rdd": {
-            title: "ReddCoin",
-            logo: "static/coins/rdd.png",
-            public: 0x3d,
-            private: 0xbd,
-            scripthash: 0x05,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://reddcoin.com/get-started',
-          },
-          "sth": {
-            title: "SmartHoldem",
-            logo: "static/coins/sth.png",
-            public: 0x3f,
-            private: 0xff,
-            generator: 'sthGenerator',
-            downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
-          },
-          "steep": {
-            title: "SteepCoin",
-            logo: "static/coins/steep.png",
-            public: 0x7d,
-            private: 0xfd,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://steepcoin.org/en',
-          },
-          "vrc": {
-            title: "Vericoin",
-            logo: "static/coins/vrc.png",
-            public: 0x46,
-            private: 0x84,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://vericoin.info/vericoin-digital-currency',
-          },
-          "vrm": {
-            title: "Verium",
-            logo: "static/coins/vrm.png",
-            public: 0x46,
-            private: 0x84,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://vericoin.info/verium-digital-reserve',
-          },
-          "vtc": {
-            title: "Vertcoin",
-            logo: "static/coins/vtc.png",
-            public: 0x47,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://vertcoin.org/download-wallet',
-          },
-          "uni": {
-            title: "Universe",
-            logo: "static/coins/uni.png",
-            public: 0x44,
-            private: 0xc4,
-            generator: 'btcGenerator',
-            downloadWallet: 'http://universe-project.com',
-          },
-          "waves": {
-            title: "WAVES",
-            logo: "static/coins/waves.png",
-            public: null,
-            private: null,
-            generator: 'wavesGenerator',
-            downloadWallet: 'https://wavesplatform.com/products-wallet',
-          },
-          "xsm": {
-            title: "Smilo",
-            logo: "static/coins/xsm.png",
-            public: null,
-            private: null,
-            generator: 'ethGenerator',
-            downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
-          },
-          "xspec": {
-            title: "Spectrecoin",
-            logo: "static/coins/xspec.png",
-            public: 0x3f,
-            private: 0xb3,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://spectreproject.io/',
-          },
-          "znz": {
-            title: "ZENZO",
-            logo: "static/coins/znz.png",
-            public: 0x51,
-            private: 0xd7,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://zenzo.io/resources/',
-          },
-          "bccx": {
-            title: "BCCX",
-            logo: "static/coins/bccx.png",
-            public: 0x4b,
-            private: 0xcb,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.thebitconnectcoincommunity.com',
-          },
-          "xp": {
-            title: "eXperience",
-            logo: "static/coins/xp.png",
-            public: 0x37,
-            private: 0x49,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://www.experiencepoints.io/downloads/',
-          },
-          "42": {
-            title: "42-Coin",
-            logo: "static/coins/42.png",
-            public: 0x08,
-            private: 0x88,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://github.com/42-coin/42/releases',
-            detail: {
-              description: "",
-              website: "",
-              community: "",
-              explorer: "",
-              github: ""
-            }
-          },
-          "ark": {
-            title: "Ark",
-            logo: "static/coins/ark.png",
-            public: 0x17,
-            private: 0xaa,
-            generator: 'sthGenerator',
-            downloadWallet: 'https://ark.io/wallet',
-          },
-          "guap": {
-            title: "GuapCoin",
-            logo: "static/coins/guap.png",
-            public: 0x26,
-            private: 0x2e,
-            generator: 'btcGenerator',
-            downloadWallet: 'http://www.guapcoin.org/',
-          },
-          "rvn": {
-            title: "Ravencoin",
-            logo: "static/coins/rvn.png",
-            public: 0x3c,
-            private: 0x80,
-            generator: 'btcGenerator',
-            downloadWallet: 'https://ravencoin.org/',
-          },
         },
+        "block": {
+          title: "Blocknet",
+          logo: "static/coins/block.png",
+          public: 0x1a,
+          private: 0x9a,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://blocknet.co',
+        },
+        "dash": {
+          title: "Dash",
+          logo: "static/coins/dash.png",
+          public: 0x4c,
+          private: 0xcc,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://www.dash.org/downloads/',
+        },
+        "dgb": {
+          title: "DigiByte",
+          logo: "static/coins/dgb.png",
+          public: 0x1e,
+          private: 0x9e,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
+        },
+        "onion": {
+          title: "DeepOnion",
+          logo: "static/coins/onion.png",
+          public: 0x1f,
+          private: 0x9f,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://github.com/deeponion/deeponion/releases',
+        },
+        "doge": {
+          title: "Dogecoin",
+          logo: "static/coins/doge.png",
+          public: 0x1e,
+          private: 0x9e,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://dogecoin.com/',
+        },
+        "eth": {
+          title: "Ethereum",
+          logo: "static/coins/eth.png",
+          public: null,
+          private: null,
+          generator: 'ethGenerator',
+          downloadWallet: 'https://metamask.io/',
+        },
+        "emc": {
+          title: "Emercoin",
+          logo: "static/coins/emc.png",
+          public: 0x21,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'http://emercoin.com/en/for-coinholders#download',
+        },
+        "egc": {
+          title: "EverGreen",
+          logo: "static/coins/egc.png",
+          public: 0x21,
+          private: 0xa1,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://evergreencoin.org',
+        },
+        "lsk": {
+          title: "Lisk",
+          logo: "static/coins/lisk.png",
+          public: null,
+          private: null,
+          generator: 'liskGenerator',
+          downloadWallet: 'https://lisk.io',
+        },
+        "ltc": {
+          title: "Litecoin",
+          logo: "static/coins/ltc.png",
+          public: 0x30,
+          private: 0xb0,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://litecoin.org',
+        },
+        "nmc": {
+          title: "NameCoin",
+          logo: "static/coins/nmc.png",
+          public: 0x34,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://namecoin.org/download/',
+        },
+        "nobt": {
+          title: "NobtCoin",
+          logo: "static/coins/nobt.png",
+          public: 0xf,
+          private: 0x55,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
+        },
+        "nvc": {
+          title: "Novacoin",
+          logo: "static/coins/nvc.png",
+          public: 0x08,
+          private: 0x88,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://sourceforge.net/projects/novacoin/files',
+        },
+        "post": {
+          title: "PostCoin",
+          logo: "static/coins/post.png",
+          public: 0x37,
+          private: 0xb7,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
+        },
+        "pivx": {
+          title: "PIVX",
+          logo: "static/coins/pivx.png",
+          public: 0x1e,
+          private: 0xd4,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://pivx.org/wallet/',
+        },
+        "pot": {
+          title: "Potcoin",
+          logo: "static/coins/pot.png",
+          public: 0x37,
+          private: 0xb7,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://www.potcoin.com/wallets',
+        },
+        "ppc": {
+          title: "Peercoin",
+          logo: "static/coins/ppc.png",
+          public: 0x37,
+          private: 0xb7,
+          scripthash: 0xc4,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://peercoin.net/wallet.html',
+        },
+        "rdd": {
+          title: "ReddCoin",
+          logo: "static/coins/rdd.png",
+          public: 0x3d,
+          private: 0xbd,
+          scripthash: 0x05,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://reddcoin.com/get-started',
+        },
+        "sth": {
+          title: "SmartHoldem",
+          logo: "static/coins/sth.png",
+          public: 0x3f,
+          private: 0xff,
+          generator: 'sthGenerator',
+          downloadWallet: 'https://github.com/smartholdem/smartholdem-wallet/releases',
+        },
+        "steep": {
+          title: "SteepCoin",
+          logo: "static/coins/steep.png",
+          public: 0x7d,
+          private: 0xfd,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://steepcoin.org/en',
+        },
+        "vrc": {
+          title: "Vericoin",
+          logo: "static/coins/vrc.png",
+          public: 0x46,
+          private: 0x84,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://vericoin.info/vericoin-digital-currency',
+        },
+        "vrm": {
+          title: "Verium",
+          logo: "static/coins/vrm.png",
+          public: 0x46,
+          private: 0x84,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://vericoin.info/verium-digital-reserve',
+        },
+        "vtc": {
+          title: "Vertcoin",
+          logo: "static/coins/vtc.png",
+          public: 0x47,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://vertcoin.org/download-wallet',
+        },
+        "uni": {
+          title: "Universe",
+          logo: "static/coins/uni.png",
+          public: 0x44,
+          private: 0xc4,
+          generator: 'btcGenerator',
+          downloadWallet: 'http://universe-project.com',
+        },
+        "waves": {
+          title: "WAVES",
+          logo: "static/coins/waves.png",
+          public: null,
+          private: null,
+          generator: 'wavesGenerator',
+          downloadWallet: 'https://wavesplatform.com/products-wallet',
+        },
+        "xsm": {
+          title: "Smilo",
+          logo: "static/coins/xsm.png",
+          public: null,
+          private: null,
+          generator: 'ethGenerator',
+          downloadWallet: 'https://smilowallet.io/#/access-my-wallet',
+        },
+        "xspec": {
+          title: "Spectrecoin",
+          logo: "static/coins/xspec.png",
+          public: 0x3f,
+          private: 0xb3,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://spectreproject.io/',
+        },
+        "znz": {
+          title: "ZENZO",
+          logo: "static/coins/znz.png",
+          public: 0x51,
+          private: 0xd7,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://zenzo.io/resources/',
+        },
+        "bccx": {
+          title: "BCCX",
+          logo: "static/coins/bccx.png",
+          public: 0x4b,
+          private: 0xcb,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://www.thebitconnectcoincommunity.com',
+        },
+        "xp": {
+          title: "eXperience",
+          logo: "static/coins/xp.png",
+          public: 0x37,
+          private: 0x49,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://www.experiencepoints.io/downloads/',
+        },
+        "42": {
+          title: "42-Coin",
+          logo: "static/coins/42.png",
+          public: 0x08,
+          private: 0x88,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://github.com/42-coin/42/releases',
+          detail: {
+            description: "",
+            website: "",
+            community: "",
+            explorer: "",
+            github: ""
+          }
+        },
+        "ark": {
+          title: "Ark",
+          logo: "static/coins/ark.png",
+          public: 0x17,
+          private: 0xaa,
+          generator: 'sthGenerator',
+          downloadWallet: 'https://ark.io/wallet',
+        },
+        "guap": {
+          title: "GuapCoin",
+          logo: "static/coins/guap.png",
+          public: 0x26,
+          private: 0x2e,
+          generator: 'btcGenerator',
+          downloadWallet: 'http://www.guapcoin.org/',
+        },
+        "rvn": {
+          title: "Ravencoin",
+          logo: "static/coins/rvn.png",
+          public: 0x3c,
+          private: 0x80,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://ravencoin.org/',
+        },
+      },
+    }
+  },
+  methods: {
+    openLink(link) {
+      openUrl(link);
+    },
+    generateEth() {
+      const wallet = ethWallet.generate();
+      return {
+        privateKey: wallet.getPrivateKeyString(),
+        address: wallet.getAddressString()
       }
     },
-    methods: {
-      openLink(link) {
-        openUrl(link);
-      },
-      generateEth() {
-        const wallet = ethWallet.generate();
-        return {
-          privateKey: wallet.getPrivateKeyString(),
-          address: wallet.getAddressString()
-        }
-      },
-      showHideCoins: function () {
-        this.isShow = !this.isShow;
-      },
-      showHideHelp: function () {
-        this.help = !this.help;
-      },
-      showHideHelpBts: function () {
-        this.coins.bts.help = !this.coins.bts.help;
-      },
-      async BitsharesGenerator() {
-        const seed = await cryptoRandomString({length: 48});
-        const mnemonic = await entropyToMnemonic(seed);
-        const randName = await cryptoRandomString({length: 18});
-
-        let loginKey = await Login.generateKeys(
-          randName,
-          mnemonic,
-          ["owner", "active", "memo"],
-          "BTS"
-        );
-
-        this.coins.bts.account = {
-          "name": randName,
-          "bip39": mnemonic,
-          "active": {
-            pubKey: loginKey.pubKeys.active,
-            privateKey: loginKey.privKeys.active.toWif(),
-          },
-          "owner": {
-            pubKey: loginKey.pubKeys.owner,
-            privateKey: loginKey.privKeys.owner.toWif(),
-          },
-          "memo": {
-            pubKey: loginKey.pubKeys.memo,
-            privateKey: loginKey.privKeys.memo.toWif(),
-          }
-        };
-
-      },
-      async generateAddress() {
-        this.onProcess = true;
-        if (this.coins[this.currentCoin].generator === 'btcGenerator') {
-          let privateKeyHex = cryptoRandomString({length: 64});
-          const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
-            private: this.coins[this.currentCoin].private,
-            public: this.coins[this.currentCoin].public
-          }));
-          this.address.keyHex = privateKeyHex;
-          this.address.publicAddress = key.publicAddress;
-          this.address.privateWif = key.privateWif;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'sthGenerator') {
-          const privateKeyHex = cryptoRandomString({length: 32});
-          const mnemonic = entropyToMnemonic(privateKeyHex);
-          const PUB_KEY = sthCrypto.crypto.getKeys(mnemonic).publicKey;
-          this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY, this.coins[this.currentCoin].public);
-          this.address.privateWif = mnemonic;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'liskGenerator') {
-          const privateKeyHex = cryptoRandomString({length: 32})
-          const mnemonic = entropyToMnemonic(privateKeyHex)
-          const Keys = liskCrypto.getAddressAndPublicKeyFromPassphrase(mnemonic)
-          this.address.publicAddress = Keys.address;
-          this.address.privateWif = mnemonic;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
-          const {randomSeed} = wavesCrypto.crypto();
-          const seed = randomSeed();
-          const {address, keyPair} = wavesCrypto.crypto();
-          const kp = keyPair(seed);
-          this.address.publicAddress = address(seed);
-          this.address.privateWif = kp.privateKey;
-          this.address.keyHex = seed;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'ethGenerator') {
-          const ethData = this.generateEth();
-          this.address.publicAddress = ethData.address;
-          this.address.privateWif = ethData.privateKey;
-        }
-
-        if (this.coins[this.currentCoin].generator === 'btsGenerator') {
-          await this.BitsharesGenerator();
-        }
-
-        this.onProcess = false;
-      },
-      selectCoin: function (selectedCoin) {
-        this.coins.bts.account = {
-          name: null,
-          bip39: null,
-          owner: {
-            pubKey: null,
-            privateKey: null,
-          },
-          active: {
-            pubKey: null,
-            privateKey: null,
-          },
-          memo: {
-            pubKey: null,
-            privateKey: null,
-          },
-        };
-
-        this.help = false;
-        this.currentCoin = selectedCoin;
-        this.address = {
-          keyHex: null,
-          publicAddress: null,
-          privateWif: null,
-        };
-
-        if (this.mobile) {
-          this.isShow = false;
-        }
-      },
-      clipboardSuccessHandler({value, event}) {
-        this.copied = 'Copied to clipboard';
-        setTimeout(() => (this.copied = null), 1500);
-      },
+    showHideCoins: function () {
+      this.isShow = !this.isShow;
     },
-    mounted: function () {
-      if (screen.width < 700) {
-        this.mobile = true;
+    showHideHelp: function () {
+      this.help = !this.help;
+    },
+    showHideHelpBts: function () {
+      this.coins.bts.help = !this.coins.bts.help;
+    },
+    async BitsharesGenerator() {
+      const seed = await cryptoRandomString({length: 48});
+      const mnemonic = await entropyToMnemonic(seed);
+      const randName = await cryptoRandomString({length: 18});
+
+      let loginKey = await Login.generateKeys(
+        randName,
+        mnemonic,
+        ["owner", "active", "memo"],
+        "BTS"
+      );
+
+      this.coins.bts.account = {
+        "name": randName,
+        "bip39": mnemonic,
+        "active": {
+          pubKey: loginKey.pubKeys.active,
+          privateKey: loginKey.privKeys.active.toWif(),
+        },
+        "owner": {
+          pubKey: loginKey.pubKeys.owner,
+          privateKey: loginKey.privKeys.owner.toWif(),
+        },
+        "memo": {
+          pubKey: loginKey.pubKeys.memo,
+          privateKey: loginKey.privKeys.memo.toWif(),
+        }
+      };
+
+    },
+    async generateAddress() {
+      this.onProcess = true;
+      if (this.coins[this.currentCoin].generator === 'btcGenerator') {
+        let privateKeyHex = cryptoRandomString({length: 64});
+        const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
+          private: this.coins[this.currentCoin].private,
+          public: this.coins[this.currentCoin].public
+        }));
+        this.address.keyHex = privateKeyHex;
+        this.address.publicAddress = key.publicAddress;
+        this.address.privateWif = key.privateWif;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'sthGenerator') {
+        const privateKeyHex = cryptoRandomString({length: 32});
+        const mnemonic = entropyToMnemonic(privateKeyHex);
+        const PUB_KEY = sthCrypto.crypto.getKeys(mnemonic).publicKey;
+        this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY, this.coins[this.currentCoin].public);
+        this.address.privateWif = mnemonic;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'liskGenerator') {
+        const privateKeyHex = cryptoRandomString({length: 32})
+        const mnemonic = entropyToMnemonic(privateKeyHex)
+        const Keys = liskCrypto.getAddressAndPublicKeyFromPassphrase(mnemonic)
+        this.address.publicAddress = Keys.address;
+        this.address.privateWif = mnemonic;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'wavesGenerator') {
+        const {randomSeed} = wavesCrypto.crypto();
+        const seed = randomSeed();
+        const {address, keyPair} = wavesCrypto.crypto();
+        const kp = keyPair(seed);
+        this.address.publicAddress = address(seed);
+        this.address.privateWif = kp.privateKey;
+        this.address.keyHex = seed;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'ethGenerator') {
+        const ethData = this.generateEth();
+        this.address.publicAddress = ethData.address;
+        this.address.privateWif = ethData.privateKey;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'btsGenerator') {
+        await this.BitsharesGenerator();
+      }
+
+      this.onProcess = false;
+    },
+    selectCoin: function (selectedCoin) {
+      this.coins.bts.account = {
+        name: null,
+        bip39: null,
+        owner: {
+          pubKey: null,
+          privateKey: null,
+        },
+        active: {
+          pubKey: null,
+          privateKey: null,
+        },
+        memo: {
+          pubKey: null,
+          privateKey: null,
+        },
+      };
+
+      this.help = false;
+      this.currentCoin = selectedCoin;
+      this.address = {
+        keyHex: null,
+        publicAddress: null,
+        privateWif: null,
+      };
+
+      if (this.mobile) {
         this.isShow = false;
       }
     },
-
-    async created() {
-      this.$eventBus.on('copied', () => {
-        this.copied = 'Copied to clipboard';
-        setTimeout(() => (this.copied = null), 1500);
-      });
+    clipboardSuccessHandler({value, event}) {
+      this.copied = 'Copied to clipboard';
+      setTimeout(() => (this.copied = null), 1500);
+    },
+  },
+  mounted: function () {
+    if (screen.width < 700) {
+      this.mobile = true;
+      this.isShow = false;
     }
+  },
+
+  async created() {
+    this.$eventBus.on('copied', () => {
+      this.copied = 'Copied to clipboard';
+      setTimeout(() => (this.copied = null), 1500);
+    });
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
