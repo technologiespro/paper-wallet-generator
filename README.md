@@ -1,5 +1,7 @@
 # Paper Wallet Generator Desktop & Mobile
 
+[![paper-wallet-generator](https://snapcraft.io//paper-wallet-generator/badge.svg)](https://snapcraft.io/paper-wallet-generator)
+
 Designed to securely generate altcoins addresses offline
 
 ### Available Coins
