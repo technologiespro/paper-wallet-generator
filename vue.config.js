@@ -77,6 +77,16 @@ module.exports = {
             }
           ]
         },
+        linux: {
+          "category": "Utilites",
+          "target": [
+            "deb",
+            "AppImage",
+            "snap"
+          ],
+          "synopsis": "Paper Crypto Wallet generator offline",
+          icon: 'build/icons/icon.icns'
+        },
       }
     },
     cordovaPath: 'src-cordova'
