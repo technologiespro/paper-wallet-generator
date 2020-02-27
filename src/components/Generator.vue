@@ -643,6 +643,14 @@ export default {
           generator: 'btcGenerator',
           downloadWallet: 'https://ravencoin.org/',
         },
+        "trx": {
+          title: "Tron",
+          logo: "static/coins/trx.png",
+          public: 0x41,
+          private: 0xc3,
+          generator: 'trxGenerator',
+          downloadWallet: 'https://tron.network/',
+        },
       },
     }
   },
@@ -715,6 +723,14 @@ export default {
         const PUB_KEY = sthCrypto.crypto.getKeys(mnemonic).publicKey;
         this.address.publicAddress = sthCrypto.crypto.getAddress(PUB_KEY, this.coins[this.currentCoin].public);
         this.address.privateWif = mnemonic;
+      }
+
+      if (this.coins[this.currentCoin].generator === 'trxGenerator') {
+        const privateKeyHex = cryptoRandomString({length: 64})
+        let { privateKeyToAddress } = require('@faast/tron-payments')
+
+        this.address.publicAddress = privateKeyToAddress(privateKeyHex);
+        this.address.privateWif = privateKeyHex.toUpperCase();
       }
 
       if (this.coins[this.currentCoin].generator === 'liskGenerator') {

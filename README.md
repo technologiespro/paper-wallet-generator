@@ -43,6 +43,7 @@ Designed to securely generate altcoins addresses offline
 - SpectreCoin (XSPEC) https://spectreproject.io
 - GuapCoin (GUAP) http://www.guapcoin.org/
 - Ravencoin (RVN) https://ravencoin.org/ (prepare)
+- Tron (TRX) https://tron.network/ (prepare)
 
 # IMPORTANT NOTE
 

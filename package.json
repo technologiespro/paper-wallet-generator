@@ -1,6 +1,6 @@
 {
   "name": "paper-wallet-generator",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "private": true,
   "description": "Paper Wallet Generator for Bitcoin & Altcoins",
   "author": "technologiespro <technologies.bro@gmail.com>",
@@ -25,6 +25,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@faast/tron-payments": "^0.19.10",
     "@liskhq/lisk-cryptography": "^2.0.0",
     "@waves/waves-crypto": "^3.0.11",
     "bip39": "^3.0.2",
