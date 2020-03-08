@@ -45,6 +45,12 @@ Designed to securely generate altcoins addresses offline
 - Ravencoin (RVN) https://ravencoin.org/ (prepare)
 - Tron (TRX) https://tron.network/ (prepare)
 
+## BUILD
+
+`npm install`
+
+`npm run electron:build`
+
 # IMPORTANT NOTE
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
