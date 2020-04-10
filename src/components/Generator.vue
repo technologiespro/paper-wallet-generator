@@ -472,7 +472,7 @@ export default {
           public: 0x37,
           private: 0xb7,
           generator: 'btcGenerator',
-          downloadWallet: 'https://github.com/PostCoinCore/postcoin/releases',
+          downloadWallet: 'https://postcoin.top/en/',
         },
         "pivx": {
           title: "PIVX",
@@ -651,6 +651,14 @@ export default {
           generator: 'trxGenerator',
           downloadWallet: 'https://tron.network/',
         },
+          "prux": {
+              title: "PRUX",
+              logo: "static/coins/prux.png",
+              public: 0x37,
+              private: 0x75,
+              generator: 'btcGenerator',
+              downloadWallet: 'https://prux.info/',
+          },
       },
     }
   },
