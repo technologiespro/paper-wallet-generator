@@ -1,9 +1,9 @@
 {
   "name": "paper-wallet-generator",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "private": true,
   "description": "Paper Wallet Generator for Bitcoin & Altcoins",
-  "author": "technologiespro <technologies.bro@gmail.com>",
+  "author": "technologiespro <dev@smartholdem.io>",
   "homepage": "https://github.com/technologiespro/paper-wallet-generator",
   "scripts": {
     "serve": "vue-cli-service serve",
