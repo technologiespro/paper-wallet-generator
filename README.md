@@ -46,6 +46,11 @@ Designed to securely generate altcoins addresses offline
 - Tron (TRX) https://tron.network/
 - PRUX-Coin (PRUX) https://prux.info/
 
+
+## Example
+
+https://technologiespro.github.io/paper-wallet-generator/#/
+
 ## BUILD
 
 `npm install`
