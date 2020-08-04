@@ -1,17 +1,26 @@
-let open;
+
+//let open = null;
 if (process.env.IS_ELECTRON) {
-  open = require('open');
+//  open = require('open');
 }
 
 // default _blank
-
 export function openUrl(url, type = '_blank') {
+
+  /*
+  (async () => {
+    await open(url);
+  })();
+   */
+
+  window.open(url, type);
+  /*
   if (process.env.IS_ELECTRON) {
-    (async () => {
-      await open(url);
-    })();
+    open(url)
   } else {
     window.open(url, type);
   }
+
+   */
 
 }

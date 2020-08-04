@@ -7,6 +7,7 @@ import {
   installVueDevtools
 } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+import packageJson from '../package.json'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,16 +16,6 @@ let deeplinkingUrl = null
 
 // Scheme must be registered before the app is ready
 // protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true, standard: true } }])
-function broadcastURL (url) {
-  if (!url || typeof url !== 'string') {
-    return
-  }
-
-  if (win && win.webContents) {
-    win.webContents.send('process-url', url)
-    deeplinkingUrl = null
-  }
-}
 
 function createWindow () {
   // Create the browser window.
@@ -36,6 +27,9 @@ function createWindow () {
   });
 
   win = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true
+    },
     backgroundColor: '#12151f',
     minWidth: 1024,
     minHeight: 768,
@@ -68,6 +62,26 @@ function createWindow () {
   win.on('closed', () => {
     win = null
   })
+
+
+  win.main.webContents.on('did-finish-load', () => {
+    broadcastURL(deeplinkingUrl)
+  })
+
+
+}
+
+function broadcastURL (url) {
+  if (!url || typeof url !== 'string') {
+    return
+  }
+
+  if (win && win.webContents) {
+    win.webContents.send('process-url', url)
+    deeplinkingUrl = null
+
+
+  }
 }
 
 // Quit when all windows are closed.
