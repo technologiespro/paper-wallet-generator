@@ -659,6 +659,14 @@ export default {
                     generator: 'btcGenerator',
                     downloadWallet: 'https://prux.info/',
                 },
+                "bzar": {
+                    title: "Bitcoinrand",
+                    logo: "static/coins/bzar.png",
+                    public: 0x3d,
+                    private: 0xbc,
+                    generator: 'btcGenerator',
+                    downloadWallet: 'https://bitcoinrand.com/',
+                },
             },
         }
     },
