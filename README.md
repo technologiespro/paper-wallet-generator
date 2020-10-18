@@ -43,8 +43,10 @@ Designed to securely generate altcoins addresses offline
 - SpectreCoin (XSPEC) https://spectreproject.io
 - GuapCoin (GUAP) http://www.guapcoin.org/
 - Ravencoin (RVN) https://ravencoin.org/
-- Tron (TRX) https://tron.network/
-- PRUX-Coin (PRUX) https://prux.info/
+- Tron (TRX) https://tron.network
+- PRUX-Coin (PRUX) https://prux.info
+- Bitcoinrand (BZAR) https://bitcoinrand.com
+- BIOTECH WAVES Token (BIOTECH) https://www.biotechtokens.net
 
 
 ## Example
