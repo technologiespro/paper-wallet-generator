@@ -667,6 +667,15 @@ export default {
                     generator: 'btcGenerator',
                     downloadWallet: 'https://bitcoinrand.com/',
                 },
+                "biotech": {
+                    title: "BIOTECH",
+                    logo: "static/coins/biotech.png",
+                    public: null,
+                    private: null,
+                    generator: 'wavesGenerator',
+                    downloadWallet: 'https://www.biotechtokens.net',
+                    type: 'token'
+                },
             },
         }
     },
