@@ -37,7 +37,7 @@
 
     <div class="container-fluid">
       <img :src="coins[currentCoin].logo" @click="openLink(coins[currentCoin].downloadWallet)" alt="coin logo"
-           class="pointer noselect" width="96px"/>
+           class="pointer noselect mt-1 mb-1" width="85px"/>
       <h2 class="noselect">{{coins[currentCoin].title}} <span
         class="text-white small">[{{currentCoin.toUpperCase()}}]</span></h2>
 
@@ -58,13 +58,13 @@
               <div class="col-md-5">
 
                 <div class="qr-container">
-                  <VueQrcode :options="{size:138, foreground: '#232D3D',level: 'H'}" :value="address.publicAddress"
+                  <VueQrcode :options="{size:150, foreground: '#232D3D',level: 'H'}" :value="address.publicAddress"
                              id="qrPub"/>
                   <p class="text-white-50">Public Address</p>
                 </div>
 
                 <div class="qr-container">
-                  <VueQrcode :options="{size:138, foreground: '#232D3D',level: 'H'}" :value="address.privateWif"
+                  <VueQrcode :options="{size:150, foreground: '#232D3D',level: 'H'}" :value="address.privateWif"
                              id="qrPriv"/>
                   <p class="text-white-50">Private Key</p>
                 </div>
@@ -288,14 +288,16 @@ import PdfBitshares from '@/components/PdfBitshares'
 import DownloadTxt from '@/components/DownloadTxt'
 import CopyClipboard from '@/components/CopyClipboard'
 
-import sthCrypto from 'sthjs'
-import {entropyToMnemonic} from 'bip39'
-import * as wavesCrypto from '@waves/waves-crypto'
-import ethWallet from 'ethereumjs-wallet'
-import * as liskCrypto from '@liskhq/lisk-cryptography'
+import sthCrypto from 'sthjs';
+import {entropyToMnemonic} from 'bip39';
+import * as wavesCrypto from '@waves/waves-crypto';
+import ethWallet from 'ethereumjs-wallet';
+import * as liskCrypto from '@liskhq/lisk-cryptography';
 
 import {openUrl} from 'src/util/url'
 import {Login} from "bitsharesjs"
+
+import bitcore from 'bitcore-lib-cash';
 
 export default {
     name: 'Generator',
@@ -345,30 +347,13 @@ export default {
                     generator: 'btcGenerator',
                     downloadWallet: 'https://bitcoingold.org/ecosystem/#wallets',
                 },
-                "bts": {
-                    title: "Bitshares",
-                    logo: "static/coins/bts.png",
-                    help: false,
-                    public: null,
-                    private: null,
-                    generator: 'btsGenerator',
-                    downloadWallet: 'https://bitshares.org',
-                    account: {
-                        name: null,
-                        bip39: null,
-                        owner: {
-                            pubKey: null,
-                            privateKey: null,
-                        },
-                        active: {
-                            pubKey: null,
-                            privateKey: null,
-                        },
-                        memo: {
-                            pubKey: null,
-                            privateKey: null,
-                        },
-                    },
+                "bch": {
+                    title: "BitcoinCash",
+                    logo: "static/coins/bch.png",
+                    public: 0x0,
+                    private: 0x80,
+                    generator: 'bchGenerator',
+                    downloadWallet: 'https://www.bitcoincash.org/',
                 },
                 "block": {
                     title: "Blocknet",
@@ -676,6 +661,31 @@ export default {
                     downloadWallet: 'https://www.biotechtokens.net',
                     type: 'token'
                 },
+                "bts": {
+                    title: "Bitshares",
+                    logo: "static/coins/bts.png",
+                    help: false,
+                    public: null,
+                    private: null,
+                    generator: 'btsGenerator',
+                    downloadWallet: 'https://bitshares.org',
+                    account: {
+                        name: null,
+                        bip39: null,
+                        owner: {
+                            pubKey: null,
+                            privateKey: null,
+                        },
+                        active: {
+                            pubKey: null,
+                            privateKey: null,
+                        },
+                        memo: {
+                            pubKey: null,
+                            privateKey: null,
+                        },
+                    },
+                },
             },
         }
     },
@@ -731,6 +741,15 @@ export default {
         },
         async generateAddress() {
             this.onProcess = true;
+
+            if (this.coins[this.currentCoin].generator === 'bchGenerator') {
+                //const bchaddr = require('bchaddrjs');
+                const privateKey = new bitcore.PrivateKey();
+                const address = privateKey.toAddress();
+                this.address.publicAddress = address.toString();
+                this.address.privateWif = privateKey.toString();
+            }
+
             if (this.coins[this.currentCoin].generator === 'btcGenerator') {
                 let privateKeyHex = cryptoRandomString({length: 64});
                 const key = (new CoinKey(new Buffer.from(privateKeyHex, 'hex'), {
