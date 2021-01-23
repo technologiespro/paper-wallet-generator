@@ -509,6 +509,14 @@ export default {
                     generator: 'btcGenerator',
                     downloadWallet: 'https://steepcoin.org/en',
                 },
+                "vdn": {
+                    title: "vDinar",
+                    logo: "static/coins/vdinar.png",
+                    public: 0x1e,
+                    private: 0x3a,
+                    generator: 'btcGenerator',
+                    downloadWallet: 'https://www.vdinar.info',
+                },
                 "vrc": {
                     title: "Vericoin",
                     logo: "static/coins/vrc.png",
