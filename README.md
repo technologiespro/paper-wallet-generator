@@ -13,8 +13,9 @@ Designed to securely generate altcoins addresses offline
 - BitcoinGold (BTG) https://bitcoingold.org
 - Blocknet (BLOCK) https://blocknet.co
 - DASH (DASH) https://www.dash.org
-- DigiByte (DGB) https://www.digibyte.io
 - DeepOnion (ONION) https://deeponion.org
+- Deutsche eMark (DEM) https://deutsche-emark.org
+- DigiByte (DGB) https://www.digibyte.io
 - Dogecoin (DOGE) https://dogecoin.com
 - Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
