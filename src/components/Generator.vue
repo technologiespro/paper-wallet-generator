@@ -371,14 +371,6 @@ export default {
                     generator: 'btcGenerator',
                     downloadWallet: 'https://www.dash.org/downloads/',
                 },
-                "dgb": {
-                    title: "DigiByte",
-                    logo: "static/coins/dgb.png",
-                    public: 0x1e,
-                    private: 0x9e,
-                    generator: 'btcGenerator',
-                    downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
-                },
                 "onion": {
                     title: "DeepOnion",
                     logo: "static/coins/onion.png",
@@ -386,6 +378,22 @@ export default {
                     private: 0x9f,
                     generator: 'btcGenerator',
                     downloadWallet: 'https://github.com/deeponion/deeponion/releases',
+                },
+                "dem": {
+                    title: "Deutsche eMark",
+                    logo: "static/coins/dem.png",
+                    public: 0x35,
+                    private: 0xb5,
+                    generator: 'btcGenerator',
+                    downloadWallet: 'https://github.com/emarkproject/eMark',
+                },
+                "dgb": {
+                    title: "DigiByte",
+                    logo: "static/coins/dgb.png",
+                    public: 0x1e,
+                    private: 0x9e,
+                    generator: 'btcGenerator',
+                    downloadWallet: 'https://www.digibyte.io/digibyte-wallet-downloads',
                 },
                 "doge": {
                     title: "Dogecoin",
