@@ -6,7 +6,7 @@
         <span class="text-left text-white-50 small">v.{{packageJson.version}}</span>
         <small>
             <img class="link" @click="openLink('https://github.com/technologiespro/paper-wallet-generator/releases')" height="26px" src="static/logo/github.png"/>
-            <img class="link" @click="openLink('https://ex.xbts.io')" height="24px" src="static/logo/xbts.png"/>
+            <img class="link" @click="openLink('https://xbts.io')" height="24px" src="static/logo/xbts.png"/>
         </small>
       </div>
     </footer>
