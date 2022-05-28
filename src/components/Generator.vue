@@ -377,6 +377,14 @@ export default {
           generator: 'btcGenerator',
           downloadWallet: 'https://www.dash.org/downloads/',
         },
+        "dem": {
+          title: "Deutsche eMark",
+          logo: "static/coins/dem.png",
+          public: 0x35,
+          private: 0xb5,
+          generator: 'btcGenerator',
+          downloadWallet: 'https://github.com/emarkproject/eMark',
+        },
         "dgb": {
           title: "DigiByte",
           logo: "static/coins/dgb.png",
