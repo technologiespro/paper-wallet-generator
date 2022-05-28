@@ -48,6 +48,7 @@ Designed to securely generate altcoins addresses offline
 - PRUX-Coin (PRUX) https://prux.info
 - Bitcoinrand (BZAR) https://bitcoinrand.com
 - BIOTECH WAVES Token (BIOTECH) https://www.biotechtokens.net
+- vDinar (VDN) https://www.vdinar.info
 - HiveCoin (HVN) https://hivecoin.org/
 
 
