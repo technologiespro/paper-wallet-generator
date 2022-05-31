@@ -618,6 +618,7 @@ export default {
             github: ""
           }
         },
+        /*
         "ark": {
           title: "Ark",
           logo: "static/coins/ark.png",
@@ -626,6 +627,7 @@ export default {
           generator: 'sthGenerator',
           downloadWallet: 'https://ark.io/wallet',
         },
+         */
         "guap": {
           title: "GuapCoin",
           logo: "static/coins/guap.png",
