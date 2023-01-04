@@ -1,5 +1,5 @@
 exports.settings = {
-    "isWeb": false
+    "isWeb": true
 }
 
 exports.coins = {
