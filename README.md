@@ -1,4 +1,4 @@
-# Paper Wallet Generator Desktop & Mobile
+# Paper Wallet Generator for Bitcoin &amp; Alt coins
 
 [![paper-wallet-generator](https://snapcraft.io//paper-wallet-generator/badge.svg)](https://snapcraft.io/paper-wallet-generator)
 
@@ -7,9 +7,7 @@ Designed to securely generate altcoins addresses offline
 ### Available Coins
 
 - 42-Coin (42) https://42-coin.org
-- Ark (ARK) https://ark.io
 - Bitcoin (BTC) https://bitcoin.org
-- Bitshares (BTS) https://bitshares.org
 - BitcoinGold (BTG) https://bitcoingold.org
 - Blocknet (BLOCK) https://blocknet.co
 - DASH (DASH) https://www.dash.org
@@ -30,31 +28,23 @@ Designed to securely generate altcoins addresses offline
 - PostCoin (POST) https://postcoin.top
 - ReddCoin (RDD) https://reddcoin.com
 - SmartHoldem (STH) https://smartholdem.io
-- Smilo (XSM) https://smilo.io
 - Vericoin (VRC) https://vericoin.info/vericoin-digital-currency
-- Verium (VRM) https://vericoin.info/verium-digital-reserve
 - Vertcoin (VTC) https://vertcoin.org/download-wallet
 - Waves (WAVES) https://wavesplatform.com
-- ZENZO (ZNZ) https://zenzo.io
-- EverGreen (EGC) https://evergreencoin.org
-- SteepCoin (STEEP) https://steepcoin.org/en
-- UniverseCoin (UNI) http://universe-project.com
-- BitConnectX (BCCX) https://www.thebitconnectcoincommunity.com
+- EverGreenCoin (EGC) https://evergreencoin.org
+- BlockChainCoinX (XCCX) https://BlockChainCoinX.dev
 - eXperience Points (XP) https://www.experiencepoints.io/
-- SpectreCoin (XSPEC) https://spectreproject.io
 - GuapCoin (GUAP) http://www.guapcoin.org/
 - Ravencoin (RVN) https://ravencoin.org/
 - Tron (TRX) https://tron.network
 - PRUX-Coin (PRUX) https://prux.info
 - Bitcoinrand (BZAR) https://bitcoinrand.com
-- BIOTECH WAVES Token (BIOTECH) https://www.biotechtokens.net
-- vDinar (VDN) https://www.vdinar.info
 - HiveCoin (HVN) https://hivecoin.org/
 
 
 ## Example
 
-https://technologiespro.github.io/paper-wallet-generator/#/
+https://demo.paperwallet.top
 
 ## BUILD
 
@@ -71,3 +61,21 @@ https://technologiespro.github.io/paper-wallet-generator/#/
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
+
+
+# Build
+
+electron: `yarn electron:build`
+
+
+# issues
+- nodejs >= 14.18
+- copy canvas-v2.10.2-node-v111-win32-unknown-x64.tar.gz > node_modules/canvas/build/Release
+- npmRebuild: false
+
+
+# Linux install dev
+
+sudo snap install --dangerous paperwallet-linux-amd64-2.0.2.snap
+
+

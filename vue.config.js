@@ -20,29 +20,27 @@ module.exports = {
       }),
     ],
   },
-
-  pwa: {
-    name: 'PaperWallet',
-    themeColor: '#66615B',
-    msTileColor: '#66615B',
-    appleMobileWebAppCapable: 'yes',
-    appleMobileWebAppStatusBarStyle: '#66615B'
-  },
-
   css: {
     // sourceMap: true
     sourceMap: process.env.NODE_ENV !== 'production'
   },
 
   pluginOptions: {
+    i18n: {
+      locale: 'en',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false
+    },
     electronBuilder: {
       nodeModulesPath: [
         '../../node_modules',
         './node_modules'
       ],
       builderOptions: {
+        npmRebuild: false,
         productName: 'PaperWallet',
-        appId: 'com.paperwallet.top',
+        appId: 'top.paperwallet.app',
         compression: 'store',
         artifactName: '${name}-${os}-${arch}-${version}.${ext}',
         directories: {
@@ -89,7 +87,6 @@ module.exports = {
         },
       }
     },
-    cordovaPath: 'src-cordova'
   },
 
   publicPath: '',
