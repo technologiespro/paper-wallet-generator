@@ -34,7 +34,6 @@ Designed to securely generate altcoins addresses offline
 - EverGreenCoin (EGC) https://evergreencoin.org
 - BlockChainCoinX (XCCX) https://BlockChainCoinX.dev
 - eXperience Points (XP) https://www.experiencepoints.io/
-- SpectreCoin (XSPEC) https://spectreproject.io
 - GuapCoin (GUAP) http://www.guapcoin.org/
 - Ravencoin (RVN) https://ravencoin.org/
 - Tron (TRX) https://tron.network
