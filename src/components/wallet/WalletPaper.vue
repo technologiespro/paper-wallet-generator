@@ -1,34 +1,55 @@
 <template>
   <div class="w-100">
     <!--{{account}}-->
-    <div class="button-list">
+    <div class="button-list mb-1">
+
+      <select class="form-control float-left bg-pattern text-white mb-1 ml-1" v-model="theme" :style="this.$root.isMobile ? 'width:128px;' : 'width:200px;'">
+        <option v-for="(item, idx) in themes" :value="item">{{ templates[$i18n.locale][idx] }}</option>
+      </select>
+
       <b-button
           @click="getNewAccounts"
           class="btn-soft-primary text-uppercase"
-      ><i class="fas fa-dice"></i> {{ $t('wallet.new_address') }}
+      ><i class="fas fa-dice"></i> <span v-show="!$root.isMobile">{{ $t('wallet.new_address') }}</span>
       </b-button>
 
-      <b-button :disabled="!account.address" @click="saveImage" class="btn-soft-primary text-uppercase"><i
+      <b-button v-if="account" @click="saveImage" class="btn-soft-primary text-uppercase"><i
           class="fe-download"></i>
-        {{ $t('wallet.save') }} PNG
+        <span v-show="!$root.isMobile">{{ $t('wallet.save') }} </span>PNG
+      </b-button>
+
+      <b-button :disabled="!account" @click="saveText" class="btn-soft-primary text-uppercase"><i class="fe-download"></i>
+        Json
       </b-button>
 
       <!--<b-button @click="generate" class="btn-soft-primary text-uppercase"><i class="fe-refresh-cw"></i> Refresh</b-button>-->
-      <b-button @click="walletPrint" class="btn-soft-primary text-uppercase"><i class="fe-printer"></i>
-        {{ $t('wallet.print') }}
+      <b-button v-show="!$root.isMobile" @click="walletPrint" class="btn-soft-primary text-uppercase"><i class="fe-printer"></i>
+        <span>{{ $t('wallet.print') }}</span>
       </b-button>
 
-      <select class="form-control float-left bg-pattern text-white" v-model="theme" style="width:220px;">
-        <option v-for="(item, idx) in themes" :value="item">{{ templates[$i18n.locale][idx] }}</option>
-      </select>
+
     </div>
 
     <!--<base-button @click="saveCanvasJson">Save Json</base-button>-->
-    <!--<img :src="generatedImg"/>-->
-    <hr/>
-    <div v-if="account">
+  <p>{{this.w}}x{{this.h}}px (A4)</p>
+    <div v-if="generatedImg">
+      <img class="w-100" :src="generatedImg"/>
+    </div>
 
-      <canvas @click="zoom = !zoom" id="canvas-note" ref="can" width="2480" height="3508" :class="zoom ? 'zoom-max': 'zoom-min'"></canvas>
+
+    <div v-if="account" class="top-scrollbars" :style="this.$root.w > this.w ? 'max-width: 1200px;overflow-x:scroll' : 'overflow-x:auto'">
+
+      <div v-show="processLoading" class="ml-auto position-absolute">
+        <pixel-spinner
+            class="ml-auto mr-auto"
+            :animation-duration="2000"
+            :size="70"
+            color="darkgreen"
+        />
+      </div>
+
+
+      <canvas :style="generatedImg ? 'display:none;' : 'display:block;'" @click="ZoomInOut" id="canvas-note" ref="can" :width="this.$root.w" :height="this.$root.h" :class="zoom ? 'zoom-max': 'zoom-min'"></canvas>
       <VueQrcode v-if="account.address" id="qrPublic"
                  :options="{size:340, backgroundAlpha: 0.0, foreground: '#000', level: 'H'}"
                  :value="account.address" class="qr-note"/>
@@ -43,11 +64,14 @@
 <script>
 import {fabric} from 'fabric';
 import VueQrcode from '@/components/utils/QrCodeImg';
-import {coins, templates} from "@/config";
+import {templates} from "@/config";
+import coins from "@/coins";
 //const bip38 = require('bip38');
 //const wif = require('wif');
 import printJS from 'print-js';
 import eventBus from '@/plugins/event-bus'
+import { PixelSpinner } from 'epic-spinners'
+import Swal from "sweetalert2";
 
 var canvas = null
 
@@ -55,17 +79,23 @@ export default {
   name: "WalletPaper",
   components: {
     VueQrcode,
+    PixelSpinner,
+    Swal,
   },
   data() {
     return {
+      processLoading: false,
       theme: 0,
       themes: [],
       account: null,
       generatedImg: null,
-      coins: coins[this.$route.params['id']],
+      //coins: coins[this.$route.params['id']],
       jsonData: null,
       templates: templates,
       zoom: false,
+      coin: {},
+      w: 2480,
+      h: 3508,
     }
   },
 
@@ -75,25 +105,28 @@ export default {
     },
 
   },
+  /*
   computed: {
     coin() {
       return coins[this.$route.params['id']];
     }
   },
+
+   */
   async created() {
+    this.coin = coins[this.$route.params['id']]
     for (let i = 0; i < 38; i++) {
       this.themes.push(i);
     }
     //await this.getNewAccounts()
     let _self = this;
-    await this.getNewAccounts()
+    //await this.getNewAccounts()
     setTimeout(async () => {
-      await _self.generate();
-      //await _self.getNewAccounts()
-
+      //await _self.generate();
+      await _self.getNewAccounts();
       //canvas.renderAll.bind(canvas);
       //canvas.renderAll();
-    }, 2000);
+    }, 1600);
 
   },
   mounted() {
@@ -115,6 +148,7 @@ export default {
       });
       //canvas.renderAll.bind(canvas);
       //canvas.renderAll();
+      this.generatedImg = null;
     },
     async getNewAccounts() {
       this.account = (await this.generateAddress(this.$route.params['id'], 1))[0];
@@ -146,65 +180,107 @@ export default {
       e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
       a.dispatchEvent(e);
     },
-    async walletPrint() {
-      this.generatedImg = canvas.toDataURL({
-        format: "png",
-        left: 0,
-        top: 0,
-        width: canvas.width,
-        height: canvas.height,
-      });
-      printJS(this.generatedImg, 'image')
+    async saveText() {
+      this.account.password = this.password;
+      this.jsonData = JSON.stringify(this.account);
 
-    },
-    async saveImage() {
-      /*
-      await canvas.setZoom(1);
-      canvas.setWidth(1387 * canvas.getZoom());
-      canvas.setHeight(589 * canvas.getZoom());
-      canvas.renderAll.bind(canvas);
-      canvas.renderAll();
-       */
-      this.generatedImg = canvas.toDataURL({
-        format: "png",
-        left: 0,
-        top: 0,
-        width: canvas.width,
-        height: canvas.height,
-      });
-
-
-      const link = document.createElement('a');
-      link.download = this.$route.params['id'].toUpperCase() + '-' + this.account.address + '.png';
-      link.href = this.generatedImg;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      //this.generatedImg.print();
-
-      //await canvas.setZoom(0.86);
-    },
-    async sanitizeText(value) {
-      let sanitizedText = value
-          .trim()
-          .replace(/'''/g, '\u2034')                                                   // triple prime
-          .replace(/(\W|^)"(\S)/g, '$1\u201c$2')                                       // beginning "
-          .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2')          // ending "
-          .replace(/([^0-9])"/g, '$1\u201d')                                            // remaining " at end of word
-          .replace(/''/g, '\u2033')                                                    // double prime
-          .replace(/(\W|^)'(\S)/g, '$1\u2018$2')                                       // beginning '
-          .replace(/([a-z])'([a-z])/ig, '$1\u2019$2')                                  // conjunction's possession
-          .replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/ig, '$1\u2019$3')                 // ending '
-          .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/ig, '\u2019$2$3')     // abbrev. years like '93
-          .replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/ig, '$1\u2019') // backwards apostrophe
-          .replace(/'/g, '\u2032');
-
-      // default text
-      if (sanitizedText.length === 0) {
-        sanitizedText = 'Wallet Address here';
+      var _self = this;
+      document.addEventListener('deviceready', onDeviceReady, false);
+      async function onDeviceReady () {
+        try {
+          let response = await fetch('data:text/plain;charset=utf-8,' + encodeURIComponent(_self.jsonData));
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, _self.$route.params['id'].toUpperCase() + '-' + _self.account.address + ".json");
+          //document.body.removeChild(link);
+          //_self.generatedImg = null;
+          //await _self.successmsg();
+        } catch (e) {
+          //alert(e)
+          //console.error(e);
+        }
       }
 
-      return sanitizedText;
+      const blob = new Blob([this.jsonData], {type: 'text/plain'})
+      const e = document.createEvent('MouseEvents'),
+          a = document.createElement('a');
+      a.download = this.$route.params['id'].toUpperCase() + '-' + this.account.address + ".json";
+      a.href = window.URL.createObjectURL(blob);
+      a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+      e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      a.dispatchEvent(e);
+    },
+    async walletPrint() {
+      this.processLoading = true;
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
+      this.generatedImg = canvas.toDataURL({
+        format: "png",
+        left: 0,
+        top: 0,
+        width: canvas.width,
+        height: canvas.height,
+      });
+      printJS(this.generatedImg, 'image');
+
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
+      setTimeout(async () => {
+        this.processLoading = false;
+      }, 500);
+    },
+    async successmsg() {
+      await Swal.fire({
+        title: this.$t('wallet.success'),
+        text: this.$t('wallet.success_download'),
+        type: "success",
+        confirmButtonClass: "btn btn-confirm mt-2",
+      });
+    },
+    async saveImage() {
+      this.processLoading = true;
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
+      this.generatedImg = await canvas.toDataURL({
+        format: "png",
+        left: 0,
+        top: 0,
+        width: canvas.width,
+        height: canvas.height,
+      });
+
+      let link = document.createElement('a');
+      link.download =  this.$route.params['id'].toUpperCase() + '-' + this.account.address + '.png';
+      link.href = this.generatedImg;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
+
+      document.addEventListener('deviceready', onDeviceReady, false);
+      var _self = this;
+      async function onDeviceReady () {
+        try {
+          let response = await fetch(link.href);
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, link.download);
+          document.body.removeChild(link);
+          //_self.generatedImg = null;
+          await _self.successmsg();
+        } catch (e) {
+          //console.error(e);
+        }
+      }
+
     },
     async generateImage() {
       this.generatedImg = canvas.toDataURL({
@@ -216,7 +292,28 @@ export default {
       });
 
     },
+    async ZoomInOut() {
+      if (this.$root.isMobile) {
+        return;
+      }
+      this.zoom = !this.zoom;
+      let scaleRatio = 1;
+      if (this.zoom) {
+        await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      } else {
+        if (this.$root.w > this.$root.h) {
+          scaleRatio = Math.min((this.$root.h - 12)/canvas.width, this.$root.w/canvas.height);
+        } else {
+          scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height);
+        }
+        await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      }
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
+    },
     async generate() {
+      this.generatedImg = null;
+      this.processLoading = true;
       if (canvas) {
         canvas.dispose();
       }
@@ -224,8 +321,10 @@ export default {
       //canvas = new fabric.Canvas(ref);
       canvas = new fabric.StaticCanvas(ref);
       canvas.width = 2480;
-      canvas.height = 3508;//3400;
+      canvas.height = 3508;
 
+      let scaleRatio = 1;
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height);
 
       await canvas.setBackgroundImage('static/print/bg/' + this.theme + '.png', canvas.renderAll.bind(canvas), {
         top: 0,
@@ -234,8 +333,10 @@ export default {
         originY: 'top',
         scaleX: 1,
         scaleY: 1,
+        backgroundImageStretch: false,
       });
 
+      //fabric.isWebglSupported(fabric.textureSize);
 
       // form
       fabric.Image.fromURL('static/print/form.png', async function (oImg) {
@@ -279,7 +380,7 @@ export default {
         address.fontSize *= address.fixedWidth / (address.width + 1);
         address.width = address.fixedWidth;
       }
-      //address.setText(await this.sanitizeText(this.account.address));
+
       await canvas.add(address);
 
       let textPub = new fabric.Textbox(this.$i18n.t('wallet.paper_public', {ticker: this.coin.title}), {
@@ -375,7 +476,7 @@ export default {
         key.fontSize *= key.fixedWidth / (key.width + 1);
         key.width = key.fixedWidth;
       }
-      //address.setText(await this.sanitizeText(this.account.address));
+
       await canvas.add(key);
 
       let textInfo = new fabric.Textbox(
@@ -397,11 +498,15 @@ export default {
           });
       await canvas.add(textInfo);
 
-      //await canvas.setZoom(0.5);
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
 
 
       canvas.renderAll.bind(canvas);
-      canvas.renderAll();
+      //canvas.renderAll();
+      setTimeout(async () => {
+        this.processLoading = false;
+      }, 500);
 
     }
   },
@@ -420,13 +525,19 @@ export default {
   margin: 0 auto;
   width: 100%;
   height: 100vh;
-  zoom: 0.16;
   /* display:none;*/
 }
 
 .canvas-container {
   max-width: 1000px !important;
   max-height: 1360px !important;
+}
+
+div.top-scrollbars {
+  transform: rotateX(180deg);
+}
+div.top-scrollbars * {
+  transform: rotateX(180deg);
 }
 
 </style>

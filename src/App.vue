@@ -22,6 +22,12 @@ export default {
   data() {
 
   },
+  mounted() {
+    this.$root.isMobile = window.innerWidth < 900;
+    this.$root.h = window.innerHeight;
+    this.$root.w = window.innerWidth;
+    this.$root.hideBanners = window.innerWidth < 1181;
+  },
   async created() {
     //this.$i18n.locale = 'ru';
     const broLang = navigator.language;

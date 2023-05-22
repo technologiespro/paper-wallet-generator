@@ -1,25 +1,28 @@
 <template>
   <div>
     <div class="button-list">
-      <b-button
-          :disabled="!password"
-          @click="getNewAccounts"
-          class="btn-soft-primary text-uppercase"
-      ><i class="fas fa-dice"></i> {{ $t('wallet.new_address') }}
-      </b-button>
+      <div class="row">
 
-      <!--
-            <b-button :disabled="!accounts" @click="saveText" class="btn-soft-primary text-uppercase"><i
-                class="fe-download"></i>
-              Json
-            </b-button>
-      -->
+        <b-button
+            :disabled="!password"
+            @click="getNewAccounts"
+            class="col-md-3 btn-soft-primary text-uppercase"
+        ><i class="fas fa-dice"></i> {{ $t('wallet.new_address') }}
+        </b-button>
 
-      <input v-model="password" :placeholder="$t('wallet.password')" type="text" class="form-control float-left ml-1"
-             style="width: 200px;"/>
+        <b-button :disabled="!accounts[0] || !password" @click="saveText" class="btn-soft-primary text-uppercase"><i
+            class="fe-download"></i>
+          Json
+        </b-button>
+
+
+        <input v-model="password" :placeholder="$t('wallet.password')" type="text" class="col-md-6 form-control ml-1"/>
+      </div>
+
 
     </div>
     <hr/>
+    <div class="clearfix"></div>
     <div class="row" v-if="accounts[0]">
       <div class="col-md-6 text-center border-right">
         <h4 class="text-success text-uppercase"><span class="badge badge-success font-weight-light"><i
@@ -75,10 +78,10 @@
           <b-card-body>
             <b-card-text>
               <ul>
-                <li>{{$t('import.open')}}</li>
-                <li>{{$t('import.select')}}</li>
-                <li>{{$t('import.enter')}}</li>
-                <li>{{$t('import.wait')}}</li>
+                <li>{{ $t('import.open') }}</li>
+                <li>{{ $t('import.select') }}</li>
+                <li>{{ $t('import.enter') }}</li>
+                <li>{{ $t('import.wait') }}</li>
               </ul>
             </b-card-text>
           </b-card-body>
@@ -137,7 +140,7 @@
           </li>
         </ul>
       </div>
-        <!--english -->
+      <!--english -->
       <div v-else class="text-white">
         <h4>A Brain wallet is a type of crypto cold storage in your mind by memorizing the mnemonic password of your
           cryptocurrency wallet in your brain.</h4>
@@ -196,10 +199,12 @@
         <h5>Cons of Using a Brain Wallet</h5>
         <ul>
           <li>
-            In case you suffer from some medical condition like amnesia or dementia, you may forget your keys and lose coins.
+            In case you suffer from some medical condition like amnesia or dementia, you may forget your keys and lose
+            coins.
           </li>
           <li>
-            Since there is no paper backup record, you may forget your mnemonic phrase and your coins will be lost forever.
+            Since there is no paper backup record, you may forget your mnemonic phrase and your coins will be lost
+            forever.
           </li>
         </ul>
       </div>
@@ -220,6 +225,7 @@ export default {
   },
   data() {
     return {
+      spinner: false,
       account: {},
       key: '',
       password: '',
@@ -232,6 +238,24 @@ export default {
       this.account.password = this.password;
       this.jsonData = JSON.stringify(this.account);
       const blob = new Blob([this.jsonData], {type: 'text/plain'})
+
+      var _self = this;
+      document.addEventListener('deviceready', onDeviceReady, false);
+
+      async function onDeviceReady() {
+        try {
+          let response = await fetch('data:text/plain;charset=utf-8,' + encodeURIComponent(_self.jsonData));
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, _self.$route.params['id'].toUpperCase() + '-' + _self.account.address + ".json");
+          //document.body.removeChild(link);
+          //_self.generatedImg = null;
+          //await _self.successmsg();
+        } catch (e) {
+          //alert(e)
+          //console.error(e);
+        }
+      }
+
       const e = document.createEvent('MouseEvents'),
           a = document.createElement('a');
       a.download = this.$route.params['id'].toUpperCase() + '-' + this.account.address + ".json";
@@ -241,6 +265,14 @@ export default {
       a.dispatchEvent(e);
     },
     async getNewAccounts() {
+      document.addEventListener('deviceready', onDeviceReady, false);
+      var _self = this;
+
+      async function onDeviceReady() {
+        cordova.plugins.Keyboard.close
+      }
+
+      this.spinner = true;
       this.key = this.password;
       if (this.coins.generator === 'btcGenerator') {
         this.key = sha256(this.password).toString();
@@ -250,6 +282,7 @@ export default {
       this.account.password = this.password;
 
       await this.$eventBus.emit('update:cons', this.account);
+      this.spinner = false;
     },
   },
   async created() {

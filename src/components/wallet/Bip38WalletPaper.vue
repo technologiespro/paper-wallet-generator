@@ -2,20 +2,24 @@
   <div class="w-100">
     <!--{{account}}-->
     <div class="button-list">
+      <select class="form-control float-left bg-pattern text-white" v-model="theme" :style="this.$root.isMobile ? 'width:128px;' : 'width:200px;'">
+        <option v-for="(item, idx) in themes" :value="item">{{ templates[$i18n.locale][idx] }}</option>
+      </select>
+
       <b-button
           :disabled="!password"
           @click="loading"
           class="btn-soft-primary text-uppercase"
-      ><i class="fas fa-dice"></i> {{ $t('wallet.new_address') }}
+      ><i class="fas fa-dice"></i><span v-show="!this.$root.isMobile"> {{ $t('wallet.new_address') }}</span>
       </b-button>
       <b-button :disabled="!account.address" @click="saveImage" class="btn-soft-primary text-uppercase"><i
           class="fe-download"></i>
-        {{ $t('wallet.save') }} PNG
+        <span v-show="!this.$root.isMobile">{{ $t('wallet.save') }} PNG</span>
       </b-button>
       <!--<b-button @click="generate" class="btn-soft-primary text-uppercase"><i class="fe-refresh-cw"></i> Refresh</b-button>-->
-      <b-button :disabled="!account.address" @click="walletPrint" class="btn-soft-primary text-uppercase"><i
+      <b-button v-show="!$root.isMobile" :disabled="!account.address" @click="walletPrint" class="btn-soft-primary text-uppercase"><i
           class="fe-printer"></i>
-        {{ $t('wallet.print') }}
+        <span>{{ $t('wallet.print') }}</span>
       </b-button>
 
       <!--
@@ -23,19 +27,13 @@
         Json
       </b-button>
 -->
-      <select class="form-control float-left bg-pattern text-white" v-model="theme" style="width:220px;">
-        <option v-for="(item, idx) in themes" :value="item">{{ templates[$i18n.locale][idx] }}</option>
-      </select>
+
 
       <input v-model="password" :placeholder="$t('wallet.password')" type="text" class="form-control float-left ml-1"
              style="width: 200px;"/>
     </div>
-    <div class="w-100 float-left text-white mt-2" v-show="account.encrypted">
-      <span class="ml-2 badge badge-danger font-14 font-weight-normal"><i
-          class="ri-key-2-line"></i>BIP38 KEY {{ account.encrypted }}</span>
-      <!--<span class="ml-2 badge badge-info font-14 font-weight-normal">WIF {{account.wif}}</span>-->
-    </div>
-    <hr/>
+
+    <hr class="clearfix"/>
     <atom-spinner
         class="position-absolute"
         v-show="spinner"
@@ -204,6 +202,7 @@ const wif = require('wif');
 import printJS from 'print-js';
 import {AtomSpinner} from 'epic-spinners';
 import eventBus from '@/plugins/event-bus'
+import Swal from "sweetalert2";
 
 var canvas = null
 
@@ -228,6 +227,8 @@ export default {
       jsonData: null,
       templates: templates,
       zoom: false,
+      w: 2480,
+      h: 3508,
     }
   },
 
@@ -276,6 +277,7 @@ export default {
       });
       canvas.renderAll.bind(canvas);
       canvas.renderAll();
+      this.generatedImg = null;
     },
     async getNewAccounts() {
       this.spinner = true;
@@ -322,6 +324,10 @@ export default {
       a.dispatchEvent(e);
     },
     async walletPrint() {
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
       this.generatedImg = canvas.toDataURL({
         format: "png",
         left: 0,
@@ -331,15 +337,25 @@ export default {
       });
       printJS(this.generatedImg, 'image')
 
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
+
+    },
+    async successmsg() {
+      await Swal.fire({
+        title: this.$t('wallet.success'),
+        text: this.$t('wallet.success_download'),
+        type: "success",
+        confirmButtonClass: "btn btn-confirm mt-2",
+      });
     },
     async saveImage() {
-      /*
-      await canvas.setZoom(1);
-      canvas.setWidth(1387 * canvas.getZoom());
-      canvas.setHeight(589 * canvas.getZoom());
-      canvas.renderAll.bind(canvas);
-      canvas.renderAll();
-       */
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
       this.generatedImg = canvas.toDataURL({
         format: "png",
         left: 0,
@@ -348,38 +364,32 @@ export default {
         height: canvas.height,
       });
 
-
       const link = document.createElement('a');
       link.download = this.$route.params['id'].toUpperCase() + '-' + this.account.address + '.png';
       link.href = this.generatedImg;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      //this.generatedImg.print();
 
-      //await canvas.setZoom(0.86);
-    },
-    async sanitizeText(value) {
-      let sanitizedText = value
-          .trim()
-          .replace(/'''/g, '\u2034')                                                   // triple prime
-          .replace(/(\W|^)"(\S)/g, '$1\u201c$2')                                       // beginning "
-          .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2')          // ending "
-          .replace(/([^0-9])"/g, '$1\u201d')                                            // remaining " at end of word
-          .replace(/''/g, '\u2033')                                                    // double prime
-          .replace(/(\W|^)'(\S)/g, '$1\u2018$2')                                       // beginning '
-          .replace(/([a-z])'([a-z])/ig, '$1\u2019$2')                                  // conjunction's possession
-          .replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/ig, '$1\u2019$3')                 // ending '
-          .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/ig, '\u2019$2$3')     // abbrev. years like '93
-          .replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/ig, '$1\u2019') // backwards apostrophe
-          .replace(/'/g, '\u2032');
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
 
-      // default text
-      if (sanitizedText.length === 0) {
-        sanitizedText = 'Wallet Address here';
+      document.addEventListener('deviceready', onDeviceReady, false);
+      var _self = this;
+      async function onDeviceReady () {
+        try {
+          let response = await fetch(link.href);
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, link.download);
+          document.body.removeChild(link);
+          //_self.generatedImg = null;
+          await _self.successmsg();
+        } catch (e) {
+          //console.error(e);
+        }
       }
-
-      return sanitizedText;
     },
     async generateImage() {
       this.generatedImg = canvas.toDataURL({
@@ -402,6 +412,8 @@ export default {
       canvas.width = 2480;
       canvas.height = 3508;//3400;
 
+      let scaleRatio = 1;
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height);
 
       await canvas.setBackgroundImage('static/print/bg/' + this.theme + '.png', canvas.renderAll.bind(canvas), {
         top: 0,
@@ -573,8 +585,8 @@ export default {
           });
       await canvas.add(textInfo);
 
-      //await canvas.setZoom(0.5);
-
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
 
       canvas.renderAll.bind(canvas);
       canvas.renderAll();
@@ -594,16 +606,20 @@ export default {
 
 #canvas-note38 {
   margin: 0 auto;
-  /*
   width: 100%;
   height: 100vh;
-  */
-  zoom: 0.16;
 }
 
 .canvas-container {
   max-width: 1000px !important;
   max-height: 1360px !important;
+}
+
+div.top-scrollbars {
+  transform: rotateX(180deg);
+}
+div.top-scrollbars * {
+  transform: rotateX(180deg);
 }
 
 </style>
