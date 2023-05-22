@@ -14,8 +14,8 @@
     <allow-navigation href="data:*" />
     <allow-navigation href="file://*" />
     <preference name="android-minSdkVersion" value="28" />
-    <preference name="android-targetSdkVersion" value="31" />
-    <preference name="android-compileSdkVersion" value="31" />
+    <preference name="android-targetSdkVersion" value="30" />
+    <preference name="android-compileSdkVersion" value="30" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
