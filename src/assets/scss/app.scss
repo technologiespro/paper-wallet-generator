@@ -1,0 +1,131 @@
+//Fonts
+@import "custom/fonts/fonts";
+
+//Core files
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "config/default/variables";
+@import "~bootstrap/scss/mixins";
+@import '~bootstrap/scss/bootstrap';
+@import "./bootstrap.scss";
+@import '~bootstrap-vue/src/index.scss';
+
+@import "config/default/variables-dark";
+@import './bootstrap-dark.scss';
+
+// Structure
+@import "custom/structure/general";
+@import "custom/structure/left-menu";
+@import "custom/structure/topbar";
+@import "custom/structure/page-head";
+@import "custom/structure/footer";
+@import "custom/structure/right-sidebar";
+@import "custom/structure/layouts";
+@import "custom/structure/horizontal-nav";
+@import "custom/structure/two-column-menu";
+
+//Components
+@import "custom/components/avatar";
+@import "custom/components/helper";
+@import "custom/components/social";
+@import "custom/components/widgets";
+@import "custom/components/custom-checkbox";
+@import "custom/components/custom-radio";
+@import "custom/components/ribbons";
+@import "custom/components/print";
+@import "custom/components/preloader";
+
+//Pages
+//@import "custom/pages/authentication";
+@import "custom/pages/components-demo";
+@import "custom/pages/error";
+//@import "custom/pages/logout";
+@import "custom/pages/faq";
+@import "custom/pages/maintenance";
+//@import "custom/pages/timeline";
+//@import "custom/pages/email";
+@import "custom/pages/sitemap";
+@import "custom/pages/search-results";
+@import "custom/pages/pricing";
+@import "custom/pages/coming-soon";
+//@import "custom/pages/profile";
+//@import "custom/pages/chat";
+//@import "custom/pages/task";
+//@import "custom/pages/kanbanboard";
+//@import "custom/pages/ecommerce";
+//@import "custom/pages/order-detail";
+
+// Plugins
+//@import "custom/plugins/apexcharts";
+@import "custom/plugins/ion-rangeslider";
+//@import "custom/plugins/calendar";
+//@import "custom/plugins/colorpicker";
+@import "custom/plugins/datatable";
+@import "custom/plugins/daterange";
+//@import "custom/plugins/form-wizard";
+@import "custom/plugins/select2";
+@import "custom/plugins/slimscroll";
+@import "custom/plugins/sweetalert";
+@import "custom/plugins/selectize";
+@import "custom/plugins/tippy";
+@import "custom/plugins/nestable-list";
+@import "custom/plugins/hopscotch";
+//@import "custom/plugins/chartjs";
+//@import "custom/plugins/chartist";
+@import "custom/plugins/c3";
+@import "custom/plugins/responsive-table";
+@import "custom/plugins/bootstrap-tables";
+@import "custom/plugins/multiple-select";
+@import "custom/plugins/autocomplete";
+@import "custom/plugins/bootstrap-select";
+@import "custom/plugins/bootstrap-touchspin";
+@import "custom/plugins/parsley";
+@import "custom/plugins/flatpickr";
+//@import "custom/plugins/quilljs-editor";
+//@import "custom/plugins/dropzone";
+//@import "custom/plugins/google-maps";
+//@import "custom/plugins/datepicker";
+@import "custom/plugins/dragula";
+@import "custom/plugins/switcher";
+//@import "custom/plugins/ck-editor";
+
+// icons
+@import "custom/plugins/icons";
+
+// RTL
+// @import "custom/rtl/general-rtl";
+// @import "custom/rtl/bootstrap-rtl";
+// @import "custom/rtl/spacing-rtl";
+// @import "custom/rtl/float-rtl";
+// @import "custom/rtl/text-rtl";
+// @import "custom/rtl/structure-rtl";
+// @import "custom/rtl/plugins-rtl";
+// @import "custom/rtl/components-rtl";
+// @import "custom/rtl/pages-rtl";\
+
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
+  }
+}
+
+::-webkit-scrollbar, -moz-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: #1b2532;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2fa0ba;
+  border: 1px solid #434a52;
+}
+
+h5 {
+  color: #fff;
+  border-bottom: solid 1px rgba(91, 95, 100, 0.41);
+}
+
+body {
+  background: #1b1b25; /** url(/static/bg-dark.png);**/
+  overflow-x: hidden;
+}

@@ -1,0 +1,53 @@
+//
+// c3.scss
+//
+@import '~c3/c3.css';
+
+.c3-tooltip {
+    box-shadow: $shadow-lg;
+    opacity: 1;
+
+    td {
+        border-left: none;
+        font-family: $font-family-secondary;
+
+        >span {
+            background: $dark;
+        }
+    }
+
+    tr {
+        border: none !important;
+    }
+
+    th {
+        background-color: $dark;
+        color: color-yiq($dark);
+    }
+}
+
+.c3-chart-arcs-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.c3 {
+    text {
+        font-family: $font-family-base;
+        fill: $dropdown-link-color;
+    }
+}
+
+.c3-legend-item {
+    font-family: $font-family-secondary;
+    font-size: 14px;
+}
+
+.c3 line,
+.c3 path {
+    stroke: $gray-400;
+}
+
+.c3-chart-arc.c3-target g path {
+    stroke: $white;
+}

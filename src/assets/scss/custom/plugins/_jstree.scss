@@ -1,0 +1,56 @@
+//
+// jstree.scss
+//
+
+.jstree-default {
+    .jstree-node,
+    .jstree-icon {
+        background-image: url("../images/plugins/jstree.png");
+    }
+    .jstree-node {
+        background-position: -292px -4px;
+        background-repeat: repeat-y;
+    }
+    
+    .jstree-themeicon-custom {
+        background-color: transparent;
+        background-image: none;
+        background-position: 0 0;
+    }
+    
+    .jstree-anchor {
+        line-height: 28px;
+        height: 28px;
+    }
+    
+    &>.jstree-container-ul .jstree-loading>.jstree-ocl {
+        background: url("../images/plugins/loading.gif") center center no-repeat;
+    }
+    
+    .jstree-icon:empty {
+        width: 24px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 15px;
+    }
+    
+    .jstree-clicked,
+    .jstree-wholerow-clicked {
+        background: rgba($primary, 0.1);
+        box-shadow: none;
+    }
+    
+    .jstree-hovered,
+    .jstree-wholerow-hovered {
+        background: rgba($primary, 0.15);
+        box-shadow: none;
+    }
+    
+    .jstree-last {
+        background: transparent;
+    }
+    
+    .jstree-wholerow {
+        height: 28px;
+    }
+}

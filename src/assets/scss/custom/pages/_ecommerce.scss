@@ -1,0 +1,58 @@
+// 
+// ecommerce.scss
+//
+
+.product-box {
+    position: relative;
+
+    .product-img{
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .product-action{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        transform: translateY(52px);
+        transition: all 0.4s;
+    }
+
+    &:hover{
+        .product-action{
+            transform: translateY(0);
+        }
+    }
+
+}
+
+.product-detail-carousel{
+    .product-nav-img{
+        display: block;
+        background-color: $light;
+    }
+
+    .product-carousel-indicators{
+        position: relative;
+        li{
+            width: auto;
+            height: auto;
+            min-width: 80px;
+            margin: 0px 7px;
+            padding: 4px;
+            border: 1px solid $gray-300;
+            border-radius: 4px;
+        }
+    }
+}
+
+// Product detail page
+.product-thumb {
+    padding: 3px;
+    margin-top: 3px;
+
+    &.active {
+        background-color: $gray-700 !important;
+    }
+}

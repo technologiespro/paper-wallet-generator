@@ -1,0 +1,202 @@
+// 
+// pages-rtl.scss
+//
+
+
+// taskboard
+.tasklist {
+    .checkbox {
+        margin-right: 20px;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+
+
+// email
+
+.inbox-leftbar {
+    float: right;
+    padding: 0 10px 20px 20px;
+
+    .mail-list {
+        i {
+            display: inline-block;
+        }
+    }
+
+    &:before {
+        border-left: 5px solid $body-bg;
+        border-right: 0;
+        left: -15px;
+        right: 0;
+        bottom: -1.5rem;
+    }
+}
+
+.inbox-rightbar {
+    margin: -1.5rem 250px -1.5rem 0;
+    border-right: 5px solid $body-bg;
+    border-left: 0;
+    padding: 1.5rem 25px 1.5rem 0;
+}
+
+.message-list {
+    display: block;
+    padding-right: 0;
+
+    li {
+        .col-mail {
+            float: right;
+        }
+
+        .col-mail-1 {
+            width: 320px;
+
+            .star-toggle,
+            .checkbox-wrapper-mail,
+            .dot {
+                float: right;
+            }
+
+            .checkbox-wrapper-mail {
+                margin: 15px 20px 0 10px;
+            }
+
+            .star-toggle {
+                margin-right: 10px;
+                margin-left: 0;
+            }
+
+            .title {
+                right: 100px;
+                left: 0;
+            }
+        }
+
+        .col-mail-2 {
+            right: 320px;
+            left: 0;
+
+            .subject {
+                right: 0;
+                left: 110px;
+            }
+
+            .date {
+                left: 0;
+                right: auto;
+                padding-right: 10px;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 648px) {
+    .inbox-rightbar {
+        margin-right: 0;
+        border: 0;
+        padding-right: 0;
+    }
+
+    .message-list {
+        li .col-mail-1 {
+            .checkbox-wrapper-mail {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 520px) {
+
+    .message-list li {
+        .col-mail-1 {
+            .title {
+                right: 80px;
+            }
+        }
+
+        .col-mail-2 {
+            right: 160px;
+
+            .date {
+                text-align: left;
+                padding-left: 10px;
+                padding-right: 20px;
+            }
+        }
+    }
+}
+
+
+// Sitemaps
+
+.sitemap {
+    ul {
+        margin-right: 1rem;
+        margin-left: 0;
+
+        li {
+
+            a {
+                margin-left: 0;
+                margin-right: 2.75rem;
+            }
+
+            &:before {
+                border-left: transparent;
+                border-right: 1px solid rgba(152, 166, 173, 0.5);
+            }
+        }
+    }
+}
+
+
+// FAQ
+
+.faq-question-q-box {
+    float: right;
+}
+
+.faq-question {
+    margin-left: 0;
+    margin-right: 50px;
+}
+
+.faq-answer {
+    margin-left: 0;
+    margin-right: 50px;
+}
+
+
+// Task
+
+.task-item {
+    padding-right: 12px;
+    padding-left: 0;
+
+    &:before {
+        right: 0;
+        left: auto;
+    }
+}
+
+// Gallary Thumb
+.gal-box {
+
+    .gall-info {
+
+        .gal-like-btn {
+            left: 15px;
+            right: auto;
+        }
+    }
+}
+
+// Chat
+.user-status {
+    right: 30px;
+    left: auto;
+}

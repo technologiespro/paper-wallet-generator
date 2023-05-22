@@ -1,0 +1,41 @@
+//
+// reboot.scss
+//
+
+body {
+    &.loading {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+// Forms
+label {
+    font-weight: $label-font-weight;
+}
+
+
+button:focus {
+    outline: none;
+}
+
+b,
+strong {
+    font-weight: $font-weight-medium;
+}
+
+
+// blockquote
+
+.blockquote {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid $gray-300;
+    font-size: 16px;
+
+    &.blockquote-reverse {
+        border-left: 0;
+        border-right: 4px solid $gray-300;
+        text-align: right;
+    }
+}

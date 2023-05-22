@@ -1,0 +1,50 @@
+// 
+// kanbanboard.scss
+//
+
+.tasklist {
+    min-height: 40px;
+    margin-bottom: 0;
+
+    li {
+        background-color: lighten($card-bg, 2%);
+        border: 1px solid $gray-300;
+        border-left-width: 2px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 3px;
+        box-shadow: $components-shadow;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .btn-sm {
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+
+        &.task-medium {
+            border-left-color: $warning;
+        }
+        
+        &.task-low {
+            border-left-color: $success;
+        }
+        
+        &.task-high {
+            border-left-color: $danger;
+        }
+    }
+
+    .checkbox {
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+}
+
+.task-placeholder {
+    border: 1px dashed $gray-300 !important;
+    background-color: $gray-100 !important;
+    padding: 20px;
+}

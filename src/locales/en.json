@@ -1,6 +1,6 @@
 {
   "explorer": "Block explorer",
-  "download_wallet": "Download wallet",
+  "download_wallet": "Download APP",
   "demo": "This is a demo web version of the application, to create secure addresses, download the application here",
   "import": {
     "open": "Open Your Wallet",
@@ -9,6 +9,8 @@
     "wait": "Wait for the import/tx rescan to complete & then restart the wallet"
   },
   "wallet": {
+    "success": "Success",
+    "success_download": "The paper wallet is saved on your device, take care of keeping the private key secret",
     "decrypt": "Decrypt",
     "password": "password",
     "many_info": "Comma Separated Values: Index,Address,Private Key",
@@ -21,6 +23,7 @@
     "single_wallet": "Single Wallet",
     "paper_wallet": "Paper Wallet",
     "bulk_wallet": "Bulk Wallet",
+    "bulk_wallet_mobile": "Bulk",
     "warn": "DO NOT REVEAL or SHARE THIS KEY with anyone. These key/words provide complete access to funds stored on this wallet.",
     "info_public": "You can send your funds to the above address.",
     "new_address": "New Address",

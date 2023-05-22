@@ -1,0 +1,50 @@
+//
+// clockpicker.scss
+//
+
+.clockpicker-popover {
+    .btn-default {
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+.clockpicker-popover {
+    background: $dropdown-bg;
+    box-shadow: $shadow;
+    border: 1px solid $dropdown-border-color;
+    .popover-title {
+        background-color: transparent;
+        font-weight: $font-weight-medium;
+    }
+
+    .clockpicker-plate {
+        background: $dropdown-link-hover-bg;
+        border: 1px solid $dropdown-border-color;
+    }
+
+    .popover-content {
+        background-color: transparent;
+    }
+}
+
+.clockpicker-tick {
+    color: $dropdown-link-color;
+
+    &:hover {
+        background-color: rgba($primary,0.35);
+    }
+}
+
+.clockpicker-canvas line {
+    stroke: $primary;
+}
+
+.clockpicker-canvas-bg {
+    fill: rgba($primary,0.35);
+}
+
+.clockpicker-canvas-bearing, 
+.clockpicker-canvas-fg {
+    fill: $primary;
+}

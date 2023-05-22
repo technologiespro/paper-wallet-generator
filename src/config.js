@@ -1,5 +1,5 @@
 exports.settings = {
-    "isWeb": true
+    "isWeb": false, //поменять при компиляции на false
 }
 
 exports.coins = {
@@ -297,7 +297,7 @@ exports.coins = {
         trade: "https://ex.xbts.io/market/XBTSX.ONION_BTS",
         explorer:"https://chainz.cryptoid.info/onion/",
         bip38: true,
-        brainWallet: true,
+        brainWallet: true
     },
     "emc": {
         ticker: "EMC",
@@ -376,20 +376,6 @@ exports.coins = {
         bip38: true,
         brainWallet: true,
     },
-    /*
-    "pot": {
-        ticker: "POT",
-        title: "Potcoin",
-        logo: "static/coins/pot.png",
-        public: 0x37,
-        private: 0xb7,
-        generator: 'btcGenerator',
-        downloadWallet: 'https://www.potcoin.com/wallets',
-        explorer: "https://chainz.cryptoid.info/pot/",
-        bip38: true,
-        brainWallet: true,
-    },
-     */
     "rdd": {
         ticker: "RDD",
         title: "ReddCoin",
@@ -428,16 +414,16 @@ exports.coins = {
         bip38: true,
         brainWallet: true,
     },
-    "bccx": {
-        ticker: "BCCX",
-        title: "BCCX",
-        logo: "static/coins/bccx.png",
+    "xccx": {
+        ticker: "XCCX",
+        title: "BlockChainCoinX",
+        logo: "static/coins/xccx.png",
         public: 0x4b,
         private: 0xcb,
         generator: 'btcGenerator',
-        downloadWallet: 'https://www.thebitconnectcoincommunity.com',
+        downloadWallet: 'https://BlockChainCoin.dev',
         trade: "https://ex.xbts.io/market/XBTSX.BCCX_BTS",
-        explorer: "https://chainz.cryptoid.info/bccx/",
+        explorer: "https://chainz.cryptoid.info/xccx/",
         bip38: true,
         brainWallet: true,
     },
@@ -459,7 +445,7 @@ exports.coins = {
         public: 0x26,
         private: 0x2e,
         generator: 'btcGenerator',
-        downloadWallet: 'http://www.guapcoin.org/',
+        downloadWallet: "http://www.guapcoin.org",
         trade: "https://ex.xbts.io/market/XBTSX.GUAP_BTS",
         explorer: "https://guapexplorer.com/",
         bip38: true,
@@ -489,22 +475,9 @@ exports.coins = {
         explorer: "https://chainz.cryptoid.info/block/",
         bip38: false,
     },
-    /*
-    "dem": {
-        ticker: "DEM",
-        title: "Deutsche eMark",
-        logo: "static/coins/dem.png",
-        public: 0x35,
-        private: 0xb5,
-        generator: 'btcGenerator',
-        downloadWallet: 'https://github.com/emarkproject/eMark',
-        bip38: true,
-        brainWallet: true,
-    },
-     */
     "aur": {
         ticker: "AUR",
-        title: "Aurora Coin",
+        title: "AuroraCoin",
         logo: "static/coins/aur.png",
         public: 23,
         private: 176,
@@ -516,57 +489,20 @@ exports.coins = {
         defi: "",
         explorer: "https://chainz.cryptoid.info/aur/",
     },
-    /*
-    "prux": {
-        title: "PRUX",
-        logo: "static/coins/prux.png",
-        public: 0x37,
-        private: 0xb7,
+    "rxd": {
+        ticker: "RXD",
+        title: "Radiant",
+        logo: "static/coins/rxd.png",
+        public: 0x0,
+        private: 0x80,
         generator: 'btcGenerator',
-        downloadWallet: 'https://prux.info/',
+        downloadWallet: 'https://samara.app',
+        trade: "https://ex.xbts.io/market/XBTSX.RXD_XBTSX.USDT",
+        defi: false,
+        explorer: "https://explorer.radiantblockchain.org",
+        bip38: true,
+        brainWallet: true,
     },
-    "nobt": {
-        title: "NobtCoin",
-        logo: "static/coins/nobt.png",
-        public: 0xf,
-        private: 0x55,
-        generator: 'btcGenerator',
-        downloadWallet: 'https://github.com/nobtcoin/Nobtcoin/releases',
-    },
-     */
-    /*
-   "steep": {
-       title: "SteepCoin",
-       logo: "static/coins/steep.png",
-       public: 0x7d,
-       private: 0xfd,
-       generator: 'btcGenerator',
-       downloadWallet: 'https://steepcoin.org/en',
-   },
-    */
-    /*
-   "lsk": {
-       title: "Lisk",
-       logo: "static/coins/lisk.png",
-       public: null,
-       private: null,
-       generator: 'liskGenerator',
-       downloadWallet: 'https://lisk.io',
-   },
-    */
-    /*
-    "ark": {
-        title: "Ark",
-        logo: "static/coins/ark.png",
-        public: 0x17,
-        private: 0xaa,
-        generator: 'sthGenerator',
-        downloadWallet: 'https://ark.io/wallet',
-        explorer: "https://explorer.ark.io",
-        bip38: false,
-        bip39: true
-    },
-     */
 }
 
 exports.templates = {

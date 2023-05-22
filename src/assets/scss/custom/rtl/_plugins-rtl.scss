@@ -1,0 +1,230 @@
+// 
+// plugins-rtl.scss
+//
+
+// date-picker
+
+.mx-icon-calendar {
+    left: 10px !important;
+    right: auto !important;
+}
+
+// Nestable-list
+
+.dd-item {
+    >button {
+        float: right;
+    }
+
+    .dd-list {
+        padding-right: 30px;
+        padding-left: 0;
+    }
+}
+
+.dd-list {
+    .dd3-handle {
+        float: right;
+    }
+}
+
+
+// Select 2
+
+.select2-container {
+    .select2-selection--single {
+        .select2-selection__rendered {
+            padding-right: 12px;
+        }
+
+        .select2-selection__arrow {
+            left: 3px;
+            right: auto;
+        }
+    }
+
+    .select2-selection--multiple {
+        .select2-selection__choice {
+            float: right;
+            margin-left: 5px;
+            margin-right: 0;
+        }
+    }
+
+    .select2-search__field {
+        text-align: right;
+    }
+
+    .select2-search--inline {
+        float: right;
+    }
+}
+
+
+// Multiple select
+
+.ms-container {
+    .ms-optgroup-label {
+        padding: 5px 5px 0px 0;
+    }
+}
+
+
+// Bootstrap select
+
+.bootstrap-select {
+    .dropdown-toggle {
+        &:before {
+            float: left;
+        }
+
+        .filter-option {
+            text-align: right;
+        }
+
+        .filter-option-inner {
+            padding-right: 0;
+            padding-left: inherit;
+        }
+    }
+}
+
+
+// Parsley
+
+.parsley-errors-list {
+    >li {
+        padding-left: 0;
+        padding-right: 20px;
+
+        &:before {
+            left: auto;
+            right: 2px;
+        }
+    }
+}
+
+
+// Quilljs
+
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
+    left: 0;
+    right: auto;
+}
+
+.ql-editor {
+    direction: rtl;
+    text-align: right;
+}
+
+// range-slider
+
+.vue-slide-bar-separate {
+    direction: ltr;
+}
+
+// ck-editor
+
+.ck.ck-toolbar>.ck-toolbar__items {
+    flex-direction: row-reverse !important;
+}
+
+.ck.ck-editor__editable_inline {
+    text-align: right !important;
+}
+
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_ne,
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
+    right: 0;
+    left: auto !important;
+}
+
+// Datatables
+div.dataTables_wrapper div.dataTables_filter {
+    float: left;
+
+    input {
+        margin: 0 5px 0 0;
+    }
+}
+
+// Bootstrap select
+
+.bootstrap-select {
+    .dropdown-toggle {
+        &:after {
+            padding-left: 0;
+            padding-right: 10px;
+        }
+    }
+}
+
+// responsive-table
+
+.responsive-table-plugin {
+    .checkbox-row {
+        padding-right: 40px;
+        padding-left: 0;
+
+        label {
+            padding-right: 15px;
+            padding-left: 0;
+
+            &::before {
+                right: 0;
+                left: auto;
+                margin-left: 0;
+                margin-right: -10px;
+            }
+
+            &::after {
+                left: auto;
+                right: 0;
+                margin-left: 0;
+                margin-right: -9px;
+                padding-right: 3px;
+            }
+        }
+
+    }
+
+    .btn-group {
+        &.pull-right {
+            float: left;
+
+            .dropdown-menu {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+}
+
+//bootstrap Tables
+
+.bootstrap-table {
+    .fixed-table-toolbar {
+        .columns-right {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+    }
+}
+
+
+//
+// form-wizard
+//
+
+.form-wizard-header {
+    .nav-item{
+        text-align: right;
+
+        .nav-link{
+            .number{
+                margin-left: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+}

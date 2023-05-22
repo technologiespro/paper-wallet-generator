@@ -1,39 +1,45 @@
 <template>
   <div class="w-100">
-    <div class="button-list">
-      <b-button :disabled="!account.address" @click="saveImage" class="btn-soft-primary text-uppercase"><i
-          class="fe-download"></i></b-button>
-      <b-button :disabled="!account.address" @click="walletPrint" class="btn-soft-primary text-uppercase"><i
-          class="fe-printer"></i>
-      </b-button>
-      <b-button :disabled="!key" @click="loadAddress" class="btn-secondary text-uppercase">{{ $t('wallet.decrypt') }}
-      </b-button>
-
-      <select class="form-control float-left bg-pattern text-white" v-model="theme" style="width:220px;">
+    <div class="button-list mb-1">
+      <select class="form-control float-left bg-pattern text-white" v-model="theme" :style="this.$root.isMobile ? 'width:128px;' : 'width:200px;'">
         <option v-for="(item, idx) in themes" :value="item">{{ templates[$i18n.locale][idx] }}</option>
       </select>
 
+      <b-button :disabled="!key" @click="loadAddress" class="btn-secondary text-uppercase"><i class="fe-check"></i> {{ $t('wallet.decrypt') }}
+      </b-button>
+
+      <b-button :disabled="!account.address" @click="saveImage" class="btn-soft-primary text-uppercase"><i
+          class="fe-download"></i> PNG</b-button>
+
+      <b-button :disabled="!account.address" @click="saveText" class="btn-soft-primary text-uppercase"><i class="fe-download"></i>
+        Json
+      </b-button>
+
+      <b-button v-show="!$root.isMobile" :disabled="!account.address" @click="walletPrint" class="btn-soft-primary text-uppercase"><i
+          class="fe-printer"></i>
+      </b-button>
+
       <input v-model="key" @change= "changeKey" @input="changeKey" :placeholder="'private key or' " type="text" class="form-control float-left ml-1"
-             style="width: 300px;"/>
+             style="width: 300px;" :class="this.$root.isMobile ? 'w-100' : ''"/>
       <input v-show="isBip38" v-model="password" :placeholder="'BIP38 ' + $t('wallet.password')" type="text"
              class="form-control float-left ml-1" style="width: 150px;"/>
     </div>
-    <div class="w-100 float-left text-white mt-2" v-if="account.privateKey">
-      <span class="badge badge-success font-14 font-weight-normal"><i class="ri-wallet-line"></i> {{account.address}}</span>
-      <span v-show="account.wif !== account.privateKey" class="ml-2 badge badge-danger font-14 font-weight-normal"><i class="ri-key-2-line"></i> {{account.wif}}</span>
+
+
+    <p>{{this.w}}x{{this.h}}px (A4)</p>
+    <div v-if="generatedImg">
+      <img class="w-100" :src="generatedImg"/>
     </div>
-    <hr/>
-    <atom-spinner
-        class="position-absolute"
-        v-show="spinner"
-        :animation-duration="1000"
-        :size="60"
-        :color="'#ff1d5e'"
-    />
-    <div v-show="account.privateKey">
 
-
-      <canvas @click="zoom = !zoom" id="canvas-note-load" ref="can" width="2480" height="3508" class="mt-4" :class="zoom ? 'zoom-max': 'zoom-min'"></canvas>
+    <div v-if="account" class="top-scrollbars" :style="this.$root.w > this.w ? 'max-width: 1200px;overflow-x:scroll' : 'overflow-x:auto'">
+      <atom-spinner
+          class="position-absolute"
+          v-show="spinner"
+          :animation-duration="1000"
+          :size="60"
+          :color="'#ff1d5e'"
+      />
+      <canvas :style="generatedImg ? 'display:none;' : 'display:block;'" @click="ZoomInOut" id="canvas-note-load" ref="can" :width="this.$root.w" :height="this.$root.h" class="mt-4" :class="zoom ? 'zoom-max': 'zoom-min'"></canvas>
       <VueQrcode v-if="account.address" id="qrPublicLoad"
                  :options="{size:340, backgroundAlpha: 0.0, foreground: '#000', level: 'H'}"
                  :value="account.address" class="qr-note"/>
@@ -58,7 +64,6 @@
         <p>Если у вас нет четкого понимания рабочего процесса шифрования и дешифрования BIP38, не шифруйте BIP38 свой бумажный кошелек. Просто распечатайте свой бумажный кошелек без шифрования и храните его в безопасности так же, как драгоценности или наличные деньги.</p>
       </div>
     </div>
-
     <!-- english -->
     <div v-else>
       <div v-show="isBip38" class="text-white">
@@ -89,6 +94,7 @@ const wif = require('wif');
 import printJS from 'print-js';
 import {AtomSpinner} from 'epic-spinners';
 import eventBus from '@/plugins/event-bus'
+import Swal from "sweetalert2";
 let canvas = null
 
 export default {
@@ -117,6 +123,8 @@ export default {
       jsonData: null,
       templates: templates,
       zoom: false,
+      w: 2480,
+      h: 3508,
     }
   },
 
@@ -150,6 +158,14 @@ export default {
      */
   },
   methods: {
+    async successmsg() {
+      await Swal.fire({
+        title: this.$t('wallet.success'),
+        text: this.$t('wallet.success_download'),
+        type: "success",
+        confirmButtonClass: "btn btn-confirm mt-2",
+      });
+    },
     async loadAddress() {
       await this.loading();
     },
@@ -162,6 +178,7 @@ export default {
       return (/^6P[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{56}$/.test(key));
     },
     async loading() {
+
       this.account = {
         address: '',
         wif: '',
@@ -213,6 +230,23 @@ export default {
     async saveText() {
       this.account.password = this.password;
       this.jsonData = JSON.stringify(this.account);
+
+      var _self = this;
+      document.addEventListener('deviceready', onDeviceReady, false);
+      async function onDeviceReady () {
+        try {
+          let response = await fetch('data:text/plain;charset=utf-8,' + encodeURIComponent(_self.jsonData));
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, _self.$route.params['id'].toUpperCase() + '-' + _self.account.address + ".json");
+          //document.body.removeChild(link);
+          //_self.generatedImg = null;
+          //await _self.successmsg();
+        } catch (e) {
+          //alert(e)
+          //console.error(e);
+        }
+      }
+
       const blob = new Blob([this.jsonData], {type: 'text/plain'})
       const e = document.createEvent('MouseEvents'),
           a = document.createElement('a');
@@ -236,6 +270,10 @@ export default {
       a.dispatchEvent(e);
     },
     async walletPrint() {
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
       this.generatedImg = canvas.toDataURL({
         format: "png",
         left: 0,
@@ -243,17 +281,19 @@ export default {
         width: canvas.width,
         height: canvas.height,
       });
-      printJS(this.generatedImg, 'image')
+      printJS(this.generatedImg, 'image');
+
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
 
     },
     async saveImage() {
-      /*
-      await canvas.setZoom(1);
-      canvas.setWidth(1387 * canvas.getZoom());
-      canvas.setHeight(589 * canvas.getZoom());
-      canvas.renderAll.bind(canvas);
-      canvas.renderAll();
-       */
+      let scaleRatio = 1;
+      await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+
       this.generatedImg = canvas.toDataURL({
         format: "png",
         left: 0,
@@ -261,39 +301,33 @@ export default {
         width: canvas.width,
         height: canvas.height,
       });
-
-
       const link = document.createElement('a');
       link.download = this.$route.params['id'].toUpperCase() + '-' + this.account.address + '.png';
       link.href = this.generatedImg;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      //this.generatedImg.print();
 
-      //await canvas.setZoom(0.86);
-    },
-    async sanitizeText(value) {
-      let sanitizedText = value
-          .trim()
-          .replace(/'''/g, '\u2034')                                                   // triple prime
-          .replace(/(\W|^)"(\S)/g, '$1\u201c$2')                                       // beginning "
-          .replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g, '$1\u201d$2')          // ending "
-          .replace(/([^0-9])"/g, '$1\u201d')                                            // remaining " at end of word
-          .replace(/''/g, '\u2033')                                                    // double prime
-          .replace(/(\W|^)'(\S)/g, '$1\u2018$2')                                       // beginning '
-          .replace(/([a-z])'([a-z])/ig, '$1\u2019$2')                                  // conjunction's possession
-          .replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/ig, '$1\u2019$3')                 // ending '
-          .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/ig, '\u2019$2$3')     // abbrev. years like '93
-          .replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/ig, '$1\u2019') // backwards apostrophe
-          .replace(/'/g, '\u2032');
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height)
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
 
-      // default text
-      if (sanitizedText.length === 0) {
-        sanitizedText = 'Wallet Address here';
+
+      document.addEventListener('deviceready', onDeviceReady, false);
+      var _self = this;
+      async function onDeviceReady () {
+        try {
+          let response = await fetch(link.href);
+          let blob = await response.blob();
+          let uri = await cordova.plugins.saveDialog.saveFile(blob, link.download);
+          document.body.removeChild(link);
+          //_self.generatedImg = null;
+          await _self.successmsg();
+        } catch (e) {
+          //console.error(e);
+        }
       }
-
-      return sanitizedText;
     },
     async generateImage() {
       this.generatedImg = canvas.toDataURL({
@@ -305,6 +339,25 @@ export default {
       });
 
     },
+    async ZoomInOut() {
+      if (this.$root.isMobile) {
+        return;
+      }
+      this.zoom = !this.zoom;
+      let scaleRatio = 1;
+      if (this.zoom) {
+        await canvas.setDimensions({ width: this.w * scaleRatio, height: this.h * scaleRatio });
+      } else {
+        if (this.$root.w > this.$root.h) {
+          scaleRatio = Math.min((this.$root.h - 12)/canvas.width, this.$root.w/canvas.height);
+        } else {
+          scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height);
+        }
+        await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      }
+      await canvas.setZoom(scaleRatio);
+      canvas.renderAll.bind(canvas);
+    },
     async generate() {
       if (canvas) {
         canvas.dispose();
@@ -314,6 +367,8 @@ export default {
       canvas = new fabric.StaticCanvas(ref);
       canvas.width = 2480;
       canvas.height = 3508;//3400;
+      let scaleRatio = 1;
+      scaleRatio = Math.min((this.$root.w - 12)/canvas.width, this.$root.h/canvas.height);
 
       await canvas.setBackgroundImage('static/print/bg/' + this.theme + '.png', canvas.renderAll.bind(canvas), {
         top: 0,
@@ -367,7 +422,6 @@ export default {
         address.fontSize *= address.fixedWidth / (address.width + 1);
         address.width = address.fixedWidth;
       }
-      //address.setText(await this.sanitizeText(this.account.address));
       await canvas.add(address);
 
       let textPub = new fabric.Textbox(this.$i18n.t('wallet.paper_public', {ticker: this.coin.title}), {
@@ -463,7 +517,6 @@ export default {
         key.fontSize *= key.fixedWidth / (key.width + 1);
         key.width = key.fixedWidth;
       }
-      //address.setText(await this.sanitizeText(this.account.address));
       await canvas.add(key);
 
       let textInfo = new fabric.Textbox(
@@ -485,8 +538,8 @@ export default {
           });
       await canvas.add(textInfo);
 
-      //await canvas.setZoom(0.5);
-
+      await canvas.setDimensions({ width: canvas.getWidth() * scaleRatio, height: canvas.getHeight() * scaleRatio });
+      await canvas.setZoom(scaleRatio);
 
       canvas.renderAll.bind(canvas);
       canvas.renderAll();
@@ -506,12 +559,8 @@ export default {
 
 #canvas-note-load {
   margin: 0 auto;
-  /*
   width: 100%;
   height: 100vh;
-  */
-  zoom: 0.16;
-  /* display:none;*/
 }
 
 #canvas-note-load:hover {
@@ -523,4 +572,10 @@ export default {
   max-height: 1360px !important;
 }
 
+div.top-scrollbars {
+  transform: rotateX(180deg);
+}
+div.top-scrollbars * {
+  transform: rotateX(180deg);
+}
 </style>

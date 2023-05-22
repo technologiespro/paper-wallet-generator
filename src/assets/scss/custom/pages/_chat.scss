@@ -1,0 +1,43 @@
+// 
+// chat.scss
+//
+
+.chat-app-conversation {
+  .conversation-text {
+    font-size: $font-size-base;
+
+    .ctext-wrap {
+      i {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+
+.conversation-list {
+  min-height: 450px;
+}
+
+.user-status {
+  position: absolute;
+  height: 13px;
+  width: 13px;
+  background-color: $gray-400;
+  border: 2.5px solid $card-bg;
+  border-radius: 50%;
+  bottom: 0;
+  left: 30px;
+
+  &.online {
+    background-color: $green;
+  }
+
+  &.busy {
+    background-color: $yellow;
+  }
+
+  &.do-not-disturb {
+    background-color: $red;
+  }
+}

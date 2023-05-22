@@ -1,0 +1,42 @@
+//
+// ricksaw.scss
+//
+ 
+#legend {
+    background: white;
+    position: absolute;
+    top: 0;
+    right: 15px;
+
+    .line {
+        color: $dark;
+    }
+}
+
+.rickshaw_graph {
+    svg {
+        max-width: 100%;
+    }
+}
+
+.rickshaw_legend {
+    .label {
+        font-family: inherit;
+        letter-spacing: 0.01em;
+        font-weight: 600;
+    }
+}
+
+.rickshaw_graph {
+    .detail .item, 
+    .detail .x_label, 
+    .x_tick .title {
+        font-family: $font-family-base;
+    }
+}
+
+.gauge-chart {
+    text {
+        font-family: $font-family-base !important;
+    }
+}

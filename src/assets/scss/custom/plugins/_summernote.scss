@@ -1,0 +1,105 @@
+//
+// summernote.scss
+//
+
+@font-face {
+    font-family: "summernote";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/summernote.eot");
+    src: url("../fonts/summernote.eot?#iefix") format("embedded-opentype"), url("../fonts/summernote.woff?") format("woff"), url("../fonts/summernote.ttf?") format("truetype")
+}
+
+.note-editor {
+    &.note-frame {
+        border: 1px solid $input-border-color;
+        box-shadow: $components-shadow-sm;
+        margin: 0;
+
+        .note-statusbar {
+            background-color: lighten($gray-200, 2%);
+            border-top: 1px solid $gray-200;
+        }
+
+        .note-editable {
+            border: none;
+            background-color: $input-bg !important;
+            color: $input-color !important;
+        }
+    }
+
+    .note-dropzone {
+        color: $gray-800 !important;
+        background-color: lighten($gray-200, 2%);
+    }
+}
+
+.note-status-output {
+    display: none;
+}
+
+.note-placeholder {
+    color: $input-placeholder-color;
+}
+
+.note-editable {
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    padding: $input-padding-y $input-padding-x !important;
+    background-color: $input-bg !important;
+    color: $input-color !important;
+    box-shadow: $components-shadow-sm;
+
+    p {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.note-popover .popover-content .note-color .dropdown-menu,
+.card-header.note-toolbar .note-color .dropdown-menu {
+    min-width: 344px;
+}
+
+.note-toolbar {
+    z-index: 1;
+    padding: 3px 3px 8px 8px !important;
+    background-color: $light;
+
+    .note-btn {
+        background: $light;
+        border-color: $light;
+        padding: .28rem .65rem;
+        font-size: 13px;
+    }
+}
+
+.note-color-all {
+    .note-btn.dropdown-toggle {
+        width: 30px !important;
+
+        &:before {
+            content: "\F035D";
+            font: normal normal normal 24px/1 "Material Design Icons";
+            position: absolute;
+            left: 2px;
+            top: 3px;
+        }
+    }
+}
+
+.note-hint-popover .popover-content {
+    .note-hint-group {
+        .note-hint-item{
+            &.active, &:hover {
+                background-color: $primary;
+            }
+        }
+    }
+}
+
+.note-editor.note-airframe .note-placeholder,
+.note-editor.note-frame .note-placeholder {
+    padding-left: $input-padding-x;
+}
