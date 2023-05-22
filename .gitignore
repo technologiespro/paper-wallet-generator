@@ -3,7 +3,6 @@ test
 node_modules
 /dist
 
-
 # local env files
 .env.local
 .env.*.local
@@ -25,3 +24,7 @@ pnpm-debug.log*
 
 #Electron-builder output
 /dist_electron
+# Cordova
+/src-cordova/platforms
+/src-cordova/plugins
+/public/cordova.js

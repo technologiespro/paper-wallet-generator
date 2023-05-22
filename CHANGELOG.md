@@ -10,6 +10,8 @@ v.2.0.2
 - Load wallet - get wallet by private PASSWD/KEY/BIP38/BIP39/WIF
 - add isBIP38Format validator on decryption
 - add RTM Raptoreum coin
+- Mobile optimization
+- Add copy in clipboard
 
 v.2.0.0
 

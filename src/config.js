@@ -1,5 +1,5 @@
 exports.settings = {
-    "isWeb": false, //поменять при компиляции на false
+    "isWeb": false, //поменять при компиляции electron, android на false
 }
 
 exports.coins = {
@@ -138,7 +138,7 @@ exports.coins = {
         private: 0x80,
         scripthash: 0x32,
         generator: 'btcGenerator',
-        downloadWallet: 'https://qtum.org/',
+        downloadWallet: 'https://qtum.org',
         trade: "",
         defi: "",
         explorer: "https://qtum.info/",
@@ -266,7 +266,7 @@ exports.coins = {
         public: 0x0,
         private: 0x80,
         generator: 'bchGenerator',
-        downloadWallet: 'https://www.bitcoincash.org/',
+        downloadWallet: 'https://www.bitcoincash.org',
         trade: "https://ex.xbts.io/market/XBTSX.BCH_BTS",
         explorer: "https://btc.com/bch",
         bip38: false,
@@ -471,7 +471,7 @@ exports.coins = {
         public: 0x1a,
         private: 0x9a,
         generator: 'btcGenerator',
-        downloadWallet: 'https://blocknet.co',
+        downloadWallet: 'https://blocknet.org',
         explorer: "https://chainz.cryptoid.info/block/",
         bip38: false,
     },
@@ -639,10 +639,6 @@ exports.info = {
     "NVC": {
         "title": "Novacoin",
         "text": "Novacoin (NVC) is a cryptocurrency. Users are able to generate NVC through the process of mining.",
-    },
-    "42": {
-        "title": "42-Coin",
-        "text": "42-coin (42) is a cryptocurrency. Users are able to generate 42 through the process of mining. 42-coin has a current supply of 42.",
     },
     "NMC": {
         "title": "Namecoin",
