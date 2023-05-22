@@ -1,4 +1,4 @@
-# Paper Wallet Generator for Bitcoin &amp; Alt coins V2
+# Paper Wallet Generator for Bitcoin &amp; Alt coins v2
 
 [![paper-wallet-generator](https://snapcraft.io//paper-wallet-generator/badge.svg)](https://snapcraft.io/paper-wallet-generator)
 
