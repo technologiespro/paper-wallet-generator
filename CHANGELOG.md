@@ -1,3 +1,6 @@
+v.2.0.25
+- add Radiant (RXD)
+
 v.2.0.2
 - wallet templates for print
 - generate single wallet
