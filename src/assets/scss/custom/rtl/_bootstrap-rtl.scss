@@ -1,0 +1,225 @@
+// 
+// bootstrap-rtl.scss
+//
+
+
+// Card
+
+.card-widgets {
+    float: left;
+}
+
+
+// Dropdowns
+
+.dropdown-menu {
+    text-align: right;
+    left: auto !important;
+    right: 0;
+    bottom: auto;
+
+    &.dropdown-megamenu {
+        background-image: none;
+        left: 20px !important;
+        right: 20px !important;
+    }
+}
+
+.dropdown-menu-right {
+    right: auto !important;
+    left: 0 !important;
+}
+
+.megamenu-list {
+    li {
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+    }
+}
+
+// List
+
+ul {
+    padding-right: 0;
+}
+
+
+// Buttons
+
+.btn-label {
+    margin: -.55rem -.9rem -.55rem .9rem;
+}
+
+.btn-label-right {
+    margin: (-$btn-padding-y) ($btn-padding-x) (-$btn-padding-y) (-$btn-padding-x);
+}
+
+.btn-group,
+.btn-group-vertical {
+    direction: ltr;
+}
+
+
+// Modal
+
+.modal-header {
+    .close {
+        float: left;
+        margin: -1rem auto -1rem -1rem;
+    }
+}
+
+.modal-footer {
+    > :not(:first-child) {
+        margin-right: .25rem;
+        margin-left: 0;
+    }
+
+    > :not(:last-child) {
+        margin-left: .25rem;
+        margin-right: 0;
+    }
+}
+
+
+// Alerts
+
+.alert-dismissible {
+    padding-left: $close-font-size + $alert-padding-x * 2;
+    padding-right: $alert-padding-x;
+
+    .close {
+        left: 0;
+        right: auto;
+    }
+}
+
+
+// Breadcrumb item arrow
+
+.breadcrumb-item {
+    +.breadcrumb-item {
+        &::before {
+            padding-left: $breadcrumb-item-padding;
+            content: "\F0141";
+        }
+    }
+}
+
+// Custom Checkbox-Radio 
+
+.custom-control {
+    padding-right: $custom-control-gutter + $custom-control-indicator-size;
+    padding-left: 0;
+}
+
+.custom-control-label {
+    &::before {
+        left: auto;
+        right: -($custom-control-gutter + $custom-control-indicator-size);
+    }
+
+    // Foreground (icon)
+    &::after {
+        left: auto;
+        right: -($custom-control-gutter + $custom-control-indicator-size);
+    }
+}
+
+.custom-switch {
+    padding-right: $custom-switch-width + $custom-control-gutter;
+    padding-left: 0;
+
+    .custom-control-label {
+        &::before {
+            right: -($custom-switch-width + $custom-control-gutter);
+            left: auto;
+        }
+
+        &::after {
+            right: calc(#{-($custom-switch-width + $custom-control-gutter)} + #{$custom-control-indicator-border-width * 2});
+            left: auto;
+        }
+    }
+
+    .custom-control-input:checked~.custom-control-label {
+        &::after {
+            transform: translateX(#{-($custom-switch-width - $custom-control-indicator-size)});
+        }
+    }
+}
+
+.custom-file-label {
+    &::after {
+        right: auto;
+        left: 0;
+        border-right: inherit;
+    }
+}
+
+.custom-control-inline {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+// 
+// accordions.scss
+//
+
+.custom-accordion {
+    .accordion-arrow {
+        left: 0;
+        right: auto;
+    }
+}
+
+
+
+// Input Group
+
+.input-group-prepend {
+    margin-left: -1px;
+    margin-right: 0;
+}
+
+.input-group-append {
+    margin-right: -1px;
+    margin-left: 0;
+}
+
+.input-group>.input-group-prepend>.btn,
+.input-group>.input-group-prepend>.input-group-text,
+.input-group>.input-group-append:not(:last-child)>.btn,
+.input-group>.input-group-append:not(:last-child)>.input-group-text,
+.input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle),
+.input-group>.input-group-append:last-child>.input-group-text:not(:last-child),
+.input-group>.custom-select:not(:last-child),
+.input-group>.form-control:not(:last-child) {
+    border-top-right-radius: $input-border-radius;
+    border-bottom-right-radius: $input-border-radius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group>.input-group-append>.btn,
+.input-group>.input-group-append>.input-group-text,
+.input-group>.input-group-prepend:not(:first-child)>.btn,
+.input-group>.input-group-prepend:not(:first-child)>.input-group-text,
+.input-group>.input-group-prepend:first-child>.btn:not(:first-child),
+.input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child),
+.input-group>.custom-select:not(:first-child),
+.input-group>.form-control:not(:first-child) {
+    border-top-left-radius: $input-border-radius;
+    border-bottom-left-radius: $input-border-radius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+// List group
+.list-inline-item:not(:last-child) {
+    margin-left: 6px;
+    margin-right: 0;
+}

@@ -1,0 +1,57 @@
+//
+// form-wizard.scss
+//
+@import '~vue-form-wizard/dist/vue-form-wizard.min.css';
+
+.wizard-header {
+    display: none;
+}
+
+.form-wizard-header {
+    .nav-item {
+        margin: 0 0.5em;
+        text-align: left;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .nav-link {
+            border-radius: 4px;
+            background-color: rgba($primary, 0.2);
+            border: 1px solid rgba($primary, 0.2);
+
+            @media (max-width: 575.98px) {
+                text-align: center;
+            }
+
+            .number {
+                display: inline-block;
+                line-height: 30px;
+                margin-right: 10px;
+                width: 30px;
+                border-radius: 50%;
+                color: $primary;
+                background-color: rgba($primary, 0.2);
+                text-align: center;
+
+                @media (max-width: 575.98px) {
+                    margin: 0;
+                }
+            }
+
+            &.active {
+                background-color: $primary;
+
+                .number {
+                    color: $white;
+                    background-color: rgba($white, 0.2);
+                }
+            }
+        }
+    }
+}

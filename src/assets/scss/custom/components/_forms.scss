@@ -1,0 +1,102 @@
+//
+// forms.scss
+//
+
+.form-control,
+.custom-select {
+    box-shadow: $components-shadow-sm;
+}
+
+// Form-control light
+.form-control-light {
+    background-color: $input-light-bg !important;
+    border-color: $input-light-bg !important;
+}
+
+
+// Form elements (Color and Range)
+input.form-control[type="color"],
+input.form-control[type="range"] {
+    min-height: 39px;
+}
+
+
+// Custom select
+.custom-select.is-invalid, .form-control.is-invalid,.custom-select:invalid, .form-control:invalid,
+.custom-select.is-valid, .form-control.is-valid, .custom-select:valid,.form-control:valid {
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+.custom-control-label{
+    cursor: pointer;
+}
+
+// Comment box
+.comment-area-box {
+    .form-control {
+        border-color: $gray-300;
+        border-radius: $input-border-radius $input-border-radius 0 0;
+    }
+    .comment-area-btn {
+        background-color: $gray-100;
+        padding: 10px;
+        border: 1px solid $gray-300;
+        border-top: none;
+        border-radius: 0 0 $input-border-radius $input-border-radius;
+    }
+}
+
+// Search box 
+.search-bar {
+
+    .form-control {
+        padding-left: 40px;
+        padding-right: 20px;
+        border-radius: 30px;
+    }
+
+    span {
+        position: absolute;
+        z-index: 10;
+        font-size: 16px;
+        line-height: $input-height;
+        left: 13px;
+        top: 0;
+        color: $text-muted;
+    }
+}
+
+// Show Password
+.password-eye {
+    &:before {
+        font-family: feather!important;
+        content: "\e86a";
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        line-height: 1.2;
+        font-size: 16px;
+    }
+}
+
+.show-password {
+    .password-eye {
+        &:before {
+            content: "\e86e";
+        }
+    }  
+}
+
+// Select
+select[multiple] option + option,
+select[size] option + option {
+  margin-top: 1px;
+}
+
+select[multiple] option,
+select[size] option {
+  padding: 6px 12px;
+  border-radius: 2px;
+}

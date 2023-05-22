@@ -1,0 +1,190 @@
+// 
+// buttons.scss
+//
+
+// Button shadow
+
+@mixin button-shadow($color) {
+    box-shadow: $btn-box-shadow rgba($color, 0.5);
+}
+
+// Button Shadows
+@each $color,
+$value in $theme-colors {
+    .btn-#{$color} {
+        @include button-shadow($value);
+    }
+}
+
+.btn {
+    .mdi {
+        &:before {
+            margin-top: -1px;
+        }
+    }
+
+    i {
+        display: inline-block;
+    }
+}
+
+.btn-rounded {
+    border-radius: 2em;
+}
+
+//
+// light button
+// 
+.btn-light,
+.btn-white {
+    color: $gray-900;
+}
+
+.btn-white {
+    border-color: $gray-300;
+
+    @include hover-focus {
+        background-color: $gray-100;
+        border-color: $gray-100;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba($gray-300, .3);
+    }
+}
+
+//
+// Link buttons
+//
+// Make a button look and behave like a link
+.btn-link {
+    font-weight: $font-weight-normal;
+    color: $link-color;
+    background-color: transparent;
+
+    @include hover {
+        color: $link-hover-color;
+        text-decoration: $link-hover-decoration;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    &:focus,
+    &.focus {
+        text-decoration: $link-hover-decoration;
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $btn-link-disabled-color;
+        pointer-events: none;
+    }
+
+    // No need for an active state here
+}
+
+//
+// Alternate buttons
+//
+@each $color,
+$value in $theme-colors {
+    .btn-outline-#{$color} {
+        @include button-outline-variant($value);
+    }
+}
+
+// 
+// Button labels
+//
+
+.btn-label {
+    margin: -.55rem .9rem -.55rem -.9rem;
+    padding: .6rem .9rem;
+    background-color: rgba($gray-900, 0.1);
+}
+
+.btn-label-right {
+    margin: (-$btn-padding-y) (-$btn-padding-x) (-$btn-padding-y) ($btn-padding-x);
+    padding: ($btn-padding-y) ($btn-padding-x);
+    background-color: rgba($gray-900, 0.1);
+    display: inline-block;
+}
+
+// 
+// Button Extra Small Size
+// 
+
+.btn-xs {
+    padding: .2rem .6rem;
+    font-size: .75rem;
+    border-radius: .15rem;
+}
+
+//
+// Soft Buttons
+// 
+
+@mixin button-variant-soft($bg) {
+    color: $bg;
+    background-color: rgba($bg, 0.18);
+    border-color: rgba($bg, 0.12);
+
+    @include hover {
+        color: $white;
+        background-color: $bg;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba($bg, .3);
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .btn-soft-#{$color} {
+        @include button-variant-soft($value);
+    }
+}
+
+// btn bordered
+
+@mixin button-bordered-variant($bg) {
+    background-color: $bg;
+    color: $white !important;
+    border-bottom: 2px solid darken($bg, 10%);
+}
+
+@each $color,
+$value in $theme-colors {
+    .btn-bordered-#{$color} {
+        @include button-bordered-variant($value);
+
+        &:focus,
+        &.focus {
+            box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba($value, 0.5);
+        }
+    }
+}
+
+// file upload
+
+.fileupload {
+    overflow: hidden;
+    position: relative;
+
+    input.upload {
+        cursor: pointer;
+        filter: alpha(opacity=0);
+        font-size: 20px;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

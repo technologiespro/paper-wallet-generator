@@ -1,0 +1,44 @@
+// 
+// tables.scss
+//
+
+th {
+    font-weight: $table-head-font-weight;
+}
+
+//Table centered (Custom)
+.table-centered {
+    td,th {
+        vertical-align: middle !important;
+    }
+}
+
+
+// Table 
+
+.table-nowrap {
+    th,td {
+        white-space: nowrap;
+    }
+}
+
+// Custom table components (Custom)
+.table {
+    .table-user {
+        img {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
+
+.action-icon {
+    color: $gray-600;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 0 3px;
+
+    &:hover {
+        color: $gray-700;
+    }
+}

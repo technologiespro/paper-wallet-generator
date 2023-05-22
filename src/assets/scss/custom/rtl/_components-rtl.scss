@@ -1,0 +1,196 @@
+//
+// components-rtl.scss
+//
+
+
+// ribbons
+
+.ribbon-box {
+    .ribbon {
+        &:before {
+            right: 0;
+            left: auto;
+        }
+
+        &.float-left {
+            margin-right: -30px;
+            margin-left: auto;
+            border-radius: 3px 0 0 3px;
+        }
+
+        &.float-right {
+            margin-left: -30px;
+            margin-right: 0;
+            border-radius: 0 3px 3px 0;
+
+            &:before {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+
+    /* Ribbon two */
+    .ribbon-two {
+        right: -5px;
+        left: auto;
+        text-align: left;
+
+        span {
+            transform: rotate(45deg);
+            right: -21px;
+            left: auto;
+        }
+    }
+}
+
+
+// Inbox-widget
+
+.inbox-widget {
+    .inbox-item {
+        .inbox-item-img {
+            float: right;
+            margin-left: 15px;
+            margin-right: 0;
+        }
+
+        .inbox-item-date {
+            right: auto;
+            left: 5px;
+        }
+    }
+}
+
+
+// Chat widget
+
+.conversation-list {
+    .chat-avatar {
+        float: right;
+    }
+
+    .ctext-wrap {
+        &:after {
+            right: -10px;
+            margin-left: 0;
+            border-right-color: transparent;
+            border-left-color: $chat-secondary-user-bg;
+        }
+    }
+
+    .conversation-text {
+        float: right;
+        margin-right: 12px;
+        margin-left: 0;
+    }
+
+    .odd {
+        .chat-avatar {
+            float: left !important;
+        }
+
+        .conversation-text {
+            float: left !important;
+            margin-right: 0;
+            margin-left: 12px;
+            text-align: left;
+        }
+
+        .ctext-wrap {
+            &:after {
+                border-color: transparent;
+                border-left-color: transparent;
+                border-right-color: $chat-primary-user-bg;
+                border-top-color: $chat-primary-user-bg;
+                left: -10px !important;
+                right: auto !important;
+            }
+        }
+    }
+}
+
+// Todo widget
+.todo-list {
+    padding-right: 10px;
+}
+
+
+// Custom-radio
+
+.checkbox {
+    label {
+        padding-right: 8px;
+        padding-left: 0;
+
+        &::before {
+            left: auto;
+            right: 0;
+            margin-left: 0;
+            margin-right: -18px;
+        }
+
+        &::after {
+            left: auto;
+            right: 0;
+            margin-right: -18px;
+            margin-left: 0;
+            padding-left: 0;
+            padding-right: 3px;
+        }
+    }
+
+    input[type="checkbox"]:checked+label {
+        &::after {
+            left: auto;
+            right: 7px;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.checkbox.checkbox-single {
+    label {
+        &:before {
+            margin-right: 0;
+        }
+
+        &:after {
+            margin-right: 0;
+        }
+    }
+}
+
+
+// custom-radio
+
+.radio {
+    label {
+        padding-left: 0;
+        padding-right: 8px;
+
+        &::before {
+            left: auto;
+            right: 0;
+            margin-left: 0;
+            margin-right: -18px;
+        }
+
+        &::after {
+            left: 0;
+            right: 6px;
+            margin-left: 0;
+            margin-right: -20px;
+        }
+    }
+}
+
+// Icon demo ( Demo only )
+.icons-list-demo {
+
+    i,
+    svg {
+        margin-left: 12px;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,22 @@
+//
+// general.scss
+//
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.zoom-min {
+  //zoom: 0.16 !important;;
+  cursor: zoom-in;
+}
+
+.zoom-max {
+  //zoom: 0.4 !important;
+  cursor: zoom-out;
+}

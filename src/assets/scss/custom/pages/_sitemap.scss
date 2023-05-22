@@ -1,0 +1,63 @@
+// 
+// sitemap.scss
+//
+
+.sitemap {
+    list-style: none;
+    padding-left: 0;
+
+    > li {
+        > ul {
+            margin-top: 1rem;
+            padding-left: 0;
+        }
+    }
+
+    li {
+        line-height: 1.5rem;
+        vertical-align: top;
+        list-style: none;
+        position: relative;
+
+        a {
+            text-decoration: none;
+            color: $dropdown-link-color;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            i {
+                display: inline-block;
+            }
+
+            &:hover {
+                color: $primary;
+            }
+        }   
+    }
+    ul {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 10px;
+
+        li {
+            position: relative;
+
+            a {
+                margin-left: 2rem;
+            }
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-bottom: 1px solid $border-color;
+                border-left: 1px solid $border-color;
+                position: absolute;
+                top: -10px;
+            }
+        }
+    }
+}
