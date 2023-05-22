@@ -6,41 +6,42 @@ Designed to securely generate altcoins addresses offline
 
 ### Available Coins
 
-- 42-Coin (42) https://42-coin.org
+- SmartHoldem (STH) https://smartholdem.io
+- ZCash (ZEC) https://z.cash
+- Komodo (KMD) https://komodoplatform.com
+- Flux (FLUX) https://runonflux.io
+- Ethereum (ETH) https://www.ethereum.org
+- Ethereum Classic (ETC) https://ethereumclassic.org
 - Bitcoin (BTC) https://bitcoin.org
-- BitcoinGold (BTG) https://bitcoingold.org
-- Blocknet (BLOCK) https://blocknet.co
+- Qtum (QTUM) https://qtum.org
+- Litecoin (LTC) https://litecoin.org
 - DASH (DASH) https://www.dash.org
-- Deutsche eMark (DEM) https://deutsche-emark.org
+- Dogecoin (DOGE) https://dogecoin.com
+- Waves (WAVES) https://wavesplatform.com
+- Ravencoin (RVN) https://ravencoin.org
+- PeerCoin (PPC) https://peercoin.net
+- HiveCoin (HVN) https://hivecoin.org/
+- Vertcoin (VTC) https://vertcoin.org
+- BitcoinGold (BTG) https://bitcoingold.org
+- BitcoinCash (BCH) https://www.bitcoincash.org
 - DigiByte (DGB) https://www.digibyte.io
 - DeepOnion (ONION) https://deeponion.org
-- Dogecoin (DOGE) https://dogecoin.com
-- Ethereum (ETH) https://www.ethereum.org
 - Emercoin (EMC) https://emercoin.com
-- Lisk (LSK) https://lisk.io
-- Litecoin (LTC) https://litecoin.org
-- NameCoin (NMC) https://namecoin.org
-- NobtCoin (NOBT) http://nobt.info
-- NovaCoin (NVC) http://novacoin.org
-- PotCoin (POT) https://www.potcoin.com
-- PeerCoin (PPC) https://peercoin.net
-- PIVX (PIVX) https://pivx.org
-- PostCoin (POST) https://postcoin.top
-- ReddCoin (RDD) https://reddcoin.com
-- SmartHoldem (STH) https://smartholdem.io
-- Vericoin (VRC) https://vericoin.info/vericoin-digital-currency
-- Vertcoin (VTC) https://vertcoin.org/download-wallet
-- Waves (WAVES) https://wavesplatform.com
 - EverGreenCoin (EGC) https://evergreencoin.org
+- NameCoin (NMC) https://namecoin.org
+- NovaCoin (NVC) http://novacoin.org
+- PostCoin (POST) https://postcoin.top
+- PIVX (PIVX) https://pivx.org
+- ReddCoin (RDD) https://reddcoin.com
+- Raptoreum (RTM) 'https://raptoreum.com
+- Vericoin (VRC) https://vericoin.info/vericoin-digital-currency
 - BlockChainCoinX (XCCX) https://BlockChainCoinX.dev
-- eXperience Points (XP) https://www.experiencepoints.io/
-- GuapCoin (GUAP) http://www.guapcoin.org/
-- Ravencoin (RVN) https://ravencoin.org/
+- eXperience Points (XP) https://www.experiencepoints.io
+- GuapCoin (GUAP) http://www.guapcoin.org
 - Tron (TRX) https://tron.network
-- PRUX-Coin (PRUX) https://prux.info
-- Bitcoinrand (BZAR) https://bitcoinrand.com
-- HiveCoin (HVN) https://hivecoin.org/
-
+- Blocknet (BLOCK)
+- AuroraCoin (AUR) https://en.auroracoin.is
+- Radiant (RXD) https://radiantblockchain.org
 
 ## Example
 
@@ -52,21 +53,6 @@ https://demo.paperwallet.top
 
 `npm run electron:build`
 
-# IMPORTANT NOTE
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-
-
-# Build
-
-electron: `yarn electron:build`
-
 
 # issues
 - nodejs >= 14.18
@@ -77,5 +63,15 @@ electron: `yarn electron:build`
 # Linux install dev
 
 sudo snap install --dangerous paperwallet-linux-amd64-2.0.2.snap
+
+# IMPORTANT NOTE
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 
