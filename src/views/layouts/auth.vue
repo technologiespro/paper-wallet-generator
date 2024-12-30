@@ -1,3 +1,4 @@
+<script src="../pages/widgets/data.js"></script>
 <script>
 /**
  * Auth component
@@ -19,7 +20,7 @@ export default {
     </div>
     <!-- end page -->
     <footer class="footer footer-alt">
-      {{ new Date().getFullYear() }} &copy; powered by
+      2018 - {{ new Date().getFullYear() }} &copy; powered by
       <a href="">TechnoL0g</a>
     </footer>
   </div>

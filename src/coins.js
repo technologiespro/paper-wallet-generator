@@ -6,10 +6,10 @@ export default {
         public: 0x3f,
         private: 0xff,
         generator: 'sthGenerator',
-        downloadWallet: 'https://smartholdem.io/wallets',
+        downloadWallet: 'https://wallet.smartholdem.io',
         trade: "https://ex.xbts.io/market/XBTSX.STH_BTS",
         defi: "https://app.xbts.io/#/pools?a=sth",
-        explorer: "https://blockexplorer.smartholdem.io",
+        explorer: "https://explorer.smartholdem.io",
         bip38: false,
         brainWallet: true,
         bip39: true
@@ -219,6 +219,7 @@ export default {
         bip38: true,
         brainWallet: true,
     },
+    /*
     "hvq": {
         ticker: "HVQ",
         title: "Hivecoin",
@@ -230,6 +231,8 @@ export default {
         bip38: true,
         brainWallet: true,
     },
+
+     */
     "vtc": {
         ticker: "VTC",
         title: "Vertcoin",
@@ -498,6 +501,17 @@ export default {
         explorer: "https://explorer.radiantblockchain.org",
         bip38: true,
         brainWallet: true,
-    }
+    },
+    "pep": {
+        ticker: "PEP",
+        title: "Pepecoin",
+        public: 0x38,
+        private: 0x16,
+        generator: 'btcGenerator',
+        downloadWallet: 'https://pepecoin.org',
+        explorer: "https://pepeblocks.com",
+        bip38: true,
+        brainWallet: true,
+    },
 
 }

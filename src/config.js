@@ -223,6 +223,7 @@ exports.coins = {
         bip38: true,
         brainWallet: true,
     },
+    /*
     "hvq": {
         ticker: "HVQ",
         title: "Hivecoin",
@@ -234,6 +235,8 @@ exports.coins = {
         bip38: true,
         brainWallet: true,
     },
+
+     */
     "vtc": {
         ticker: "VTC",
         title: "Vertcoin",
@@ -438,6 +441,7 @@ exports.coins = {
         explorer: "https://chainz.cryptoid.info/xp/",
         bip38: false,
     },
+    /*
     "guap": {
         ticker: "GUAP",
         title: "GuapCoin",
@@ -451,6 +455,8 @@ exports.coins = {
         bip38: true,
         brainWallet: true,
     },
+
+     */
     "trx": {
         ticker: "TRX",
         title: "Tron",
@@ -500,6 +506,17 @@ exports.coins = {
         trade: "https://ex.xbts.io/market/XBTSX.RXD_XBTSX.USDT",
         defi: false,
         explorer: "https://explorer.radiantblockchain.org",
+        bip38: true,
+        brainWallet: true,
+    },
+    "pep": {
+        ticker: "PEP",
+        title: "Pepecoin",
+        public: 0x38,
+        private: 0x16,
+        generator: 'btcGenerator',
+        downloadWallet: 'https://pepecoin.org',
+        explorer: "https://pepeblocks.com",
         bip38: true,
         brainWallet: true,
     },
